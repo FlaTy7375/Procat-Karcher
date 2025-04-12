@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: 'Inter';
+}
+
+body {
+  padding-top: 266px;
+  background-image: url('./assets/images/background.jpeg');
+  background-color: #121119;
+  background-position: center top;
+  background-repeat: no-repeat
+}
