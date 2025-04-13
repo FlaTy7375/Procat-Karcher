@@ -7,6 +7,7 @@ export const StyledHeader = styled.header `
 `
 
 export const StyledWrapper = styled.div `
+    z-index: 1;
     position: fixed;
     top: 48px;
     display: flex;

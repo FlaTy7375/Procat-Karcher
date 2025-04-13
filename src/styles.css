@@ -1,5 +1,12 @@
 @font-face {
   font-family: 'Inter';
+  src: url('./assets/fonts/Inter-ExtraBold.woff2') format('woff2');
+  font-weight: 900; /* ExtraBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
   src: url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
   font-weight: 600; /* SemiBold */
   font-style: normal;
@@ -23,6 +30,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: #fff;
   list-style-type: none;
   text-decoration: none;
   font-family: 'Inter';

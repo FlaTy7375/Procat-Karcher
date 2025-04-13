@@ -1,6 +1,6 @@
 import { StyledMainNav } from "./style";
 
-export default function MainNav() {
+export default function MainHeaderNav() {
     return(
         <StyledMainNav>
             <a href="nav-el">Главная</a>
