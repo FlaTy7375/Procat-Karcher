@@ -37,9 +37,13 @@
 }
 
 body {
+  width: 1726px;
+  margin: 0 auto;
   padding-top: 266px;
   background-image: url('./assets/images/background.jpeg');
   background-color: #121119;
   background-position: center top;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
+  box-shadow:  0 0px 50px 0 rgb(255, 255, 255, 0.1);
+  
 }
