@@ -5,8 +5,12 @@ export const StyledFooter = styled.footer `
 `
 
 export const FooterWrapper = styled.div `
+    position: relative;
     display: flex;
-    padding: 0px 89px 20px 89px;
+    justify-content: space-between;
+    padding: 0px 89px;
+    padding-right: 136px;
+    height: 516px;
 
     .logo-container {
         max-width: 580px;
@@ -25,7 +29,8 @@ export const FooterWrapper = styled.div `
     }
 
     .logo-container article {
-        margin-top: 119px;
+        position: absolute;
+        bottom: 20px;
         font-weight: 800;
         font-size: 28px;
     }
@@ -39,7 +44,6 @@ export const FooterWrapper = styled.div `
 
     .footer-socials {
         margin-top: 147px;
-        margin-left: 152px;
     }
 
     .footer-socials h2 {
@@ -57,7 +61,6 @@ export const FooterWrapper = styled.div `
         display: flex;
         flex-direction: column;
         gap: 40px;
-        margin-left: 220px;
         margin-top: 147px;
     }
 
@@ -70,11 +73,12 @@ export const FooterWrapper = styled.div `
         width: 292px;
         font-weight: 400;
         font-size: 28px;
-        margin-bottom: 182px;
     }
 
     .footer-book article {
         font-weight: 500;
         font-size: 24px;
+        position: absolute;
+        bottom: 20px;
     }
 `
