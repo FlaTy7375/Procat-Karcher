@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const StyledAdvantages = styled.section `
-    margin-bottom: 187px;
+    margin-bottom: 100px;
 
     .advantages-name {
-        width: 490px;
+        width: 355px;
     }
 
     .advantages-card {
         position: relative;
-        width: 513px;
-        height: 644px;
-        padding: 341px 47px 67px 47px;
+        width: 380px;
+        height: 514px;
+        padding: 307px 30px 48px 40px;
     }
 
     .advantages-card img {
@@ -19,29 +19,29 @@ export const StyledAdvantages = styled.section `
     }
 
     .advantages-card:nth-child(1) img {
-        width: 488px;
-        height: 488px;
-        top: -136px;
-        left: 0;
+        width: 370px;
+        height: 370px;
+        top: -63px;
+        left: 5px;
     }
 
     .advantages-card:nth-child(2) img {
-        width: 447px;
-        height: 671px;
-        top: -166px;
-        left: 33px;
+        width: 311px;
+        height: 467px;
+        top: -71px;
+        left: 34px;
     }
 
     .advantages-card:nth-child(3) img {
-        width: 413px;
-        height: 413px;
-        top: -89px;
-        left: 62px;
+        width: 325px;
+        height: 325px;
+        top: -45px;
+        left: 28px;
     }
 
     .advantages-card h2 {
         font-weight: 400;
-        font-size: 38px;
+        font-size: 28px;
         opacity: 0.75;
     }
 
@@ -51,14 +51,14 @@ export const StyledAdvantages = styled.section `
 
     .advantages-card p {
         font-weight: 400;
-        font-size: 24px;
+        font-size: 18px;
         opacity: 0.75;
-        width: 370px;
+        width: 310px;
     }
 `
 
 export const AdvantagesWrapper = styled.div `
     display: flex;
     justify-content: space-between;
-    margin-top: 185px;
+    margin-top: 100px;
 `

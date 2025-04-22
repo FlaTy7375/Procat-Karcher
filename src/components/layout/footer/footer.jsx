@@ -12,7 +12,7 @@ export default function Footer() {
             <FooterWrapper>
             <div className="logo-container">
                 <div className="footer-logo">
-                    <img src={Logo} alt="logo" width="94" height="94" />
+                    <img src={Logo} alt="logo" width="64" height="64" />
                     <h1>ProKarcher</h1>
                 </div>
                 <p>Аренда моющей техники Karcher в Столине. Подбор химии и аксессуаров и профессиональная химчистка!</p>
@@ -21,9 +21,9 @@ export default function Footer() {
             <div className="footer-socials">
                 <h2>Связаться с нами</h2>
                 <div className="social-list">
-                    <a href="inst"><img src={InstLogo} alt="inst-logo" width="64" height="64"/></a>
-                    <a href="inst"><img src={TgLogo} alt="inst-logo" width="64" height="64"/></a>
-                    <a href="inst"><img src={CallLogo} alt="inst-logo" width="64" height="64"/></a>
+                    <a href="inst"><img src={InstLogo} alt="inst-logo" width="48" height="48"/></a>
+                    <a href="inst"><img src={TgLogo} alt="inst-logo" width="48" height="48"/></a>
+                    <a href="inst"><img src={CallLogo} alt="inst-logo" width="48" height="48"/></a>
                 </div>
             </div>
             <div className="footer-book">

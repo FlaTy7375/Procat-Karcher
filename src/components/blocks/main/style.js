@@ -3,33 +3,42 @@ import MainImage from "../../../assets/images/main-image.png"
 
 export const StyledMain = styled.section `
     position: relative;
-    margin-bottom: 180px;
+    margin-bottom: 100px;
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        gap: 79px;
+    }
 
     p {
-        max-width: 893px;
         font-weight: 500;
-        font-size: 23px;
+        font-size: 18px;
         color: #fff;
         opacity: 0.75;
     }
 
     .main-button {
-        margin-top: 15px;
-        width: 290px;
+        width: 265px;
     }
 
     .main-comment {
-        position: absolute;
-        top: 525px;
-        width: 411px;
+        display: flex;
+        width: 392px;
         height: 237px;
-        padding: 43px 42px;
+        padding: 40px;
         border-radius: 45px;
     }
 
-    .main-comment div {
+    .comment-wrapper {
         display: flex;
-        gap: 28px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .main-comment .comment-author {
+        display: flex;
+        gap: 25px;
     }
 
     .main-comment h2 {
@@ -48,32 +57,33 @@ export const StyledMain = styled.section `
     .main-card {
         position: relative;
         justify-content: flex-end;
-        width: 512px;
-        height: 644px;
-        padding: 38px 83px;
+        width: 430px;
+        height: 556px;
+        padding: 50px 60px;
+        padding-right: 100px;
     }
 
     .main-card::after {
         position: absolute;
         content: "";
-        width: 430px;
-        height: 430px;
-        top: -76px;
-        right: 41px;
+        width: 400px;
+        height: 400px;
+        top: -103px;
+        right: 15px;
         background-image: url(${MainImage});
         background-size: cover;
     }
 
     .main-card .card-button {
-        width: 264px;
+        width: 242px;
         font-weight: 400;
-        font-size: 28px;
+        font-size: 24px;
         opacity: 0.75;
     }
 
     .main-card h2 {
         font-weight: 400;
-        font-size: 38px;
+        font-size: 28px;
         opacity: 0.75;
     }
 
@@ -88,9 +98,8 @@ export const StyledMainWrapper = styled.div `
 `
 
 export const Title = styled.h1 `
-    max-width: 910px;
     font-weight: 600;
-    font-size: 118px;
+    font-size: 80px;
     color: #fff;
     opacity: 0.75;
 `
@@ -98,6 +107,8 @@ export const Title = styled.h1 `
 export const MainInfo = styled.div `
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    width: 694px;
 `
 
 export const CardWrapper = styled.div `

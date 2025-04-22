@@ -16,7 +16,7 @@ export default function Comments() {
         <CommentsContainer>
         <Card className="comments-card">
           <div className="comment-author">
-            <img src={Avatar1} alt="avatar" width="88" height="88"/>
+            <img src={Avatar1} alt="avatar" width="64" height="64"/>
             <h2>Maxn Raval</h2>
           </div>
           <p className="comment-description">
@@ -27,7 +27,7 @@ export default function Comments() {
         </Card>
         <Card className="comments-card">
         <div className="comment-author">
-            <img src={Avatar2} alt="avatar" width="88" height="88"/>
+            <img src={Avatar2} alt="avatar" width="64" height="64"/>
             <h2>Maxn Raval</h2>
           </div>
           <p className="comment-description">
@@ -38,7 +38,7 @@ export default function Comments() {
         </Card>
         <Card className="comments-card">
         <div className="comment-author">
-            <img src={Avatar3} alt="avatar" width="88" height="88"/>
+            <img src={Avatar3} alt="avatar" width="64" height="64"/>
             <h2>Maxn Raval</h2>
           </div>
           <p className="comment-description">

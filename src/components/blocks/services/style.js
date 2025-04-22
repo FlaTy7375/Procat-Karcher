@@ -1,20 +1,35 @@
 import styled from "styled-components";
+import Services1 from "../../../assets/images/main-image.png";
 
 export const StyledServices = styled.section `
-    margin-bottom: 187px;
+    margin-bottom: 100px;
 
     .services-name {
-        width: 748px;
+        width: 544px;
     }
 
     .services-card {
         position: relative;
-        display: flex;
-        width: 1600px;
+        width: 1180px;
         margin: 0 auto;
-        margin-top: 187px;
-        height: 755px;
-        padding: 101px 60px 42px 808px;
+        margin-top: 100px;
+        height: 478px;
+        padding: 70px 55px 30px 514px;
+    }
+
+    .services-wrapper {
+        width: 610px;
+    }
+
+    .services-card::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        bottom: 21px;
+        width: 543px;
+        height: 543px;
+        background-image: url(${Services1});
+        background-size: cover;
     }
 
     .services-title {
@@ -23,26 +38,21 @@ export const StyledServices = styled.section `
 
     .services-card h2 {
         font-weight: 600;
-        font-size: 38px;
+        font-size: 28px;
         opacity: 0.75;
-    }
-
-    .services-card img {
-        position: absolute;
-        left: -24px;
-        bottom: 24px;
     }
 
     .services-card p {
         font-weight: 600;
-        font-size: 28px;
+        font-size: 18px;
         opacity: 0.75;
     }
 
     .services-button {
-        width: 234px;
-        margin-top: 40px;
+        width: 216px;
+        margin-top: 20px;
         font-weight: 400;
-        font-size: 28px;
+        font-size: 24px;
+        opacity: 0.75;
     }
 `

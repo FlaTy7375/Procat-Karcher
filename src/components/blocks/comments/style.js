@@ -1,56 +1,62 @@
 import styled from "styled-components";
 
 export const StyledComments = styled.section `
-    width: 1512px;
+    width: 1148px;
     margin: 0 auto;
-    margin-bottom: 187px;
+    margin-bottom: 100px;
 
     .comments-name {
-        width: 439px;
+        width: 318px;
     }
 
     .comments-card {
-        width: 484px;
-        height: 480px;
-        padding: 91px 20px 95px 45px;
+        width: 323px;
+        height: 385px;
+        padding: 55px 10px 40px 40px;
     }
 
     .comments-card h2 {
         font-weight: 600;
-        font-size: 38px;
+        font-size: 24px;
     }
 
     .comments-card p {
         font-weight: 400;
-        font-size: 24px;
+        font-size: 18px;
         opacity: 0.75;
     }
 
     .comments-card .comment-description {
-        margin-top: 61px;
+        margin-top: 24px;
     }
 
     .comments-card .comment-author {
         display: flex;
         align-items: center;
-        gap: 38px;
+        gap: 16px;
     }
 
     .write-comment {
-        width: 438px;
-        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 322px;
+        padding: 10px;
+        height: 64px;
         margin: 0 auto;
-        margin-top: 60px;
+        margin-top: 45px;
         font-weight: 400;
-        font-size: 28px;
+        font-size: 24px;
     }
 `
 
 export const CommentsWrapper = styled.div `
-    margin-top: 187px;
+    margin-top: 100px;
 `
 
 export const CommentsContainer = styled.div `
+    width: 1008px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 `

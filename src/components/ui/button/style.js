@@ -8,10 +8,13 @@ export const StyledButton = styled.button `
     border: 2px solid #fff;
     border-radius: 12px;
     background-color: transparent;
-    width: 234px;
-    height: 64px;
+    width: 216px;
+    height: 59px;
     font-weight: 400;
-    font-size: 28px;
+    font-size: 24px;
     color: #fff;
     cursor: pointer;
+
+    &:hover {
+    }
 `

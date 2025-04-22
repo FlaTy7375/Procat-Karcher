@@ -5,15 +5,14 @@ export const StyledSection = styled.div `
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 439px;
-    height: 109px;
+    width: 332px;
+    height: 78px;
     margin: 0 auto;
-    padding: 18px 34px;
+    padding: 12px 24px 18px 24px;
 
     h1 {
         font-weight: 600;
-        font-size: 55px;
-        text-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 5px 4px 0 rgba(0, 0, 0, 0.13), 0 8px 6px 0 rgba(0, 0, 0, 0.15), 0 13px 10px 0 rgba(0, 0, 0, 0.18), 0 19px 15px 0 rgba(0, 0, 0, 0.21), 0 30px 24px 0 rgba(0, 0, 0, 0.23), 0 50px 40px 0 rgba(0, 0, 0, 0.27), 0 100px 80px 0 rgba(0, 0, 0, 0.36);
+        font-size: 40px;
     }
 
     .left-border {

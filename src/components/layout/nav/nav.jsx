@@ -8,7 +8,7 @@ export default function Nav() {
     <StyledNav>
         <div className="logo-wrapper">
             <a href="logo">
-                <img src={Logo} alt="logo" width="48" height="48"></img>
+                <img src={Logo} alt="logo" width="36" height="36"></img>
                 <h2>ProKarcher</h2>
             </a>
         </div>

@@ -2,83 +2,85 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.footer `
     background-color: #1e1d25;
+    width: 100%;
 `
 
 export const FooterWrapper = styled.div `
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 0px 89px;
-    padding-right: 136px;
-    height: 516px;
+    width: 1280px;
+    margin: 0 auto;
+    padding: 0px 50px;
+    height: 404px;
+
 
     .logo-container {
-        max-width: 580px;
-        margin-top: 116px;
+        width: 355px;
+        margin-top: 83px;
     }
 
     .logo-container p {
         font-weight: 500;
-        font-size: 28px;
+        font-size: 18px;
     }
 
     .logo-container h1 {
         font-weight: 900;
-        font-size: 58px;
-        opacity: 0.75;
+        font-size: 32px;
     }
 
     .logo-container article {
         position: absolute;
-        bottom: 20px;
+        bottom: 30px;
         font-weight: 800;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .footer-logo {
         display: flex;
         align-items: center;
-        gap: 13px;
-        margin-bottom: 31px;
+        gap: 20px;
+        margin-bottom: 20px;
     }
 
     .footer-socials {
-        margin-top: 147px;
+        margin-top: 95px;
     }
 
     .footer-socials h2 {
         font-weight: 800;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .social-list {
-        margin-top: 40px;
+        margin-top: 30px;
         display: flex;
-        gap: 30px;
+        gap: 35px;
     }
 
     .footer-book {
         display: flex;
         flex-direction: column;
         gap: 40px;
-        margin-top: 147px;
+        margin-top: 95px;
     }
 
     .footer-book h2 {
         font-weight: 800;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .footer-book .book-button {
-        width: 292px;
+        width: 265px;
         font-weight: 400;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .footer-book article {
         font-weight: 500;
-        font-size: 24px;
+        font-size: 18px;
         position: absolute;
-        bottom: 20px;
+        bottom: 40px;
     }
 `
