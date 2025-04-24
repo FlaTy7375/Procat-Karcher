@@ -9,9 +9,8 @@ export const FooterWrapper = styled.div `
     position: relative;
     display: flex;
     justify-content: space-between;
-    width: 1280px;
+    width: 1180px;
     margin: 0 auto;
-    padding: 0px 50px;
     height: 404px;
 
 
@@ -81,6 +80,43 @@ export const FooterWrapper = styled.div `
         font-weight: 500;
         font-size: 18px;
         position: absolute;
-        bottom: 40px;
+        bottom: 30px;
+    }
+
+    @media (max-width: 1210px) {
+        padding-top: 40px;
+        padding-bottom: 100px;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 65px;
+        width: calc(100vw - 100px);
+
+        .logo-container {
+            width: auto;
+        }
+
+        .footer-logo {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container p, .footer-book h2, .footer-socials h2 {
+            text-align: center;
+        }
+
+        .footer-socials, .footer-book, .logo-container {
+            margin-top: 0;
+        }
+
+        .logo-container article {
+            left: 0;
+            bottom: 20px;
+        }
+
+        .footer-book article {
+            right: 0;
+            bottom: 20px;
+        }
     }
 `

@@ -25,6 +25,20 @@ export const StyledNav = styled.nav `
         color: #fff;
         opacity: 0.75;
     }
+
+    @media (max-width: 1210px) {
+        justify-content: center;
+
+        .logo-wrapper {
+            position: absolute;
+            left: 40px;
+        }
+        
+
+        .logo-wrapper h2 {
+            display: none;
+        }
+    }
 `
 
 export const StyledSocials = styled.div `
@@ -41,6 +55,9 @@ export const StyledSocials = styled.div `
         opacity: 0.85;
     }
 
+    @media (max-width: 1210px) {
+        display: none;
+    }
 `
 
 export const StyledMainNav = styled.div `
@@ -55,5 +72,9 @@ export const StyledMainNav = styled.div `
         font-size: 18px;
         color: #fff;
         cursor: pointer;
+    }
+
+    @media (max-width: 1210px) {
+        gap: 15px;
     }
 `

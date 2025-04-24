@@ -6,7 +6,7 @@ export default function MainHeaderNav() {
             <a href="nav-el">Главная</a>
             <a href="nav-el">Техника</a>
             <a href="nav-el">Преимущества</a>
-            <a href="nav-el">Отзывы</a>
+            <a href="#comments">Отзывы</a>
             <a href="nav-el">Доп. Услуги</a>
         </StyledMainNav>
     )

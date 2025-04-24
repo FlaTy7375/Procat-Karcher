@@ -55,10 +55,51 @@ export const StyledAdvantages = styled.section `
         opacity: 0.75;
         width: 310px;
     }
+
+    @media (max-width: 1210px) {
+        .advantages-card {
+            height: 258px;
+            padding: 60px;
+            padding-left: 316px;
+            min-width: 708px;
+            width: calc(100vw - 60px);
+        }
+
+        .advantages-card:nth-child(1) img {
+            width: 285px;
+            height: 285px;
+            top: -48px;
+            left: 0px;
+        }
+
+        .advantages-card:nth-child(2) img {
+            width: 240px;
+            height: 360px;
+            top: -43px;
+            left: 22px;
+        }
+
+        .advantages-card:nth-child(3) img {
+            width: 249px;
+            height: 249px;
+            top: -16px;
+            left: 28px;
+        }
+
+        .advantages-card p {
+            width: auto;
+        }
+    }
 `
 
 export const AdvantagesWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
+
+    @media (max-width: 1210px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
 `

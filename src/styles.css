@@ -37,20 +37,26 @@
 }
 
 body {
+  width: 100%;
+  max-width: 2800px;
+  margin: 0 auto;
   padding-top: 242px;
   background-color: #121119;
-  box-shadow:  0 0px 50px 0 rgb(255, 255, 255, 0.1);
+  background-image: url('./assets/images/background.jpg');
+  background-size: 2800px;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
-@media (max-width: 1920px) {
+@media (min-width: 1280px) {
   body {
-    width: 100%;
-    background-image: url('./assets/images/background.jpg');
-    background-size: 2850px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    box-shadow:  none;
-    
+    box-shadow:  0 0px 50px 0 rgb(255, 255, 255, 0.1);
   }
 }
 
+@media (max-width: 1210px) {
+  body {
+    padding-top: 152px;
+    background-size: 3450px;
+  }
+}

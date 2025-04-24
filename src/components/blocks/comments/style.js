@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledComments = styled.section `
-    width: 1148px;
     margin: 0 auto;
     margin-bottom: 100px;
 
@@ -16,6 +15,7 @@ export const StyledComments = styled.section `
     }
 
     .comments-card h2 {
+        margin-top: 8px;
         font-weight: 600;
         font-size: 24px;
     }
@@ -32,7 +32,6 @@ export const StyledComments = styled.section `
 
     .comments-card .comment-author {
         display: flex;
-        align-items: center;
         gap: 16px;
     }
 
@@ -48,6 +47,19 @@ export const StyledComments = styled.section `
         font-weight: 400;
         font-size: 24px;
     }
+
+    @media (max-width: 1210px) {
+        .comments-card {
+            height: 318px;
+            padding: 60px;
+            min-width: 554px;
+            width: calc(100vw - 214px);
+        }
+
+        .comments-card:nth-child(2), .comments-card:nth-child(3) {
+            display: none;
+        }
+    }
 `
 
 export const CommentsWrapper = styled.div `
@@ -59,4 +71,9 @@ export const CommentsContainer = styled.div `
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 1210px) {
+        width: auto;
+        justify-content: center;
+    }
 `

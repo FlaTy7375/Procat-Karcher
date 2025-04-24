@@ -25,7 +25,7 @@ export const StyledServices = styled.section `
         content: "";
         position: absolute;
         left: 12px;
-        bottom: 21px;
+        top: -86px;
         width: 543px;
         height: 543px;
         background-image: url(${Services1});
@@ -54,5 +54,27 @@ export const StyledServices = styled.section `
         font-weight: 400;
         font-size: 24px;
         opacity: 0.75;
+    }
+
+    @media (max-width: 1210px) {
+        .services-card {
+            padding: 540px 70px 40px 80px;
+            height: auto;
+            width: calc(100vw - 60px);
+            max-width: 808px;
+        }
+
+        .services-wrapper {
+            width: auto;
+        }
+
+        .services-card::before {
+            left: 12px;
+            top: -89px;
+            width: 614px;
+            height: 614px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
     }
 `

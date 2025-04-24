@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const StyledPage = styled.main `
-    width: 1280px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 0px 50px;
+
+    @media (max-width: 1279px) {
+        min-width: 768px;
+    }
 `

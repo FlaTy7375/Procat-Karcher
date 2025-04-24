@@ -3,7 +3,7 @@ import Technique1 from "../../../assets/images/karcher-puzzi.png"
 import Technique2 from "../../../assets/images/karcher-easy-sc3.png"
 
 export const StyledTechnique = styled.section `
-    margin-bottom: 120px;
+    margin-bottom: 100px;
 `
 
 export const TechniqueWrapper = styled.div `
@@ -94,5 +94,44 @@ export const CardsWrapper = styled.div `
     .technique-button {
         width: 266px;
         font-weight: 500;
+    }
+
+    @media (max-width: 1210px) {
+        .technique-card {
+            flex-direction: column;
+            width: calc(100vw - 60px);
+            max-width: 808px;
+            padding-top: 510px;
+            height: auto;
+        }
+
+        .technique-card:nth-child(1) {
+            align-items: center;
+        }
+
+        .technique-card .card-wrapper {
+            width: auto;
+        }
+
+        .technique-card:nth-child(1)::before {
+            top: -108px;
+            width: 665px;
+            height: 579px;
+            left: calc(50% + 15px);
+            transform: translate(-50%, 0%);
+        }
+
+        .technique-card:nth-child(2)::after {
+            top: -134px;
+            width: 607px;
+            height: 607px;
+            left: calc(50% + 10px);
+            transform: translate(-50%, 0%);
+        }
+
+        .technique-card:nth-child(2) {
+            padding: 54px;
+            padding-top: 510px;
+        }
     }
 `

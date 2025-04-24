@@ -90,11 +90,35 @@ export const StyledMain = styled.section `
     .main-card p {
         font-weight: 400;
     }
+
+    @media (max-width: 1210px) {
+        h1 ~ p {
+            text-align: center;
+        }
+        
+        .main-container {
+            display: flex;
+            width: calc(100vw - 60px);
+            margin: 0 auto;
+        }
+
+        .main-comment {
+            display: none;
+        }
+
+        .main-card {
+            display: none;
+        }
+    }
 `
 
 export const StyledMainWrapper = styled.div `
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 1210px) {
+        display: block;
+    }
 `
 
 export const Title = styled.h1 `
@@ -102,6 +126,10 @@ export const Title = styled.h1 `
     font-size: 80px;
     color: #fff;
     opacity: 0.75;
+
+    @media (max-width: 1210px) {
+        text-align: center;
+    }
 `
 
 export const MainInfo = styled.div `
@@ -109,6 +137,11 @@ export const MainInfo = styled.div `
     flex-direction: column;
     gap: 20px;
     width: 694px;
+
+    @media (max-width: 1210px) {
+        align-items: center;
+        width: auto;
+    }
 `
 
 export const CardWrapper = styled.div `
