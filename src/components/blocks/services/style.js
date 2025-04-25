@@ -3,6 +3,7 @@ import Services1 from "../../../assets/images/main-image.png";
 
 export const StyledServices = styled.section `
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
 
     .short-name {
         display: none;

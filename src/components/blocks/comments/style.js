@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledComments = styled.section `
     margin: 0 auto;
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
 
     .comments-name {
         width: 318px;

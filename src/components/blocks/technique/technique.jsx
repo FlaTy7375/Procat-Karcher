@@ -8,7 +8,7 @@ import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg"
 
 export default function Technique() {
     return (
-        <StyledTechnique>
+        <StyledTechnique id="technique">
             <TechniqueWrapper>
             <SectionName className="technique-name">Наша Техника</SectionName>
             <CardsWrapper>

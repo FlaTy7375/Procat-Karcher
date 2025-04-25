@@ -34,6 +34,7 @@
   list-style-type: none;
   text-decoration: none;
   font-family: 'Inter';
+  scroll-behavior: smooth;
 }
 
 body {

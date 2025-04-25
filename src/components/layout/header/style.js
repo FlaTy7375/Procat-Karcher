@@ -24,6 +24,7 @@ export const StyledWrapper = styled.div `
     height: 60px;
     border-radius: 20px;
     box-shadow: 0px 18px 22px -6px rgba(0, 0, 0, 0.25);
+    -webkit-backdrop-filter: blur(220.8px);
     backdrop-filter: blur(220.8px);
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(255, 255, 255, 0.14);

@@ -4,6 +4,7 @@ import MainImage from "../../../assets/images/main-image.png"
 export const StyledMain = styled.section `
     position: relative;
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
 
     .main-container {
         display: flex;

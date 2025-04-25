@@ -4,6 +4,7 @@ import Technique2 from "../../../assets/images/karcher-easy-sc3.png"
 
 export const StyledTechnique = styled.section `
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
 
     @media (max-width: 767px) {
         margin-bottom: 50px;

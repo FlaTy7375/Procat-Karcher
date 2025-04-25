@@ -9,7 +9,7 @@ import Avatar from "../../../assets/images/avatar.png";
 
 export default function Main() {
   return (
-    <StyledMain>
+    <StyledMain id="main">
       <StyledMainWrapper>
       <div className="main-container">
         <MainInfo>

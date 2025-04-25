@@ -8,7 +8,7 @@ import Adv3 from "../../../assets/images/adv3.png"
 
 export default function Advantages() {
     return (
-        <StyledAdvantages>
+        <StyledAdvantages id="advantages">
             <SectionName className="advantages-name">Преимущества</SectionName>
             <AdvantagesWrapper>
                 <Card className="advantages-card">

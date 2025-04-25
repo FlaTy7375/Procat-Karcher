@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledAdvantages = styled.section `
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
 
     .advantages-name {
         width: 355px;

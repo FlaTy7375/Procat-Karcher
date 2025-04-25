@@ -10,8 +10,8 @@ import Avatar3 from "../../../assets/images/comment-ava3.png"
 
 export default function Comments() {
   return (
-    <StyledComments>
-      <SectionName className="comments-name" id="comments">Ваши отзывы</SectionName>
+    <StyledComments id="comments">
+      <SectionName className="comments-name">Ваши отзывы</SectionName>
       <CommentsWrapper>
         <CommentsContainer>
         <Card className="comments-card">

@@ -5,7 +5,7 @@ import Button from "../../ui/button/button";
 
 export default function Services() {
   return (
-    <StyledServices>
+    <StyledServices id="services">
       <SectionName className="services-name"><span className="full-name">Дополнительные</span><span className="short-name">Доп.</span> услуги</SectionName>
       <Card className="services-card">
         <div className="services-wrapper">
