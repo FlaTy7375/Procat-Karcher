@@ -90,6 +90,53 @@ export const StyledAdvantages = styled.section `
             width: auto;
         }
     }
+
+    @media (max-width: 767px) {
+        margin-bottom: 50px;
+
+        .advantages-name {
+            width: 236px;
+        }
+
+        .advantages-card {
+            border-radius: 25px;
+            align-items: center;
+            justify-content: center;
+            padding: 75vw 60px 50px 60px;
+            height: auto;
+            width: calc(100vw - 42px);
+            min-width: 280px;
+            max-width: 626px;
+        }
+
+        .advantages-card h2 {
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .advantages-card p {
+            text-align: center;
+            font-size: 14px;
+            max-width: 542px;
+        }
+
+        .advantages-card:nth-child(1) img {
+            width: 80vw;
+            height: 80vw;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .advantages-card:not(:nth-child(1)) {
+            display: none;
+        }
+    }
+
+    @media (max-width: 468px) {
+        .advantages-card {
+            padding: 75vw 18px 50px 18px;
+        }
+    }
 `
 
 export const AdvantagesWrapper = styled.div `
@@ -101,5 +148,9 @@ export const AdvantagesWrapper = styled.div `
         flex-direction: column;
         align-items: center;
         gap: 30px;
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 50px;
     }
 `

@@ -4,6 +4,10 @@ import Services1 from "../../../assets/images/main-image.png";
 export const StyledServices = styled.section `
     margin-bottom: 100px;
 
+    .short-name {
+        display: none;
+    }
+
     .services-name {
         width: 544px;
     }
@@ -69,12 +73,69 @@ export const StyledServices = styled.section `
         }
 
         .services-card::before {
-            left: 12px;
             top: -89px;
             width: 614px;
             height: 614px;
             left: 50%;
             transform: translate(-50%, 0%);
+        }
+    }
+
+    @media (max-width: 767px) {
+        margin-bottom: 50px;
+
+        .short-name {
+            display: block;
+        }
+
+        .full-name {
+            display: none;
+        }
+
+        .services-name {
+            width: 192px;
+        }
+
+        .services-name h1 {
+            display: flex;        
+        }
+
+        .services-card { 
+            margin-top: 50px;
+            border-radius: 25px;
+            padding: 70vw 38px 25px 38px;
+            width: calc(100vw - 42px);
+            max-width: 626px;
+        }
+
+        .services-card::before {
+            top: -31px;
+            width: 70vw;
+            height: 70vw;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .services-card h2 {
+            font-size: 18px;
+        }
+
+        .services-card p {
+            font-size: 14px;
+        }
+
+        .services-button {
+            height: 45px;
+            width: 190px;
+            margin: 0 auto;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 468px) {
+        .services-card { 
+            padding: 70vw 18px 25px 18px;
         }
     }
 `

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.footer `
     background-color: #1e1d25;
-    width: 100%;
+    width: 100vw;
 `
 
 export const FooterWrapper = styled.div `
@@ -117,6 +117,38 @@ export const FooterWrapper = styled.div `
         .footer-book article {
             right: 0;
             bottom: 20px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding-top: 20px;
+        padding-bottom: 114px;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 65px;
+        width: calc(100vw - 42px);
+
+        .footer-logo {
+            gap: 5px;
+        }
+
+        .logo-container article {
+            left: 50%;
+            transform: translate(-50%, 0%);
+            bottom: 20px;
+        }
+
+        .footer-book {
+            gap: 30px;
+        }
+
+        .footer-book article {
+            text-align: center;
+            width: 100%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            bottom: 71px;
         }
     }
 `

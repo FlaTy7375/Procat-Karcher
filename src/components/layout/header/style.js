@@ -7,11 +7,10 @@ export const StyledHeader = styled.header `
 
     @media (max-width: 1210px) {
         width: 100vw;
-        padding: 0;
     }
 
     @media (max-width: 767px) {
-        width: 100%;
+        width: 100vw;
     }
 `
 
@@ -37,6 +36,7 @@ export const StyledWrapper = styled.div `
     }
 
     @media (max-width: 767px) {
+        padding: 12px 21px;
         width: 100%;
         top: 0;
         border-radius: 0;

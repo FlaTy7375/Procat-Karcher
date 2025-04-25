@@ -27,4 +27,23 @@ export const StyledSection = styled.div `
         right: 0;
         transform: rotate(180deg);
     }
+
+    @media (max-width: 767px) {
+        height: 51px;
+        padding: 8px 18px 12px 18px;
+
+        h1 {
+            font-size: 26px;
+        }
+
+        .left-border {
+            width: 31px;
+            height: 31px;
+        }
+
+        .right-border {
+            width: 31px;
+            height: 31px;
+        }
+    }
 `

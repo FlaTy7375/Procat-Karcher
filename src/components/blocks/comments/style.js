@@ -46,6 +46,7 @@ export const StyledComments = styled.section `
         margin-top: 45px;
         font-weight: 400;
         font-size: 24px;
+        opacity: 0.75;
     }
 
     @media (max-width: 1210px) {
@@ -60,10 +61,48 @@ export const StyledComments = styled.section `
             display: none;
         }
     }
+
+    @media (max-width: 767px) {
+        margin-bottom: 50px;
+
+        .comments-name {
+            width: 212px;
+        }
+
+        .comments-card {
+            min-height: 200px;
+            height: auto;
+            padding: 25px 17px 20px 25px;
+            border-radius: 25px;
+            min-width: 278px;
+            width: calc(100vw - 42px);
+        }
+
+        .comments-card h2 {
+            font-size: 18px;
+        }
+
+        .comments-card p {
+            font-size: 14px;
+        }
+
+        .write-comment {
+            height: 49px;
+            font-weight: 400;
+            font-size: 18px;
+            min-width: 248px;
+            max-width: 412px;
+            width: calc(100vw - 42px);
+        }
+    }
 `
 
 export const CommentsWrapper = styled.div `
     margin-top: 100px;
+
+    @media (max-width: 767px) {
+        margin-top: 50px;
+    }
 `
 
 export const CommentsContainer = styled.div `

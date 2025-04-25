@@ -110,6 +110,19 @@ export const StyledMain = styled.section `
             display: none;
         }
     }
+
+    @media (max-width: 767px) {
+        margin-bottom: 60px;
+
+        .main-container {
+            width: calc(100vw - 42px);
+        }
+
+        .main-button {
+            font-size: 18px;
+            width: auto;
+        }
+    }
 `
 
 export const StyledMainWrapper = styled.div `
@@ -129,6 +142,10 @@ export const Title = styled.h1 `
 
     @media (max-width: 1210px) {
         text-align: center;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 36px;
     }
 `
 

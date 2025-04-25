@@ -4,11 +4,21 @@ import Technique2 from "../../../assets/images/karcher-easy-sc3.png"
 
 export const StyledTechnique = styled.section `
     margin-bottom: 100px;
+
+    @media (max-width: 767px) {
+        margin-bottom: 50px;
+    }
 `
 
 export const TechniqueWrapper = styled.div `
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+        .technique-name {
+            width: 234px;
+        }
+    }
 `
 
 export const CardsWrapper = styled.div `
@@ -132,6 +142,71 @@ export const CardsWrapper = styled.div `
         .technique-card:nth-child(2) {
             padding: 54px;
             padding-top: 510px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 50px;
+        gap: 50px;
+
+        .technique-card .card-wrapper {
+            width: 100%;
+        }
+
+        .technique-card {
+            
+            padding: 20px 19px 20px 20px;
+            padding-top: 70vw;
+            width: calc(100vw - 42px);
+            border-radius: 25px;
+        }
+
+        .technique-card h2 {
+            font-size: 22px;
+        }
+
+        .technique-card p {
+            font-size: 14px;
+        }
+
+        .technique-card article {
+            font-size: 22px;
+        }
+
+        .technique-card:nth-child(1)::before {
+            top: -24px;
+            width: 80vw;
+            height: 70vw;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .technique-card:nth-child(2)::after {
+            top: -62px;
+            width: 75vw;
+            height: 75vw;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .technique-card:nth-child(2) {
+            padding: 20px 19px 20px 20px;
+            padding-top: 67vw;
+        }
+
+        .button-wrapper {
+            gap: 15px;
+        }
+
+        .technique-button {
+            width: 168px;
+            height: 52px;
+            font-size: 18px;
+        }
+
+        .technique-info {
+            width: 52px;
+            height: 52px;
         }
     }
 `

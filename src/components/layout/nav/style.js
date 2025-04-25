@@ -26,6 +26,10 @@ export const StyledNav = styled.nav `
         opacity: 0.75;
     }
 
+    .menu-button {
+        display: none;
+    }
+
     @media (max-width: 1210px) {
         justify-content: center;
 
@@ -37,6 +41,26 @@ export const StyledNav = styled.nav `
 
         .logo-wrapper h2 {
             display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .menu-button {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .logo-wrapper {
+            left: 20px;
+        }
+
+        .logo-wrapper h2 {
+            display: block;
         }
     }
 `
@@ -76,5 +100,9 @@ export const StyledMainNav = styled.div `
 
     @media (max-width: 1210px) {
         gap: 15px;
+    }
+
+    @media (max-width: 767px) {
+        display: none;
     }
 `

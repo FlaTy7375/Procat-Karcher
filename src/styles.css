@@ -60,3 +60,48 @@ body {
     background-size: 3450px;
   }
 }
+
+@media (max-width: 767px) {
+  body {
+    padding-top: 110px;
+    background-size: calc(2100px + 100vw);
+  }
+}
+
+@media (max-width: 687px) {
+  body {
+    padding-top: 110px;
+    background-size: calc(2100px + 95vw);
+  }
+}
+
+@media (max-width: 624px) {
+  body {
+    background-size: calc(2100px + 85vw);
+  }
+}
+
+@media (max-width: 528px) {
+  body {
+    background-size: calc(2100px + 75vw);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-size: calc(2100px + 70vw);
+  }
+}
+
+@media (max-width: 439px) {
+  body {
+    background-size: calc(2100px + 60vw);
+  }
+}
+
+@media (max-width: 319px) {
+  body {
+    background: none;
+    background-color: #121119;
+  }
+}
