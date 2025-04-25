@@ -70,12 +70,20 @@ export const StyledNav = styled.nav `
 
 export const StyledSocials = styled.div `
     display: flex;
-    gap: 32px;
+    gap: 24px;
 
     a {
-        width: 24px;
-        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
         cursor: pointer;
+    }
+
+    a:hover {
+        border: 1px solid white;
+        padding: 2px;
     }
     
     a:nth-child(3) {
@@ -95,10 +103,20 @@ export const StyledMainNav = styled.div `
     
 
     a {
+        position: relative;
         font-weight: 500;
         font-size: 18px;
         color: #fff;
         cursor: pointer;
+    }
+
+    a:hover::before {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        height: 2px;
+        width: 100%;
+        background-color: #ffffff;
     }
 
     @media (max-width: 1210px) {

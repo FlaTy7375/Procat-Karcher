@@ -16,5 +16,12 @@ export const StyledButton = styled.button `
     cursor: pointer;
 
     &:hover {
+        background-color: #fff;
+        color: #000;
+        opacity: 0.75;
+    }
+
+    &:hover svg {
+        fill: #000;
     }
 `

@@ -21,9 +21,9 @@ export default function Footer() {
             <div className="footer-socials">
                 <h2>Связаться с нами</h2>
                 <div className="social-list">
-                    <a href="inst"><img src={InstLogo} alt="inst-logo" width="48" height="48"/></a>
-                    <a href="inst"><img src={TgLogo} alt="telegram-logo" width="48" height="48"/></a>
-                    <a href="inst"><img src={CallLogo} alt="phone-logo" width="48" height="48"/></a>
+                    <a href="https://www.instagram.com/prokat_karcher_stolin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><img src={InstLogo} alt="inst-logo" width="48" height="48"/></a>
+                    <a href="https://t.me/Inna_Evt" target="_blank" rel="noopener noreferrer"><img src={TgLogo} alt="telegram-logo" width="48" height="48"/></a>
+                    <a href="tel:+375292781620" target="_blank" rel="noopener noreferrer"><img src={CallLogo} alt="phone-logo" width="48" height="48"/></a>
                 </div>
             </div>
             <div className="footer-book">
