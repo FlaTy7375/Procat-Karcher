@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav `
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -62,6 +63,8 @@ export const StyledNav = styled.nav `
         .logo-wrapper h2 {
             display: block;
         }
+
+        
     }
 `
 
@@ -104,5 +107,33 @@ export const StyledMainNav = styled.div `
 
     @media (max-width: 767px) {
         display: none;
+
+        .nav-opened & {
+            padding: 0 20px;
+            position: absolute;
+            flex-direction: column;
+            gap: 0;
+            box-shadow: 0px 18px 22px -6px rgba(0, 0, 0, 0.25);
+            background-color: #121119;
+            background: rgba(18, 17, 25, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.14);
+            border-top: none;
+            top: 46px;
+            display: flex;
+            width: 100vw;
+        }
+
+        .nav-opened & a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            width: 100vw;
+        }
+
+        .nav-opened & a:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+        }
     }
 `

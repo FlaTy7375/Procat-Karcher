@@ -41,5 +41,6 @@ export const StyledWrapper = styled.div `
         width: 100%;
         top: 0;
         border-radius: 0;
+        background: rgba(18, 17, 25, 0.9);
     }
 `
