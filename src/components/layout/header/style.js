@@ -15,7 +15,7 @@ export const StyledHeader = styled.header `
 `
 
 export const StyledWrapper = styled.div `
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     top: 40px;
     display: flex;
@@ -31,15 +31,17 @@ export const StyledWrapper = styled.div `
 
     @media (max-width: 1210px) {
         padding: 12px 40px;
-        width: calc(100vw - 80px);
+        width: calc(100vw - 60px);
         left: 50%;
         transform: translate(-50%, 0%);
     }
 
     @media (max-width: 767px) {
         padding: 12px 21px;
-        width: 100%;
+        width: 100vw;
         top: 0;
+        left: 0;
+        transform: none;
         border-radius: 0;
         background: rgba(18, 17, 25, 0.9);
     }

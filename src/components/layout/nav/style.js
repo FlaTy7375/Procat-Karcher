@@ -36,7 +36,7 @@ export const StyledNav = styled.nav `
 
         .logo-wrapper {
             position: absolute;
-            left: 40px;
+            left: 0px;
         }
         
 
@@ -125,6 +125,7 @@ export const StyledMainNav = styled.div `
 
     @media (max-width: 767px) {
         display: none;
+        z-index: 2;
 
         .nav-opened & {
             padding: 0 20px;
