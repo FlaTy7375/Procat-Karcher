@@ -13,6 +13,7 @@ export const StyledComments = styled.section `
         width: 323px;
         height: 385px;
         padding: 55px 10px 40px 40px;
+        pointer-events: none;
     }
 
     .comments-card h2 {

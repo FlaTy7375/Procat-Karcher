@@ -29,6 +29,7 @@ export const StyledMain = styled.section `
         height: 237px;
         padding: 40px;
         border-radius: 45px;
+        pointer-events: none;
     }
 
     .comment-wrapper {

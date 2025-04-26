@@ -18,6 +18,7 @@ export const StyledAdvantages = styled.section `
 
     .advantages-card img {
         position: absolute;
+        pointer-events: none;
     }
 
     .advantages-card:nth-of-type(3) img {
@@ -73,36 +74,7 @@ export const StyledAdvantages = styled.section `
     }
 
     .slider-nav--container {
-        position: absolute;
-        display: flex;
-        width: 120px;
-        align-items: center;
-        bottom: 17px;
-        left: 50%;
-        transform: translate(-50%, 0%);
-    }
-
-    .slide-prev {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border: none;
-        width: 25px;
-        height: 25px;
-        transform: rotate(180deg);
-        cursor: pointer;
-        background-color: transparent;
-    }
-
-    .slide-next {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        border: none;
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        background-color: transparent;
+        display: none;
     }
 
     @media (max-width: 1210px) {
@@ -224,6 +196,39 @@ export const StyledAdvantages = styled.section `
             font-weight: 700;
             font-size: 16px;
             opacity: 0.75;
+        }
+
+        .slider-nav--container {
+            position: absolute;
+            display: flex;
+            width: 120px;
+            align-items: center;
+            bottom: 17px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .slide-prev {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            transform: rotate(180deg);
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+        .slide-next {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            background-color: transparent;
         }
     }
 

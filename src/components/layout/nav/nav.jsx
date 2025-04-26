@@ -24,8 +24,6 @@ export default function Nav() {
         };
     }, []);
 
-    
-
     const addMenuClass = () => {
         if (menu === "") {
             setMenu("nav-opened");

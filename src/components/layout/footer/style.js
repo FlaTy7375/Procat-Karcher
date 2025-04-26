@@ -41,9 +41,11 @@ export const FooterWrapper = styled.div `
         align-items: center;
         gap: 20px;
         margin-bottom: 20px;
+        pointer-events: none;
     }
 
     .footer-socials {
+        pointer-events: none;
         margin-top: 95px;
     }
 
