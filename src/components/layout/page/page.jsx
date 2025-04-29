@@ -11,10 +11,10 @@ export default function Page() {
     const [modal, setModal] = useState("");
 
     const setModalClass = () => {
-    if (modal === "") {
-        setModal("modal-show");
-        document.body.style.overflow = "hidden";
-    }
+        if (modal === "") {
+            setModal("modal-show");
+            document.body.style.overflow = "hidden";
+        }
     };
 
     return (

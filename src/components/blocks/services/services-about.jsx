@@ -22,28 +22,10 @@ export default function ServicesAbout({ display, setDisplay }) {
     return () => window.removeEventListener("keydown", handleEscape);
   });
 
-  useEffect(() => {
-    const preventScroll = (e) => {
-      e.preventDefault();
-    };
-
-    const modal = modalRef.current;
-
-    if (display === "modal-show" && modal) {
-      modalRef.current.addEventListener("touchmove", preventScroll, { passive: false });
-    }
-
-    return () => {
-      if (modal) {
-        modal.removeEventListener("touchmove", preventScroll);
-      }
-    };
-  });
-
   const hideModal = () => {
     setDisplay("");
     document.body.style.overflow = "auto";
-  }
+  };
 
   return (
     <ServicesAboutContainer className={display} ref={modalRef}>
