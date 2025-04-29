@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ServicesAboutContainer } from "./style";
@@ -8,6 +8,8 @@ import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
 
 export default function ServicesAbout({ display, setDisplay }) {
+  const modalRef = useRef(null);
+
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
@@ -20,13 +22,29 @@ export default function ServicesAbout({ display, setDisplay }) {
     return () => window.removeEventListener("keydown", handleEscape);
   });
 
+  useEffect(() => {
+    const preventScroll = (e) => {
+      e.preventDefault();
+    };
+
+    if (display === "modal-show" && modalRef.current) {
+      modalRef.current.addEventListener("touchmove", preventScroll, { passive: false });
+    }
+
+    return () => {
+      if (modalRef.current) {
+        modalRef.current.removeEventListener("touchmove", preventScroll);
+      }
+    };
+  });
+
   const hideModal = () => {
     setDisplay("");
     document.body.style.overflow = "auto";
   }
 
   return (
-    <ServicesAboutContainer className={display}>
+    <ServicesAboutContainer className={display} ref={modalRef}>
       <Card className="services-about">
         <button className="button-close" onClick={hideModal}><CloseButton></CloseButton></button>
         <div className="about-block">

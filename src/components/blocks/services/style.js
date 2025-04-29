@@ -189,6 +189,7 @@ export const ServicesAboutContainer = styled.div `
     }
 
     .services-about {
+        position: relative;
         height: auto;
         border-radius: 50px;
         padding: 85px 80px 60px 80px;
