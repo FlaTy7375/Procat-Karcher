@@ -1,28 +1,48 @@
+import React, { useRef } from "react";
 import { StyledServices } from "./style";
 import SectionName from "../../ui/section-name/section-name";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
+import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg";
+import ServicesAbout from "./services-about";
+import { useModal } from "../../app/services-modal";
 
 export default function Services() {
+  const btnModalRef = useRef(null);
+  const { modal, setModal, setModalClass } = useModal();
+
   return (
-    <StyledServices id="services">
-      <SectionName className="services-name"><span className="full-name">Дополнительные</span><span className="short-name">Доп.</span> услуги</SectionName>
-      <Card className="services-card">
-        <div className="services-wrapper">
-          <h2 className="services-title">Доверьте химчистку нам!</h2>
-          <p>
-            Не тратьте время и силы на сложную уборку – наши профессионалы
-            сделают всё за вас! С использованием мощной техники Karcher мы
-            проведем глубокую химчистку ковров, мягкой мебели, матрасов прямо у
-            вас дома.<br/><br/> Наши сотрудники подберут подходящие средства и насадки,
-            чтобы эффективно удалить даже стойкие пятна и загрязнения, сохранив
-            при этом материалы в идеальном состоянии. Уточните стоимость работ,
-            выберите удобное время, и мы гарантируем сияющий результат без
-            вашего участия!
-          </p>
-          <Button className="services-button">Заказать</Button>
-        </div>
-      </Card>
-    </StyledServices>
+    <>
+      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} />
+      <StyledServices id="services">
+        <SectionName className="services-name">
+          <span className="full-name">Дополнительные</span>
+          <span className="short-name">Доп.</span> услуги
+        </SectionName>
+        <Card className="services-card">
+          <div className="services-wrapper">
+            <h2 className="services-title">Уборка и чистка авто!</h2>
+            <p>
+              Верните своему авто идеальную чистоту с техникой Karcher! Мы
+              предлагаем профессиональную химчистку салона и мойку кузова для
+              автомобилей всех размеров – от компактных легковых машин до
+              просторных бусов.
+              <br />
+              <br />
+              Наши сотрудники используют мощные моющие пылесосы и пароочистители
+              Karcher, чтобы удалить даже самые стойкие загрязнения, сохранив
+              материалы в отличном состоянии. Уточните стоимость для вашего авто
+              и наслаждайтесь чистотой без лишних хлопот!
+            </p>
+            <div className="button-wrapper">
+              <Button className="services-button">Заказать</Button>
+              <Button ref={btnModalRef} className="services-info" onClick={setModalClass}>
+                <InfoIcon />
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </StyledServices>
+    </>
   );
 }

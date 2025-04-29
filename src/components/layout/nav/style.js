@@ -18,7 +18,6 @@ export const StyledNav = styled.nav `
         display: flex;
         gap: 10px;
         align-items: center;
-        pointer-events: none;
     }
 
     .logo-wrapper h2 {

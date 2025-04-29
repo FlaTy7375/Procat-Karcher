@@ -52,12 +52,24 @@ export const StyledServices = styled.section `
         font-size: 18px;
         opacity: 0.75;
     }
+    
+    .button-wrapper {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+    }
 
     .services-button {
         width: 216px;
-        margin-top: 20px;
         font-weight: 400;
         font-size: 24px;
+        opacity: 0.75;
+    }
+
+    .services-info {
+        width: 59px;
+        height: 59px;
+        padding: 12px;
         opacity: 0.75;
     }
 
@@ -125,11 +137,21 @@ export const StyledServices = styled.section `
             font-size: 14px;
         }
 
+        .button-wrapper {
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .services-info {
+            width: 45px;
+            height: 45px;
+            padding: 9px;
+            opacity: 0.75;
+        }
+
         .services-button {
             height: 45px;
             width: 190px;
-            margin: 0 auto;
-            margin-top: 20px;
             font-size: 18px;
         }
     }
@@ -137,6 +159,198 @@ export const StyledServices = styled.section `
     @media (max-width: 468px) {
         .services-card { 
             padding: 70vw 18px 25px 18px;
+        }
+
+        .button-wrapper {
+            gap: 15px;
+        }
+
+        .services-button {
+            width: 160px;
+        }
+    }
+`
+
+export const ServicesAboutContainer = styled.div `
+    display: none;
+
+    &.modal-show {
+        display: block;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 3;
+        top: 0px;
+        padding: 40px 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .services-about {
+        height: auto;
+        border-radius: 50px;
+        padding: 85px 80px 60px 80px;
+        width: calc(100% - 100px);
+        max-width: 1180px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 28px;
+    }
+
+    p , li, article {
+        font-weight: 600;
+        font-size: 18px;
+        max-width: 910px;
+    }
+
+    ul, li {
+        list-style-type: disc;
+    }
+
+    small {
+        font-weight: 600;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 15px;
+    }
+
+    .button-close {
+        position: absolute;
+        right: 40px;
+        top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        stroke: #fff;
+        cursor: pointer;
+        
+    }
+
+    .button-close:hover {
+        background-color: #fff;
+        stroke: #000;
+        opacity: 0.75;
+    }
+
+    .about-block {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .about-block ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-left: 20px;
+    }
+
+    .about-block:nth-child(4) ul {
+        margin-left: 0;
+    }
+
+    .about-block:nth-child(4) li {
+        margin-left: 20px;
+    }
+
+    .about-socials {
+        position: absolute;
+        bottom: 60px;
+        right: 80px;
+    }
+
+    .about-socials h2 {
+        font-size: 24px;
+    }
+
+    .about-socials a:nth-child(3) {
+        opacity: 0.85;
+    }
+
+    .social-about--list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 1210px) {
+        .about-socials {
+            position: unset;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 216px;
+            margin-top: 40px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .services-about {
+            width: calc(100% - 42px);
+            border-radius: 25px;
+            padding: 70px 20px 30px 20px;
+        }
+
+        .about-socials {
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .about-button {
+            margin: 0 auto;
+            padding: 5px 10px;
+            max-width: 216px;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        .button-close { 
+            width: 36px;
+            height: 36px;
+            top: 20px;
+            right: 20px;
+        }
+
+        h2 {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        p , li, article {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        small {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .about-socials h2 {
+            font-size: 18px;
+        }
+
+        .about-socials {
+            max-width: 162px;
+        }
+
+        .about-socials img, .about-socials a {
+            width: 36px;
+            height: 36px;
         }
     }
 `
