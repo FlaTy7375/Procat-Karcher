@@ -27,13 +27,15 @@ export default function ServicesAbout({ display, setDisplay }) {
       e.preventDefault();
     };
 
-    if (display === "modal-show" && modalRef.current) {
+    const modal = modalRef.current;
+
+    if (display === "modal-show" && modal) {
       modalRef.current.addEventListener("touchmove", preventScroll, { passive: false });
     }
 
     return () => {
-      if (modalRef.current) {
-        modalRef.current.removeEventListener("touchmove", preventScroll);
+      if (modal) {
+        modal.removeEventListener("touchmove", preventScroll);
       }
     };
   });
