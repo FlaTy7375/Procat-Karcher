@@ -353,7 +353,7 @@ export const TechniqueAboutContainer = styled.div`
 
     @media (max-width: 1210px) {
         .image-card {
-            position: unset;
+            position: relative;
             margin-bottom: 40px;
             border-radius: 35px;
             min-width: 338px;
