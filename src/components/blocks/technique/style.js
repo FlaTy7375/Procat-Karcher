@@ -312,8 +312,6 @@ export const TechniqueAboutContainer = styled.div`
         height: 26vw;
         max-width: 513px;
         max-height: 357px;
-        /* width: 514px;
-        height: 357px; */
     }
 
     .image-card img {
@@ -354,6 +352,8 @@ export const TechniqueAboutContainer = styled.div`
     @media (max-width: 1210px) {
         .image-card {
             position: relative;
+            top: auto;
+            right: auto;
             margin-bottom: 40px;
             border-radius: 35px;
             min-width: 338px;
