@@ -60,16 +60,20 @@ export default function ServicesAbout({ display, setDisplay }) {
             <li>Бусы: 180-240 BYN.</li>
           </ul>
         </div>
+        <div className="about-container">
+        <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
         <Button className="about-button">Заказать</Button>
+        </div>
         <div className="about-socials">
-                <h2>Связаться с нами</h2>
-                <div className="social-about--list">
-                    <a href="https://www.instagram.com/prokat_karcher_stolin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><img src={InstLogo} alt="inst-logo" width="48" height="48"/></a>
-                    <a href="https://t.me/Inna_Evt" target="_blank" rel="noopener noreferrer"><img src={TgLogo} alt="telegram-logo" width="48" height="48"/></a>
-                    <a href="tel:+375292781620" target="_blank" rel="noopener noreferrer"><img src={CallLogo} alt="phone-logo" width="48" height="48"/></a>
-                </div>
-            </div>
+          <h2>Связаться с нами</h2>
+          <div className="social-about--list">
+              <a href="https://www.instagram.com/prokat_karcher_stolin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><img src={InstLogo} alt="inst-logo" width="48" height="48"/></a>
+              <a href="https://t.me/Inna_Evt" target="_blank" rel="noopener noreferrer"><img src={TgLogo} alt="telegram-logo" width="48" height="48"/></a>
+              <a href="tel:+375292781620" target="_blank" rel="noopener noreferrer"><img src={CallLogo} alt="phone-logo" width="48" height="48"/></a>
+          </div>
+        </div>
+        </div>
       </Card>
     </ServicesAboutContainer>
   );

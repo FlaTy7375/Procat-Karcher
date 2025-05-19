@@ -185,17 +185,30 @@ export const ServicesAboutContainer = styled.div `
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.4);
     }
 
     .services-about {
         position: relative;
-        height: auto;
-        border-radius: 50px;
-        padding: 85px 80px 60px 80px;
+        height: 100%;
+        overflow: auto;
+        border-radius: 20px;
+        padding: 60px 80px 60px 80px;
         width: calc(100% - 100px);
         max-width: 1180px;
         margin: 0 auto;
+        background-color: rgb(44, 44, 44);
+    }
+
+    .about-container {
+        position: relative;
+        display: flex;
+    }
+
+    .about-button--wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     h2 {
@@ -217,7 +230,6 @@ export const ServicesAboutContainer = styled.div `
         font-weight: 600;
         font-size: 18px;
         color: rgba(255, 255, 255, 0.75);
-        margin-bottom: 15px;
     }
 
     .button-close {
@@ -234,7 +246,6 @@ export const ServicesAboutContainer = styled.div `
         border-radius: 10px;
         stroke: #fff;
         cursor: pointer;
-        
     }
 
     .button-close:hover {
@@ -267,8 +278,8 @@ export const ServicesAboutContainer = styled.div `
 
     .about-socials {
         position: absolute;
-        bottom: 60px;
-        right: 80px;
+        bottom: 0px;
+        right: 0px;
     }
 
     .about-socials h2 {
@@ -287,6 +298,10 @@ export const ServicesAboutContainer = styled.div `
     }
 
     @media (max-width: 1210px) {
+        .services-about {
+            padding: 50px 40px 50px 40px;
+        }
+
         .about-socials {
             position: unset;
             display: flex;
@@ -295,13 +310,17 @@ export const ServicesAboutContainer = styled.div `
             max-width: 216px;
             margin-top: 40px;
         }
+
+        .about-container {
+            flex-direction: column;
+        }
     }
 
     @media (max-width: 767px) {
         .services-about {
             width: calc(100% - 42px);
             border-radius: 25px;
-            padding: 70px 20px 30px 20px;
+            padding: 50px 30px 50px 30px;
         }
 
         .about-socials {
@@ -314,7 +333,6 @@ export const ServicesAboutContainer = styled.div `
             padding: 5px 10px;
             max-width: 216px;
             width: 100%;
-            margin-top: 20px;
             font-weight: 400;
             font-size: 18px;
         }
@@ -337,6 +355,7 @@ export const ServicesAboutContainer = styled.div `
         }
 
         small {
+            text-align: center;
             font-weight: 600;
             font-size: 14px;
         }
@@ -352,6 +371,18 @@ export const ServicesAboutContainer = styled.div `
         .about-socials img, .about-socials a {
             width: 36px;
             height: 36px;
+        }
+    }
+
+    @media (max-width: 442px) {
+        .services-about {
+            padding: 70px 30px 50px 30px;
+        }
+    }
+
+    @media (max-width: 396px) {
+        .services-about {
+            padding: 30px 40px 50px 40px;
         }
     }
 `
