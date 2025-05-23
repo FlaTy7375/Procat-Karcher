@@ -39,8 +39,8 @@ export default function AdvantagesSlider ({isPhone}) {
         >
         {slides.map((slide) => {
             return isPhone ?
-            <SwiperSlide>
-                <Card className="advantages-card" key={slide.id}>{slide.content}</Card>
+            <SwiperSlide key={slide.id}>
+                <Card className="advantages-card">{slide.content}</Card>
             </SwiperSlide>
             :
             <Card className="advantages-card" key={slide.id}>{slide.content}</Card>

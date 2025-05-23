@@ -59,7 +59,7 @@ export const StyledAdvantages = styled.section `
         width: 310px;
     }
 
-    //SWIPER STYLE
+    //SWIPER СТИЛИ
 
     .swiper {
         position: relative;

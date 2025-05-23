@@ -1,5 +1,12 @@
+import React, { forwardRef } from 'react';
 import { StyledButton } from "./style";
 
-export default function Button({className, children, ref, onClick}) {
-    return <StyledButton onClick={onClick} ref={ref} className={className}>{children}</StyledButton>;
-}
+const Button = forwardRef(({ className, children, onClick }, ref) => {
+    return (
+        <StyledButton onClick={onClick} ref={ref} className={className}>
+            {children}
+        </StyledButton>
+    );
+});
+
+export default Button;

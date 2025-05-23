@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, forwardRef } from "react";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ServicesAboutContainer } from "./style";
@@ -7,8 +7,7 @@ import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
 
-export default function ServicesAbout({ display, setDisplay }) {
-  const modalRef = useRef(null);
+const ServicesAbout = forwardRef(({ display, setDisplay }, ref) => {
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -16,11 +15,11 @@ export default function ServicesAbout({ display, setDisplay }) {
         hideModal();
       }
     };
-    
+
     window.addEventListener("keydown", handleEscape);
-    
+
     return () => window.removeEventListener("keydown", handleEscape);
-  });
+  }, []);
 
   const hideModal = () => {
     setDisplay("");
@@ -28,7 +27,7 @@ export default function ServicesAbout({ display, setDisplay }) {
   };
 
   return (
-    <ServicesAboutContainer className={display} ref={modalRef}>
+    <ServicesAboutContainer className={display} ref={ref}>
       <Card className="services-about">
         <button className="button-close" onClick={hideModal}><CloseButton></CloseButton></button>
         <div className="about-block">
@@ -77,4 +76,6 @@ export default function ServicesAbout({ display, setDisplay }) {
       </Card>
     </ServicesAboutContainer>
   );
-}
+});
+
+export default ServicesAbout;
