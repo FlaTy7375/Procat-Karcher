@@ -79,12 +79,19 @@ export const StyledBookingModal = styled.div`
         --rdp-outline-offset: -2px; /* Смещение обводки */
         background-color:rgb(66, 66, 65);
         border-radius: 8px;
-        /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4); */
     }
 
     .rdp-day {
+        padding: 0;
+        height: 120px;
         background-color: rgb(95, 92, 92);
         border-radius: 0;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .rdp-day:hover {
+        opacity: 0.6;
     }
 
     .rdp-disabled {
@@ -103,14 +110,10 @@ export const StyledBookingModal = styled.div`
     .rdp-month table {
         width: 100%;
     }
-    
-    .rdp-weekday, .rdp-day {
-        font-size: 18px;
-        padding: 20px;
-    }
 
     .rdp-day_button {
-        margin: 0 auto;
+        height: 100%;
+        width: 100%;
     }
     
     .rdp-today {
@@ -176,6 +179,7 @@ export const StyledBookingModal = styled.div`
 
     .guide-item {
         display: flex;
+        align-items: center;
         gap: 10px;
     }
 
@@ -201,5 +205,233 @@ export const StyledBookingModal = styled.div`
         width: 20px;
         height: 20px;
         background-color: rgb(61, 60, 60);
+    }
+
+    .button-close {
+        position: absolute;
+        right: 40px;
+        top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        stroke: #fff;
+        cursor: pointer;
+    }
+
+    .button-close:hover {
+        background-color: #fff;
+        stroke: #000;
+        opacity: 0.75;
+    }
+`
+
+export const StyledBooking = styled.div`
+    h1, h2 {
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .booking-title {
+        margin-bottom: 20px;
+    }
+
+    .select-wrapper {
+        position: relative;
+        font-size: 18px;
+        width: 60%;
+    }
+
+    .select-trigger {
+        cursor: pointer;
+        margin-bottom: 100px;
+        width: 100%;
+        height: 60px;
+        color: #fff;
+        background-color: rgb(95, 92, 92);
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .select-trigger:hover {
+        border-color: rgb(63, 63, 63);
+        box-shadow: 0 0 0 2px rgb(92, 92, 92);
+    }
+
+    .select-trigger:active {
+        border-color: rgb(63, 63, 63);
+        box-shadow: 0 0 0 2px rgb(92, 92, 92);
+    }
+
+    .select-arrow {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .booking-select {
+        display: none;
+        position: absolute;
+        top: 62px;
+        left: 0;
+        height: 180px;
+        width: 100%;
+        border-radius: 10px;
+        background-color: rgb(95, 92, 92);
+        z-index: 10;
+        border: 1px solid #ccc;
+    }
+
+    .booking-select.options-show {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .booking-select .booking-option {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        height: 33.3%;
+        width: 100%;
+        border-radius: 10px;
+        background-color: rgb(95, 92, 92);
+    }
+
+    .booking-option:hover {
+        background-color: rgb(64, 64, 64);
+    }
+    
+    .info-title {
+        margin: 20px 0px;
+        margin-top: 100px;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .info-container input {
+        width: 60%;
+        height: 60px;
+        border: none;
+        border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 0 20px;
+        font-size: 18px;
+        background-color: rgb(95, 92, 92);
+    }
+
+    .info-container input:hover {
+        border-color: rgb(63, 63, 63);
+        box-shadow: 0 0 0 2px rgb(92, 92, 92);
+    }
+
+    .info-container input::placeholder { color: #fff; }
+    .info-container input::-webkit-input-placeholder { color: #fff; }
+    .info-container input::-moz-placeholder { color: #fff; }
+    .info-container input:-moz-placeholder { color: #fff; }
+    .info-container input:-ms-input-placeholder { color: #fff; }
+
+    .booking-button {
+        margin-top: 30px;
+        width: 260px;
+        height: 60px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        color: #000;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .booking-button:hover {
+        background-color: rgb(184, 184, 184);
+    }
+`
+
+export const StyledDropdown = styled.div`
+    .dropdown-wrapper {
+        position: relative;
+        display: inline-block;
+        margin: 0 5px;
+        min-width: 120px;
+    }
+
+    .dropdown-button {
+        background-color: rgb(95, 92, 92);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .dropdown-button:hover {
+        border-color: rgb(63, 63, 63);
+        box-shadow: 0 0 0 2px rgb(92, 92, 92);
+    }
+
+    .dropdown-button[aria-expanded="true"] {
+        border-color: rgb(63, 63, 63);
+        box-shadow: 0 0 0 2px rgb(92, 92, 92);
+    }
+
+    .dropdown-arrow {
+        margin-left: 10px;
+        font-size: 0.8em;
+        color: #fff;
+    }
+
+    .dropdown-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgb(95, 92, 92);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 10;
+    }
+
+    .dropdown-option {
+        padding: 10px 12px;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+    .dropdown-option:hover {
+        background-color:rgb(74, 73, 73);
+    }
+
+    .dropdown-option.selected {
+        background-color:rgb(55, 55, 54);
+        color: white;
+        font-weight: bold;
+    }
+
+    .dropdown-option.disabled {
+        color:rgb(55, 53, 53);
+        cursor: not-allowed;
+        background-color: #f7f7f7;
     }
 `

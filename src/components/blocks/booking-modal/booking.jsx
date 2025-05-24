@@ -1,90 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
-import { ru } from 'date-fns/locale';
+import React, { useState, useRef, useEffect } from "react";
+import { StyledBooking } from "./style";
+import BookingCalendar from "./booking-calendar";
 
-const BookingCalendar = () => {
-  const [selectedDay, setSelectedDay] = useState(); // Для хранения выбранного дня
-  const [bookedDates, setBookedDates] = useState([]); // Xранит даты, которые заняты
-  const [loading, setLoading] = useState(true); // Для индикации загрузки данных
+export default function Booking() {
+    const [select, setSelect] = useState(false);
+    const dropdownContainerRef = useRef(null); 
 
-  useEffect(() => {
-    const fetchBookedDates = async () => {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownContainerRef.current && !dropdownContainerRef.current.contains(event.target)) {
+                setSelect(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [dropdownContainerRef]);
 
-      const mockBookedDates = [
-        new Date(2025, 4, 25),
-        new Date(2025, 4, 28),
-      ];
-      setBookedDates(mockBookedDates);
-      setLoading(false);
+    const toggleDropdown = () => {
+        setSelect(prevSelect => !prevSelect);
     };
 
-    fetchBookedDates();
-  }, []);
+    const handleOptionClick = (option) => {
+        console.log("Выбрана опция:", option);
+        setSelect(false);
+    };
 
-  const modifiers = {
-    booked: bookedDates,
-  };
-
-  const modifiersStyles = {
-    booked: {
-      color: '#fff',
-      backgroundColor: '#ff6242',
-      opacity: 1,
-    },
-  };
-
-  return (
-    <div>
-      <h2>Календарь бронирования</h2>
-      {loading ? (<p>Загрузка доступности...</p>) 
-      : (
-        <DayPicker
-          mode="single" // Режим выбора одного дня
-          captionLayout="dropdown" // Выпадающий список месяцев и года
-          navLayout="around" // Стрелки навигации по бокам
-          
-          selected={selectedDay} // Текущий выбранный день
-          onSelect={setSelectedDay} // Обработчик выбора дня
-          locale={ru} // Устанавливаем русский язык
-          showOutsideDays // Показывать дни предыдущего/следующего месяца
-          disabled={[
-            // Можно отключить прошедшие даты
-            { before: new Date() },
-            // Можно отключить конкретные даты, если они забронированы и не должны быть выбраны
-            ...bookedDates
-          ]}
-          modifiers={modifiers} // Применяем модификаторы
-          modifiersStyles={modifiersStyles} // Применяем стили для модификаторов (встроенные стили)
-          // Или вы можете добавить класс 'rdp-day_booked' и стилизовать его в вашем CSS
-          // classNames={{
-          //   day_booked: 'my-booked-day-class', // Название вашего CSS класса
-          // }}
-        />
-      )}
-
-      <div className='guide-container'>
-        <div className='guide-item'>
-          <span className='item-red'/>
-          <p>- забронированные даты</p>
-        </div>
-        <div className='guide-item'>
-          <span className='item-green'/>
-          <p>- выбранная дата</p>
-        </div>
-        <div className='guide-item'>
-          <span className='item-grey'/>
-          <p>- свободные даты</p>
-        </div>
-        <div className='guide-item'>
-          <span className='item-disabled'/>
-          <p>- истекшие даты</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default BookingCalendar;
+    return (
+        <StyledBooking>
+            <form className="booking-form">
+                <h2 className="booking-title">Услуга: </h2>
+                <div className="select-wrapper" ref={dropdownContainerRef}>
+                    <div className="select-trigger" onClick={toggleDropdown}>
+                        <span className="select-arrow">{select ? '▲' : '▼'}</span>
+                    </div>
+                    <ul className={`booking-select ${select ? 'options-show' : ''}`}>
+                        <li className="booking-option" onClick={() => handleOptionClick('Аренда пылесоса Karcher Puzzi 8/1 C')}>Аренда пылесоса Karcher Puzzi 8/1 C</li>
+                        <li className="booking-option" onClick={() => handleOptionClick('Аренда пароочистителя Karcher SC 3 EasyFix')}>Аренда пароочистителя Karcher SC 3 EasyFix</li>
+                        <li className="booking-option" onClick={() => handleOptionClick('Заказать уборку автомобиля')}>Заказать уборку автомобиля</li>
+                    </ul>
+                </div>
+                <BookingCalendar></BookingCalendar>
+                <h2 className="info-title">Заполните форму:</h2>
+                <div className="info-container">
+                    <input className="name-booking" placeholder="Имя"/>
+                    <input className="surname-booking" placeholder="Фамилия"/>
+                    <input className="phone-booking" placeholder="Номер телефона"/>
+                </div>
+                <button className="booking-button">Забронировать</button>
+            </form>
+        </StyledBooking>
+    )
+}
