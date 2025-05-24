@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { StyledPage } from "./style"
-import { ModalProvider } from "../../app/services-modal";
+
 import Main from "../../blocks/main/main"
 import Technique from "../../blocks/technique/technique"
 import Advantages from "../../blocks/advantages/advantages"
@@ -9,25 +8,14 @@ import Services from "../../blocks/services/services"
 import BookingModal from "../../blocks/booking-modal/booking-modal";
 
 export default function Page() {
-    const [modal, setModal] = useState("");
-
-    const setModalClass = () => {
-        if (modal === "") {
-            setModal("modal-show");
-            document.body.style.overflow = "hidden";
-        }
-    };
-
     return (
         <StyledPage>
             <BookingModal></BookingModal>
-            <ModalProvider value={{ modal, setModal, setModalClass }}>
             <Main></Main>
             <Technique></Technique>
             <Advantages></Advantages>
             <Comments></Comments>
             <Services></Services>
-            </ModalProvider>
         </StyledPage>
     )
 }

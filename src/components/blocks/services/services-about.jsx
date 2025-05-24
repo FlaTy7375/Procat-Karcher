@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef } from "react";
+import React, { useEffect, useCallback, forwardRef } from "react";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ServicesAboutContainer } from "./style";
@@ -7,7 +7,12 @@ import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
 
-const ServicesAbout = forwardRef(({ display, setDisplay }, ref) => {
+const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass }, ref) => {
+
+  const hideModal = useCallback(() => {
+    setDisplay("");
+    document.body.style.overflow = "auto";
+  }, [setDisplay]);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -19,12 +24,7 @@ const ServicesAbout = forwardRef(({ display, setDisplay }, ref) => {
     window.addEventListener("keydown", handleEscape);
 
     return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
-
-  const hideModal = () => {
-    setDisplay("");
-    document.body.style.overflow = "auto";
-  };
+  }, [hideModal]);
 
   return (
     <ServicesAboutContainer className={display} ref={ref}>
@@ -62,7 +62,7 @@ const ServicesAbout = forwardRef(({ display, setDisplay }, ref) => {
         <div className="about-container">
         <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-        <Button className="about-button">Заказать</Button>
+        <Button className="about-button" onClick={() => {hideModal(); setBookingClass()}}>Заказать</Button>
         </div>
         <div className="about-socials">
           <h2>Связаться с нами</h2>

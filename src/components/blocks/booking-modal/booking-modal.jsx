@@ -3,20 +3,21 @@ import { StyledBookingModal } from "./style";
 import Card from "../../ui/card/card";
 import Booking from "./booking";
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
+import { useModal } from "../../app/context-modal";
 
 export default function BookingModal() {
-    const [modal, setModal] = useState("");
+    const { option, setOption, booking, showBooking } = useModal();
 
     const hideModal = () => {
-        setModal("");
+        showBooking("");
         document.body.style.overflow = "auto";
     };
 
     return (
-        <StyledBookingModal className="modal-show">
+        <StyledBookingModal className={booking}>
             <Card className="booking-card">
                 <button className="button-close" onClick={hideModal}><CloseButton></CloseButton></button>
-                <Booking></Booking>
+                <Booking value={option} setValue={setOption}></Booking>
             </Card>
         </StyledBookingModal>
     )

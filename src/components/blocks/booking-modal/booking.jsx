@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { StyledBooking } from "./style";
 import BookingCalendar from "./booking-calendar";
 
-export default function Booking() {
+export default function Booking({value, setValue}) {
     const [select, setSelect] = useState(false);
     const dropdownContainerRef = useRef(null); 
 
@@ -22,23 +22,24 @@ export default function Booking() {
         setSelect(prevSelect => !prevSelect);
     };
 
-    const handleOptionClick = (option) => {
-        console.log("Выбрана опция:", option);
-        setSelect(false);
-    };
-
     return (
         <StyledBooking>
             <form className="booking-form">
                 <h2 className="booking-title">Услуга: </h2>
                 <div className="select-wrapper" ref={dropdownContainerRef}>
                     <div className="select-trigger" onClick={toggleDropdown}>
+                        { 
+                            value === 1 ? "Аренда пылесоса Karcher Puzzi 8/1 C" :
+                            value === 2 ? "Аренда пароочистителя Karcher SC 3 EasyFix" :
+                            value === 3 ? "Заказать уборку автомобиля" :
+                            "Выберите услугу"
+                        }
                         <span className="select-arrow">{select ? '▲' : '▼'}</span>
                     </div>
                     <ul className={`booking-select ${select ? 'options-show' : ''}`}>
-                        <li className="booking-option" onClick={() => handleOptionClick('Аренда пылесоса Karcher Puzzi 8/1 C')}>Аренда пылесоса Karcher Puzzi 8/1 C</li>
-                        <li className="booking-option" onClick={() => handleOptionClick('Аренда пароочистителя Karcher SC 3 EasyFix')}>Аренда пароочистителя Karcher SC 3 EasyFix</li>
-                        <li className="booking-option" onClick={() => handleOptionClick('Заказать уборку автомобиля')}>Заказать уборку автомобиля</li>
+                        <li className={`booking-option ${value === 1 ? 'option-active' : ''}`} onClick={() => {setValue(1); setSelect(false)}}>Аренда пылесоса Karcher Puzzi 8/1 C</li>
+                        <li className={`booking-option ${value === 2 ? 'option-active' : ''}`} onClick={() => {setValue(2); setSelect(false)}}>Аренда пароочистителя Karcher SC 3 EasyFix</li>
+                        <li className={`booking-option ${value === 3 ? 'option-active' : ''}`} onClick={() => {setValue(3); setSelect(false)}}>Заказать уборку автомобиля</li>
                     </ul>
                 </div>
                 <BookingCalendar></BookingCalendar>

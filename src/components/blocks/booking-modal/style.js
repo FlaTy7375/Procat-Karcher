@@ -247,13 +247,15 @@ export const StyledBooking = styled.div`
     }
 
     .select-trigger {
+        display: flex;
+        align-items: center;
         cursor: pointer;
         margin-bottom: 100px;
         width: 100%;
         height: 60px;
         color: #fff;
         background-color: rgb(95, 92, 92);
-        padding: 10px;
+        padding: 20px;
         border: none;
         border-radius: 10px;
         border: 1px solid #ccc;
@@ -305,7 +307,11 @@ export const StyledBooking = styled.div`
     }
 
     .booking-option:hover {
-        background-color: rgb(64, 64, 64);
+        background-color: rgb(78, 78, 78);
+    }
+
+    .booking-option.option-active {
+        background-color: rgb(60, 59, 59);
     }
     
     .info-title {

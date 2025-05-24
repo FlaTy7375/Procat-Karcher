@@ -10,7 +10,7 @@ import Technique1 from "../../../assets/images/karcher-puzzi.png"
 import Technique2 from "../../../assets/images/karcher-easy-sc3.png"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
 
-export default function TechniqueAbout({ display, setDisplay, BtnFirst }) {
+export default function TechniqueAbout({ display, setDisplay, BtnFirst, setBookingClass }) {
     const technique1 = techniqueInfo[0];
     
     const modalRef = useRef(null);
@@ -77,7 +77,7 @@ export default function TechniqueAbout({ display, setDisplay, BtnFirst }) {
         <div className="about-container">
         <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-        <Button className="about-button">Заказать</Button>
+        <Button className="about-button" onClick={() => {hideModal(); setBookingClass()}}>Бронировать</Button>
         </div>
         <div className="about-socials">
           <h2>Связаться с нами</h2>

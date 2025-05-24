@@ -5,15 +5,15 @@ import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg";
 import ServicesAbout from "./services-about";
-import { useModal } from "../../app/services-modal";
+import { useModal } from "../../app/context-modal";
 
 export default function Services() {
   const btnModalRef = useRef(null);
-  const { modal, setModal, setModalClass } = useModal();
+  const { modal, setModal, setModalClass, setBookingClass } = useModal();
 
   return (
     <>
-      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} />
+      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} setBookingClass={setBookingClass}/>
       <StyledServices id="services">
         <SectionName className="services-name">
           <span className="full-name">Дополнительные</span>
@@ -35,7 +35,7 @@ export default function Services() {
               и наслаждайтесь чистотой без лишних хлопот!
             </p>
             <div className="button-wrapper">
-              <Button className="services-button">Заказать</Button>
+              <Button className="services-button" onClick={setBookingClass}>Заказать</Button>
               <Button ref={btnModalRef} className="services-info" onClick={setModalClass}>
                 <InfoIcon />
               </Button>

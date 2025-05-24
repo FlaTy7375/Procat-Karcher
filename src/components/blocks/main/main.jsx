@@ -6,10 +6,10 @@ import Button from "../../ui/button/button";
 import Card from "../../ui/card/card";
 import { CardWrapper } from "./style";
 import Avatar from "../../../assets/images/avatar.png";
-import { useModal } from "../../app/services-modal";
+import { useModal } from "../../app/context-modal";
 
 export default function Main() {
-  const { setModalClass } = useModal();
+  const { setModalClass, setBookingClass } = useModal();
 
   return (
     <StyledMain id="main">
@@ -22,7 +22,7 @@ export default function Main() {
               оборудование для идеальной чистоты. Удобно, быстро и по доступной
               цене!
             </p>
-            <Button className="main-button">Бронировать</Button>
+            <Button className="main-button" onClick={setBookingClass}>Бронировать</Button>
           </MainInfo>
           <Card className="main-comment">
             <div className="comment-wrapper">

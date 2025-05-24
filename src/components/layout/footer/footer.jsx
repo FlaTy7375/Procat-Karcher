@@ -5,8 +5,11 @@ import Logo from "../../../assets/images/logo.png"
 import InstLogo from "../../../assets/svg/inst.svg"
 import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
+import { useModal } from "../../app/context-modal";
 
 export default function Footer() {
+    const { setBookingClass } = useModal();
+
     return (
         <StyledFooter>
             <FooterWrapper>
@@ -28,7 +31,7 @@ export default function Footer() {
             </div>
             <div className="footer-book">
                 <h2>Твой ход к чистоте:</h2>
-                <Button className="book-button">Бронировать</Button>
+                <Button className="book-button" onClick={setBookingClass}>Бронировать</Button>
                 <article>prokarcher © all right reserve</article>
             </div>
             </FooterWrapper>
