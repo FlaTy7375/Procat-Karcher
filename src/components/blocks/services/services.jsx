@@ -9,11 +9,11 @@ import { useModal } from "../../app/context-modal";
 
 export default function Services() {
   const btnModalRef = useRef(null);
-  const { modal, setModal, setModalClass, setBookingClass } = useModal();
+  const { modal, setModal, setModalClass, setBookingClass, setOption } = useModal();
 
   return (
     <>
-      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} setBookingClass={setBookingClass}/>
+      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} setBookingClass={setBookingClass} setOption={setOption}/>
       <StyledServices id="services">
         <SectionName className="services-name">
           <span className="full-name">Дополнительные</span>
@@ -35,7 +35,7 @@ export default function Services() {
               и наслаждайтесь чистотой без лишних хлопот!
             </p>
             <div className="button-wrapper">
-              <Button className="services-button" onClick={setBookingClass}>Заказать</Button>
+              <Button className="services-button" onClick={() => {setOption(3); setBookingClass()}}>Заказать</Button>
               <Button ref={btnModalRef} className="services-info" onClick={setModalClass}>
                 <InfoIcon />
               </Button>

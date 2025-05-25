@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyledBooking } from "./style";
 import BookingCalendar from "./booking-calendar";
+import { bookingInfo } from "../../../mocks/booking-info";
 
 export default function Booking({value, setValue}) {
     const [select, setSelect] = useState(false);
@@ -42,6 +43,12 @@ export default function Booking({value, setValue}) {
                         <li className={`booking-option ${value === 3 ? 'option-active' : ''}`} onClick={() => {setValue(3); setSelect(false)}}>Заказать уборку автомобиля</li>
                     </ul>
                 </div>
+                {
+                    value === 1 ? <div className="select-continer" key={bookingInfo[0].id}>{bookingInfo[0].content}</div> :
+                    value === 2 ? <div className="select-continer" key={bookingInfo[1].id}>{bookingInfo[1].content}</div> :
+                    value === 3 ? <div className="select-continer" key={bookingInfo[2].id}>{bookingInfo[2].content}</div> :
+                    ""
+                }
                 <BookingCalendar></BookingCalendar>
                 <h2 className="info-title">Заполните форму:</h2>
                 <div className="info-container">

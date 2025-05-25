@@ -250,7 +250,7 @@ export const StyledBooking = styled.div`
         display: flex;
         align-items: center;
         cursor: pointer;
-        margin-bottom: 100px;
+        margin-bottom: 30px;
         width: 100%;
         height: 60px;
         color: #fff;
@@ -288,6 +288,60 @@ export const StyledBooking = styled.div`
         background-color: rgb(95, 92, 92);
         z-index: 10;
         border: 1px solid #ccc;
+    }
+
+    //Карточки с инфо услуги 
+
+    .select-card {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        width: 100%;
+        border-radius: 25px;
+        height: 300px;
+        margin-bottom: 50px;
+    }
+
+    .select-card.card3 {
+        height: 400px;
+    }
+
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 546px;
+        gap: 20px;
+    }
+
+    .select-img {
+        position: absolute;
+        top: -10px;
+        left: 40px;
+        width: 25vw;
+        height: 22vw;
+    }
+
+    .select-card.card2 .select-img {
+        top: -40px;
+        width: 23vw;
+        height: 23vw;
+    }
+
+    .select-card.card3 .select-img {
+        top: -20px;
+        left: 20px;
+        width: 28vw;
+        height: 28vw;
+    }
+
+    .select-title {
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .select-description {
+        font-size: 18px;
+        font-weight: 400;
     }
 
     .booking-select.options-show {

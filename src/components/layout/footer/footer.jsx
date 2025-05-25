@@ -8,7 +8,7 @@ import CallLogo from "../../../assets/svg/call.svg"
 import { useModal } from "../../app/context-modal";
 
 export default function Footer() {
-    const { setBookingClass } = useModal();
+    const { setBookingClass, setOption } = useModal();
 
     return (
         <StyledFooter>
@@ -31,7 +31,7 @@ export default function Footer() {
             </div>
             <div className="footer-book">
                 <h2>Твой ход к чистоте:</h2>
-                <Button className="book-button" onClick={setBookingClass}>Бронировать</Button>
+                <Button className="book-button" onClick={() => {setOption(0); setBookingClass()}}>Бронировать</Button>
                 <article>prokarcher © all right reserve</article>
             </div>
             </FooterWrapper>

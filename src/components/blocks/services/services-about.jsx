@@ -7,7 +7,7 @@ import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
 
-const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass }, ref) => {
+const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass, setOption}, ref) => {
 
   const hideModal = useCallback(() => {
     setDisplay("");
@@ -62,7 +62,7 @@ const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass }, ref)
         <div className="about-container">
         <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-        <Button className="about-button" onClick={() => {hideModal(); setBookingClass()}}>Заказать</Button>
+        <Button className="about-button" onClick={() => {hideModal(); setOption(3); setBookingClass()}}>Заказать</Button>
         </div>
         <div className="about-socials">
           <h2>Связаться с нами</h2>

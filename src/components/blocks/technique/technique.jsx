@@ -12,11 +12,11 @@ import { useModal } from "../../app/context-modal";
 export default function Technique() {
     const [btn, setBtn] = useState(false);
     const [Modal, setModal] = useState("");
-    const { setBookingClass } = useModal();
+    const { setBookingClass, setOption } = useModal();
 
     return (
         <>
-        <TechniqueAbout BtnFirst={btn} display={Modal} setDisplay={setModal} setBookingClass={setBookingClass}/>
+        <TechniqueAbout BtnFirst={btn} display={Modal} setDisplay={setModal} setBookingClass={setBookingClass} setOption={setOption}/>
         <StyledTechnique id="technique">
             <TechniqueWrapper>
             <SectionName className="technique-name">Наша Техника</SectionName>
@@ -27,7 +27,7 @@ export default function Technique() {
                         <p>Моющий пылесос – мощный аппарат для профессиональной уборки. Идеально подходит для чистки ковров, мебели и салонов авто.</p>
                         <article>50 руб/сутки</article>
                         <div className="button-wrapper">
-                            <Button className="technique-button" onClick={setBookingClass}>Бронировать</Button>
+                            <Button className="technique-button" onClick={() => {setOption(1); setBookingClass()}}>Бронировать</Button>
                             <Button className="technique-info" onClick={() => {setBtn(true); setModal("modal-show"); document.body.style.overflow = "hidden"}}><InfoIcon/></Button>
                         </div>
                     </div>
@@ -38,7 +38,7 @@ export default function Technique() {
                         <p>Пароочиститель – аппарат для экологичной уборки, уничтожает бактерии горячим паром. Отлично подходит для полов и мебели.</p>
                         <article>30 руб/сутки</article>
                         <div className="button-wrapper">
-                            <Button className="technique-button" onClick={setBookingClass}>Бронировать</Button>
+                            <Button className="technique-button" onClick={() => {setOption(2); setBookingClass()}}>Бронировать</Button>
                             <Button className="technique-info" onClick={() => {setBtn(); setModal("modal-show"); document.body.style.overflow = "hidden"}}><InfoIcon/></Button>
                         </div>
                     </div>

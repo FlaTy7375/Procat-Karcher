@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledBookingModal } from "./style";
 import Card from "../../ui/card/card";
 import Booking from "./booking";
