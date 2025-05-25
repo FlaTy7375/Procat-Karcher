@@ -376,6 +376,7 @@ export const StyledBooking = styled.div`
     //Карточки с инфо услуги 
 
     .select-card {
+        position: relative;
         display: flex;
         align-items: flex-end;
         justify-content: center;
