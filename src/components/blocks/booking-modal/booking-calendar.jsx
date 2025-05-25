@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
-import Dropdown from './dropdown';
-import { ru } from 'date-fns/locale';
+import React, { useState, useEffect } from "react";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import Dropdown from "./dropdown";
+import { ru } from "date-fns/locale";
 
 const BookingCalendar = () => {
   const [selectedDay, setSelectedDay] = useState(); // Для хранения выбранного дня
@@ -12,12 +12,9 @@ const BookingCalendar = () => {
   useEffect(() => {
     const fetchBookedDates = async () => {
       setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-      const mockBookedDates = [
-        new Date(2025, 4, 25),
-        new Date(2025, 4, 28),
-      ];
+      const mockBookedDates = [new Date(2025, 4, 25), new Date(2025, 4, 28)];
       setBookedDates(mockBookedDates);
       setLoading(false);
     };
@@ -31,8 +28,8 @@ const BookingCalendar = () => {
 
   const modifiersStyles = {
     booked: {
-      color: '#fff',
-      backgroundColor: '#ff6242',
+      color: "#fff",
+      backgroundColor: "#ff6242",
       opacity: 1,
     },
   };
@@ -41,10 +38,10 @@ const BookingCalendar = () => {
   const maxYear = 2050;
 
   return (
-    <div>
+    <div className="booking-calendar--wrapper">
       <h2>Выберите дату на которую хотите забронировать услугу:</h2>
-      {loading ? (<p>Загрузка доступности...</p>) 
-      : (
+      {loading ? ( <p>Загрузка доступности...</p>)
+       : (
         <DayPicker
           mode="single" // Режим выбора одного дня
           captionLayout="dropdown" // Выпадающий список месяцев и года
@@ -54,12 +51,9 @@ const BookingCalendar = () => {
           locale={ru} // Устанавливаем русский язык
           showOutsideDays // Показывать дни предыдущего/следующего месяца
           components={{
-            Dropdown: Dropdown, // <--- ИСПОЛЬЗУЕМ ВАШ КАСТОМНЫЙ ДРОПДАУН
+            Dropdown: Dropdown,
           }}
-          disabled={[
-            { before: new Date() },
-            ...bookedDates
-          ]}
+          disabled={[{ before: new Date() }, ...bookedDates]}
           modifiers={modifiers} // Применяем модификаторы
           modifiersStyles={modifiersStyles} // Применяем стили для модификаторов (встроенные стили)
           fromYear={minYear}
@@ -67,24 +61,29 @@ const BookingCalendar = () => {
         />
       )}
 
-      <div className='guide-container'>
-        <div className='guide-item'>
-          <span className='item-red'/>
+      <div className="guide-container">
+        <div className="guide-item">
+          <span className="item-red" />
           <p>- забронированные даты</p>
         </div>
-        <div className='guide-item'>
-          <span className='item-green'/>
+        <div className="guide-item">
+          <span className="item-green" />
           <p>- выбранная дата</p>
         </div>
-        <div className='guide-item'>
-          <span className='item-grey'/>
+        <div className="guide-item">
+          <span className="item-grey" />
           <p>- свободные даты</p>
         </div>
-        <div className='guide-item'>
-          <span className='item-disabled'/>
+        <div className="guide-item">
+          <span className="item-disabled" />
           <p>- истекшие даты</p>
         </div>
       </div>
+      { selectedDay && (
+      <p className="calendar-date">
+        Дата бронирования: {selectedDay.toLocaleDateString('ru-RU')}
+      </p>
+      )}
     </div>
   );
 };

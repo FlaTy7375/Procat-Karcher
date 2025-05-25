@@ -53,7 +53,7 @@ export const StyledBookingModal = styled.div`
     .rdp-dropdowns {
         display: flex;
         justify-content: space-between;
-        width: 230px;
+        width: auto;
         height: auto;
         gap: 0;
     }
@@ -169,6 +169,10 @@ export const StyledBookingModal = styled.div`
         background-color: rgb(44, 44, 44);
     }
 
+    .booking-calendar--wrapper {
+        position: relative;
+    }
+
     .guide-container {
         margin-top: 20px;
         display: flex;
@@ -228,6 +232,85 @@ export const StyledBookingModal = styled.div`
         stroke: #000;
         opacity: 0.75;
     }
+
+    .calendar-date {
+        margin-top: 10px;
+    }
+
+    @media (max-width: 1240px) {
+        .booking-card {
+            padding: 50px 40px 50px 40px;
+        }
+
+        .rdp-day {
+            height: 10vw;
+            width: 10vw;
+        }
+
+        .guide-container {
+            gap: 0;
+        }
+
+        .guide-item {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .booking-card {
+            width: calc(100% - 42px);
+            padding-top: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .rdp-root[data-nav-layout="around"] .rdp-button_next {
+            right: -5px;
+        }
+
+        .rdp-root[data-nav-layout="around"] .rdp-button_previous {
+            left: -5px;
+        }
+
+        .button-close {
+            width: 36px;
+            height: 36px;
+            top: 20px;
+            right: 20px;
+        }
+    }
+
+     @media (max-width: 450px) {
+        &.modal-show {
+            padding: 10px 0;
+        }
+
+        .booking-card {
+            width: calc(100% - 21px);
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .rdp-months {
+            padding: 0px 5px 5px 5px;
+        }
+
+        .rdp-month_caption {
+            height: 120px;
+            padding-bottom: 40px;
+        }
+
+        .rdp-root[data-nav-layout="around"] .rdp-button_next {
+            top: 70px;
+            right: 5%;
+        }
+
+        .rdp-root[data-nav-layout="around"] .rdp-button_previous {
+            top: 70px;
+            left: 5%;
+        }
+     }
 `
 
 export const StyledBooking = styled.div`
@@ -298,18 +381,20 @@ export const StyledBooking = styled.div`
         justify-content: center;
         width: 100%;
         border-radius: 25px;
-        height: 300px;
+        height: auto;
+        min-height: auto;
         margin-bottom: 50px;
+        padding-left: 40%
     }
 
     .select-card.card3 {
-        height: 400px;
+        height: 30vw;
+        max-height: 400px;
     }
 
     .card-wrapper {
         display: flex;
         flex-direction: column;
-        width: 546px;
         gap: 20px;
     }
 
@@ -321,17 +406,31 @@ export const StyledBooking = styled.div`
         height: 22vw;
     }
 
+    .select-img2 {
+        display: none;
+    } 
+
+    .select-card.card1 .select-img {
+        max-width: 320px;
+        max-height: 280px;
+    }
+
     .select-card.card2 .select-img {
-        top: -40px;
+        max-width: 294px;
+        max-height: 294px;
+        top: -30px;
         width: 23vw;
         height: 23vw;
     }
 
     .select-card.card3 .select-img {
         top: -20px;
-        left: 20px;
-        width: 28vw;
-        height: 28vw;
+        left: 10px;
+        width: 30vw;
+        height: 30vw;
+        max-width: 384px;
+        max-height: 384px;
+        
     }
 
     .select-title {
@@ -370,10 +469,11 @@ export const StyledBooking = styled.div`
     
     .info-title {
         margin: 20px 0px;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     .info-container {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -403,7 +503,7 @@ export const StyledBooking = styled.div`
     .info-container input:-ms-input-placeholder { color: #fff; }
 
     .booking-button {
-        margin-top: 30px;
+        margin-top: 20px;
         width: 260px;
         height: 60px;
         border: none;
@@ -416,6 +516,211 @@ export const StyledBooking = styled.div`
 
     .booking-button:hover {
         background-color: rgb(184, 184, 184);
+    }
+
+    @media (max-width: 1210px) {
+        .select-card {
+            height: auto;
+            max-height: 400px;
+        }
+
+        .select-card.card1 .select-img {
+            width: 30vw;
+            height: 25vw;
+        }
+
+        .select-card.card2 .select-img {
+            top: -20px;
+            width: 23vw;
+            height: 23vw;
+        }
+
+        .select-card.card3 {
+            height: 50vw;
+        }
+
+        .select-card.card3 .select-img {
+            top: -20px;
+            left: 10px;
+            width: 40vw;
+            height: 40vw;
+            max-width: 384px;
+            max-height: 384px;
+        }
+
+        .info-container input {
+            width: 80%;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .select-card.card1 .select-img {
+            top: 10px;
+            left: 20px;
+        }
+
+        .select-card.card2 .select-img {
+            top: 0px;
+            width: 23vw;
+            height: 23vw;
+        }
+
+        .select-card.card3 {
+            height: 50vw;
+            max-height: 450px;
+        }
+
+        .select-card.card3 .select-img {
+            left: -20px;
+            top: 30px;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        .select-wrapper {
+            width: 80%;
+        }
+
+        .select-card {
+            justify-content: start;
+            padding: 30px;
+            height: auto;
+            max-height: 1000px;
+        }
+
+        .select-card.card3 {
+            justify-content: start;
+            padding: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: auto;
+            max-height: 1000px;
+        }
+
+        .select-card .select-img {
+            display: none;
+        }
+
+        .select-img2 {
+            border: 1px solid #fff;
+            border-radius: 10px;
+            top: 20px;
+            object-fit: cover;
+            display: block;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        } 
+    }
+
+    @media (max-width: 767px) {
+        .select-wrapper {
+            width: 100%;
+        }
+
+        .select-card {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        h1, h2, .select-title, .select-trigger  {
+            font-size: 18px;
+        }
+
+        .booking-title {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .select-description {
+            font-size: 14px;
+        }
+
+        .guide-container {
+            font-size: 16px;
+            margin-top: 30px;
+            flex-direction: column;
+        }
+
+        .info-container input {
+            width: 100%;
+        }
+
+        .info-title {
+            margin-top: 30px;
+        }
+
+        .booking-button {
+            display: block;
+            font-size: 18px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 580px) {
+        .select-card.card1 {
+            padding-top: 50vw;
+        }
+
+        .select-card.card2 {
+            padding-top: 47vw;
+        }
+
+        .select-card.card3 {
+            padding-top: 60vw;
+        }
+
+        .select-img2 {
+            display: none;
+        }
+
+        .select-card .select-img {
+            display: block;
+        }
+
+        .select-card.card1 .select-img {
+            top: -20px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 60vw;
+            height: 52vw;
+        }
+
+        .select-card.card2 .select-img {
+            top: -50px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 60vw;
+            height: 60vw;
+        }
+
+        .select-card.card3 .select-img {
+            top: -10px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 60vw;
+            height: 60vw;
+        }
+
+        .select-trigger {
+            padding-right: 55px;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .select-trigger {
+            height: 80px;
+        }
+        
+        .booking-select {
+            height: 240px;
+            top: 82px;
+        }
+
+        .select-arrow {
+            top: 30px;
+        }
     }
 `
 
@@ -493,5 +798,11 @@ export const StyledDropdown = styled.div`
         color:rgb(55, 53, 53);
         cursor: not-allowed;
         background-color: #f7f7f7;
+    }
+
+    @media (max-width: 767px) {
+        .dropdown-wrapper {
+            min-width: 60px;
+        }
     }
 `

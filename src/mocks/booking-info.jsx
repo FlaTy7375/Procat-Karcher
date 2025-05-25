@@ -1,7 +1,10 @@
 import Card from "../components/ui/card/card";
 import Technique1 from "../assets/images/karcher-puzzi.png";
+import Technique1_2 from "../assets/images/technique1-2.jpg";
 import Technique2 from "../assets/images/karcher-easy-sc3.png";
+import Technique2_2 from "../assets/images/technique2-2.jpg";
 import Service from "../assets/images/main-image.png"
+import Service2 from "../assets/images/service2.jpg"
 
 export const bookingInfo = [
   {
@@ -10,6 +13,7 @@ export const bookingInfo = [
       <>
         <Card className="select-card card1">
         <img className="select-img" src={Technique1} alt="изображение Karcher Puzzi 8/1 C" />
+        <img className="select-img2" src={Technique1_2} alt="изображение Karcher Puzzi 8/1 C" />
         <div className="card-wrapper">
             <h1 className="select-title">Karcher Puzzi 8/1 C</h1>
             <p className="select-description">
@@ -29,6 +33,7 @@ export const bookingInfo = [
       <>
         <Card className="select-card card2">
         <img className="select-img" src={Technique2} alt="изображение Karcher SC 3 EasyFix" />
+        <img className="select-img2" src={Technique2_2} alt="изображение Karcher SC 3 EasyFix" />
         <div className="card-wrapper">
             <h1 className="select-title">Karcher SC 3 EasyFix</h1>
             <p className="select-description">
@@ -48,6 +53,7 @@ export const bookingInfo = [
       <>
         <Card className="select-card card3">
         <img className="select-img" src={Service} alt="изображение услуги" />
+        <img className="select-img2" src={Service2} alt="изображение услуги" />
         <div className="card-wrapper">
             <h1 className="select-title">Уборка и чистка авто!</h1>
 
