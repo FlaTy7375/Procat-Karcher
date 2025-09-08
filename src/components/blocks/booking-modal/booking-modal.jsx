@@ -6,12 +6,7 @@ import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.
 import { useModal } from "../../app/context-modal";
 
 export default function BookingModal() {
-  const { option, setOption, booking, showBooking } = useModal();
-
-  const hideModal = () => {
-    showBooking("");
-    document.body.style.overflow = "auto";
-  };
+  const { option, setOption, hideModal, booking } = useModal();
 
   return (
     <StyledBookingModal className={booking}>

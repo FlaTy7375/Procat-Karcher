@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { StyledFooter } from "./style";
 import { FooterWrapper } from "./style";
 import Button from "../../ui/button/button";
@@ -6,12 +7,32 @@ import InstLogo from "../../../assets/svg/inst.svg"
 import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { useModal } from "../../app/context-modal";
+import { useAuth } from "../../app/AuthContext"
+import AuthModal from "../../blocks/account/auth-modal";
 
 export default function Footer() {
     const { setBookingClass, setOption } = useModal();
 
+    const { isAuthenticated } = useAuth();
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+    const handleBookingClick = () => {
+    if (isAuthenticated) {
+    setOption(0); 
+    setBookingClass();
+    } else {
+    // Если пользователь не авторизован, показываем модальное окно регистрации/входа
+    setIsAuthModalOpen(true);
+    }
+    }
+
+    const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+    };
+
     return (
         <StyledFooter>
+            <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal}></AuthModal>
             <FooterWrapper>
             <div className="logo-container">
                 <div className="footer-logo">
@@ -31,7 +52,7 @@ export default function Footer() {
             </div>
             <div className="footer-book">
                 <h2>Твой ход к чистоте:</h2>
-                <Button className="book-button" onClick={() => {setOption(0); setBookingClass()}}>Бронировать</Button>
+                <Button className="book-button" onClick={() => {handleBookingClick()}}>Бронировать</Button>
                 <article>prokarcher © all right reserve</article>
             </div>
             </FooterWrapper>

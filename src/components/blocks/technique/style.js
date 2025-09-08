@@ -425,6 +425,10 @@ export const TechniqueAboutContainer = styled.div`
             font-size: 18px;
         }
 
+        .about-block ul {
+            margin-left: 0;
+        }
+
         .button-close { 
             width: 36px;
             height: 36px;

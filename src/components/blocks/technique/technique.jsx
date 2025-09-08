@@ -1,22 +1,73 @@
-import React, { useState } from "react";
-import { StyledTechnique } from "./style"
-import { TechniqueWrapper } from "./style"
+import React, { useState, useEffect } from "react"; // Удалили useState
+import { StyledTechnique, TechniqueWrapper, CardsWrapper } from "./style"
 import TechniqueAbout from "./technique-about"
 import SectionName from "../../ui/section-name/section-name"
-import { CardsWrapper } from "./style"
 import Card from "../../ui/card/card"
 import Button from "../../ui/button/button"
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg"
 import { useModal } from "../../app/context-modal";
+import { useAuth } from "../../app/AuthContext";
+import AuthModal from "../account/auth-modal";
 
 export default function Technique() {
+    
+    const { isAuthenticated } = useAuth();
+    // Удалили локальное состояние isAuthModalOpen
+    // const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [btn, setBtn] = useState(false);
-    const [Modal, setModal] = useState("");
-    const { setBookingClass, setOption } = useModal();
+    const [isTechniqueAboutVisible, setIsTechniqueAboutVisible] = useState(false);
+    const { 
+        setBookingClass, 
+        setOption, 
+        isAuthModalOpen, // Получаем из контекста
+        setIsAuthModalOpen // Получаем из контекста
+    } = useModal();
+    
+    // Централизованная логика управления скроллом
+    useEffect(() => {
+        if (isAuthModalOpen || isTechniqueAboutVisible) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [isAuthModalOpen, isTechniqueAboutVisible]); 
+
+    const showTechniqueAbout = (btnType) => {
+      setBtn(btnType);
+      setIsTechniqueAboutVisible(true);
+    };
+
+    const hideTechniqueAbout = () => {
+      setIsTechniqueAboutVisible(false);
+    };
+
+    const openAuthModal = () => {
+      setIsAuthModalOpen(true);
+    };
+
+    const closeAuthModal = () => {
+      setIsAuthModalOpen(false);
+    };
+
+    const handleBookingClick = () => {
+      if (isAuthenticated) {
+        setBookingClass();
+      } else {
+        setIsAuthModalOpen(true);
+      }
+    };
 
     return (
         <>
-        <TechniqueAbout BtnFirst={btn} display={Modal} setDisplay={setModal} setBookingClass={setBookingClass} setOption={setOption}/>
+        <TechniqueAbout
+            BtnFirst={btn}
+            display={isTechniqueAboutVisible ? "modal-show" : ""}
+            hideModal={hideTechniqueAbout}
+            setBookingClass={setBookingClass}
+            setOption={setOption}
+            openAuthModal={openAuthModal}
+        />
+        <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
         <StyledTechnique id="technique">
             <TechniqueWrapper>
             <SectionName className="technique-name">Наша Техника</SectionName>
@@ -27,8 +78,8 @@ export default function Technique() {
                         <p>Моющий пылесос – мощный аппарат для профессиональной уборки. Идеально подходит для чистки ковров, мебели и салонов авто.</p>
                         <article>50 руб/сутки</article>
                         <div className="button-wrapper">
-                            <Button className="technique-button" onClick={() => {setOption(1); setBookingClass()}}>Бронировать</Button>
-                            <Button className="technique-info" onClick={() => {setBtn(true); setModal("modal-show"); document.body.style.overflow = "hidden"}}><InfoIcon/></Button>
+                            <Button className="technique-button" onClick={() => {setOption(1); handleBookingClick()}}>Бронировать</Button>
+                            <Button className="technique-info" onClick={() => showTechniqueAbout(true)}><InfoIcon/></Button>
                         </div>
                     </div>
                 </Card>
@@ -38,8 +89,8 @@ export default function Technique() {
                         <p>Пароочиститель – аппарат для экологичной уборки, уничтожает бактерии горячим паром. Отлично подходит для полов и мебели.</p>
                         <article>30 руб/сутки</article>
                         <div className="button-wrapper">
-                            <Button className="technique-button" onClick={() => {setOption(2); setBookingClass()}}>Бронировать</Button>
-                            <Button className="technique-info" onClick={() => {setBtn(); setModal("modal-show"); document.body.style.overflow = "hidden"}}><InfoIcon/></Button>
+                            <Button className="technique-button" onClick={() => {setOption(2); handleBookingClick()}}>Бронировать</Button>
+                            <Button className="technique-info" onClick={() => showTechniqueAbout(false)}><InfoIcon/></Button>
                         </div>
                     </div>
                 </Card>

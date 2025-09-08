@@ -4,10 +4,14 @@ import Socials from "./socials"
 import MainHeaderNav from "./main-nav"
 import Logo from "../../../assets/images/logo.png";
 import Menu from "../../../assets/svg/menu.svg";
+import { useAuth } from "../../app/AuthContext.jsx";
+import { ReactComponent as LogoutImg } from "../../../assets/svg/logout.svg";
 
 export default function Nav() {
     const [menu, setMenu] = useState("");
     const menuRef = useRef(null);
+
+    const { isAuthenticated, logout } = useAuth();
 
     useEffect(() => {
         const handleClick = (event) => {
@@ -42,8 +46,19 @@ export default function Nav() {
             </a>
         </div>
         <MainHeaderNav></MainHeaderNav>
-        <Socials></Socials>
-        <a className="menu-button" href="#menu"  onClick={addMenuClass}><img src={Menu} alt="menu" width="36" height="36"></img></a>
+            <>
+                {isAuthenticated ? (
+                    <div className="unlog-wrapper">
+                        <button className="unlog-button" onClick={logout}>
+                        <LogoutImg className="unlog-img"></LogoutImg>
+                        </button>
+                        <span className="unlog-avatar">ВЫ</span>
+                    </div>
+                ) : (
+                    <Socials></Socials>
+                )}
+            </>
+        <button className="menu-button" onClick={addMenuClass}><img src={Menu} alt="menu" width="36" height="36"></img></button>
     </StyledNav>
     )
 }

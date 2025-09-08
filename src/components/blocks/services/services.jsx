@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { StyledServices } from "./style";
 import SectionName from "../../ui/section-name/section-name";
 import Card from "../../ui/card/card";
@@ -6,14 +6,34 @@ import Button from "../../ui/button/button";
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg";
 import ServicesAbout from "./services-about";
 import { useModal } from "../../app/context-modal";
+import { useAuth } from "../../app/AuthContext";
+import AuthModal from "../account/auth-modal";
 
 export default function Services() {
-  const btnModalRef = useRef(null);
-  const { modal, setModal, setModalClass, setBookingClass, setOption } = useModal();
+  const { 
+    modal, 
+    hideModal, 
+    setModalClass, 
+    setBookingClass, 
+    setOption,
+    isAuthModalOpen,
+    setIsAuthModalOpen
+  } = useModal();
+  const { isAuthenticated } = useAuth();
+
+  const handleBookingClick = () => {
+    if (isAuthenticated) {
+      setOption(3); 
+      setBookingClass();
+    } else {
+      setIsAuthModalOpen(true);
+    }
+  }
 
   return (
     <>
-      <ServicesAbout ref={btnModalRef} display={modal} setDisplay={setModal} setBookingClass={setBookingClass} setOption={setOption}/>
+      <ServicesAbout display={modal} hideModal={hideModal} setBookingClass={setBookingClass} setOption={setOption}/>
+      <AuthModal isOpen={isAuthModalOpen} onClose={hideModal}></AuthModal>
       <StyledServices id="services">
         <SectionName className="services-name">
           <span className="full-name">Дополнительные</span>
@@ -35,8 +55,8 @@ export default function Services() {
               и наслаждайтесь чистотой без лишних хлопот!
             </p>
             <div className="button-wrapper">
-              <Button className="services-button" onClick={() => {setOption(3); setBookingClass()}}>Заказать</Button>
-              <Button ref={btnModalRef} className="services-info" onClick={setModalClass}>
+              <Button className="services-button" onClick={() => {handleBookingClick()}}>Заказать</Button>
+              <Button className="services-info" onClick={setModalClass}>
                 <InfoIcon />
               </Button>
             </div>

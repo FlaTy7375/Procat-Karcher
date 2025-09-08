@@ -1,3 +1,4 @@
+import React from 'react'; // Удалили useState
 import { StyledMain } from "./style";
 import { Title } from "./style";
 import { StyledMainWrapper } from "./style";
@@ -7,12 +8,38 @@ import Card from "../../ui/card/card";
 import { CardWrapper } from "./style";
 import Avatar from "../../../assets/images/avatar.png";
 import { useModal } from "../../app/context-modal";
+import { useAuth } from "../../app/AuthContext";
+import AuthModal from "../account/auth-modal";
 
 export default function Main() {
-  const { setModalClass, setBookingClass, setOption } = useModal();
+  const { 
+    setModalClass, 
+    setBookingClass, 
+    setOption,
+    isAuthModalOpen, // Получаем из контекста
+    setIsAuthModalOpen // Получаем из контекста
+  } = useModal();
+  const { isAuthenticated } = useAuth();
+  
+  // Удалили локальное состояние isAuthModalOpen
+  // const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
+  const handleBookingClick = () => {
+    if (isAuthenticated) {
+      setOption(0); 
+      setBookingClass();
+    } else {
+      setIsAuthModalOpen(true);
+    }
+  }
+
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+  };
+  
   return (
     <StyledMain id="main">
+      <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal}></AuthModal>
       <StyledMainWrapper>
         <div className="main-container">
           <MainInfo>
@@ -22,7 +49,7 @@ export default function Main() {
               оборудование для идеальной чистоты. Удобно, быстро и по доступной
               цене!
             </p>
-            <Button className="main-button" onClick={() => {setOption(0); setBookingClass()}}>Бронировать</Button>
+            <Button className="main-button" onClick={() => {handleBookingClick()}}>Бронировать</Button>
           </MainInfo>
           <Card className="main-comment">
             <div className="comment-wrapper">

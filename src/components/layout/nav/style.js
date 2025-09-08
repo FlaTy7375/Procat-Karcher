@@ -31,6 +31,41 @@ export const StyledNav = styled.nav `
         display: none;
     }
 
+    .unlog-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .unlog-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 18px;
+        margin-right: 10px;
+        color: #fff;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .unlog-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
     @media (max-width: 1210px) {
         justify-content: center;
 
@@ -38,9 +73,19 @@ export const StyledNav = styled.nav `
             position: absolute;
             left: 0px;
         }
-        
 
         .logo-wrapper h2 {
+            display: none;
+        }
+
+        .unlog-wrapper {
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    @media (max-width: 860px) {
+        .unlog-img {
             display: none;
         }
     }
@@ -52,6 +97,8 @@ export const StyledNav = styled.nav `
             display: flex;
             align-items: center;
             justify-content: center;
+            border: none;
+            background-color: transparent;
             width: 36px;
             height: 36px;
         }
@@ -64,7 +111,9 @@ export const StyledNav = styled.nav `
             display: block;
         }
 
-        
+        .unlog-avatar {
+            display: none;
+        }
     }
 `
 
@@ -79,11 +128,6 @@ export const StyledSocials = styled.div `
         width: 32px;
         height: 32px;
         cursor: pointer;
-    }
-
-    a:hover {
-        border: 1px solid white;
-        padding: 2px;
     }
     
     a:nth-child(3) {
@@ -101,6 +145,9 @@ export const StyledMainNav = styled.div `
     align-items: center;
     justify-content: space-between;
     
+    .nav-logout {
+        display: none;
+    }
 
     a {
         position: relative;
@@ -127,6 +174,10 @@ export const StyledMainNav = styled.div `
         display: none;
         z-index: 2;
 
+        .nav-logout {
+            display: flex;
+        }
+
         .nav-opened & {
             padding: 0 20px;
             position: absolute;
@@ -142,12 +193,19 @@ export const StyledMainNav = styled.div `
             width: 100vw;
         }
 
-        .nav-opened & a {
+        .nav-opened & a, .nav-opened & button {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 60px;
             width: 100vw;
+        }
+
+        .nav-opened & button {
+            background-color: transparent;
+            border: none;
+            font-weight: 500;
+            font-size: 18px;
         }
 
         .nav-opened & a:hover {

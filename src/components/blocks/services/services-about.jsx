@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ServicesAboutContainer } from "./style";
@@ -6,28 +6,32 @@ import InstLogo from "../../../assets/svg/inst.svg"
 import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
+import { useAuth } from "../../app/AuthContext";
+import AuthModal from "../account/auth-modal";
 
-const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass, setOption}, ref) => {
+const ServicesAbout = forwardRef(({ display, hideModal, setBookingClass, setOption}, ref) => {
 
-  const hideModal = useCallback(() => {
-    setDisplay("");
-    document.body.style.overflow = "auto";
-  }, [setDisplay]);
+    const { isAuthenticated } = useAuth();
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        hideModal();
+    const handleBookingClick = () => {
+      if (isAuthenticated) {
+        hideModal()
+        setOption(3); 
+        setBookingClass();
+      } else {
+        // Если пользователь не авторизован, показываем модальное окно регистрации/входа
+        setIsAuthModalOpen(true);
       }
+    }
+  
+    const closeAuthModal = () => {
+      setIsAuthModalOpen(false);
     };
-
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [hideModal]);
 
   return (
     <ServicesAboutContainer className={display} ref={ref}>
+      <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal}></AuthModal>
       <Card className="services-about">
         <button className="button-close" onClick={hideModal}><CloseButton></CloseButton></button>
         <div className="about-block">
@@ -62,7 +66,7 @@ const ServicesAbout = forwardRef(({ display, setDisplay, setBookingClass, setOpt
         <div className="about-container">
         <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-        <Button className="about-button" onClick={() => {hideModal(); setOption(3); setBookingClass()}}>Заказать</Button>
+        <Button className="about-button" onClick={() => {handleBookingClick()}}>Заказать</Button>
         </div>
         <div className="about-socials">
           <h2>Связаться с нами</h2>
