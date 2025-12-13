@@ -4,26 +4,23 @@ import "react-day-picker/dist/style.css";
 import Dropdown from "./dropdown";
 import { ru } from "date-fns/locale";
 
-const BookingCalendar = () => {
-  const [selectedDay, setSelectedDay] = useState(); // Для хранения выбранного дня
-  const [bookedDates, setBookedDates] = useState([]); // Xранит даты, которые заняты
-  const [loading, setLoading] = useState(true); // Для индикации загрузки данных
+const BookingCalendar = ({ onDateSelect, bookedDates, selectedServiceId, resetDate }) => {
+  const [selectedDay, setSelectedDay] = useState();
 
   useEffect(() => {
-    const fetchBookedDates = async () => {
-      setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    if (resetDate || !selectedServiceId) {
+      setSelectedDay(undefined);
+    }
+  }, [selectedServiceId, resetDate]);
 
-      const mockBookedDates = [new Date(2025, 4, 25), new Date(2025, 4, 28)];
-      setBookedDates(mockBookedDates);
-      setLoading(false);
-    };
-
-    fetchBookedDates();
-  }, []);
+  useEffect(() => {
+    if (selectedDay && onDateSelect) {
+      onDateSelect(selectedDay);
+    }
+  }, [selectedDay, onDateSelect]);
 
   const modifiers = {
-    booked: bookedDates,
+    booked: bookedDates || [],
   };
 
   const modifiersStyles = {
@@ -40,26 +37,23 @@ const BookingCalendar = () => {
   return (
     <div className="booking-calendar--wrapper">
       <h2>Выберите дату на которую хотите забронировать услугу:</h2>
-      {loading ? ( <p>Загрузка доступности...</p>)
-       : (
-        <DayPicker
-          mode="single" // Режим выбора одного дня
-          captionLayout="dropdown" // Выпадающий список месяцев и года
-          navLayout="around" // Стрелки навигации по бокам
-          selected={selectedDay} // Текущий выбранный день
-          onSelect={setSelectedDay} // Обработчик выбора дня
-          locale={ru} // Устанавливаем русский язык
-          showOutsideDays // Показывать дни предыдущего/следующего месяца
-          components={{
-            Dropdown: Dropdown,
-          }}
-          disabled={[{ before: new Date() }, ...bookedDates]}
-          modifiers={modifiers} // Применяем модификаторы
-          modifiersStyles={modifiersStyles} // Применяем стили для модификаторов (встроенные стили)
-          fromYear={minYear}
-          toYear={maxYear}
-        />
-      )}
+      <DayPicker
+        mode="single"
+        captionLayout="dropdown"
+        navLayout="around"
+        selected={selectedDay}
+        onSelect={setSelectedDay}
+        locale={ru}
+        showOutsideDays
+        components={{
+          Dropdown: Dropdown,
+        }}
+        disabled={[{ before: new Date() }, ...(bookedDates || [])]}
+        modifiers={modifiers}
+        modifiersStyles={modifiersStyles}
+        fromYear={minYear}
+        toYear={maxYear}
+      />
 
       <div className="guide-container">
         <div className="guide-item">

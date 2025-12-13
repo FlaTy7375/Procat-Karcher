@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Services1 from "../../../assets/images/main-image.png";
+import Services1 from "../../../assets/images/karcher-k5-fc.png";
 
 export const StyledServices = styled.section `
     margin-bottom: 100px;
@@ -29,9 +29,9 @@ export const StyledServices = styled.section `
     .services-card::before {
         content: "";
         position: absolute;
-        left: 12px;
+        left: -122px;
         top: -86px;
-        width: 543px;
+        width: 800px;
         height: 543px;
         background-image: url(${Services1});
         background-size: cover;
@@ -89,7 +89,7 @@ export const StyledServices = styled.section `
             top: -89px;
             width: 614px;
             height: 614px;
-            left: 50%;
+            left: 37%;
             transform: translate(-50%, 0%);
         }
     }
@@ -125,7 +125,7 @@ export const StyledServices = styled.section `
             top: -31px;
             width: 70vw;
             height: 70vw;
-            left: 50%;
+            left: 40%;
             transform: translate(-50%, 0%);
         }
 

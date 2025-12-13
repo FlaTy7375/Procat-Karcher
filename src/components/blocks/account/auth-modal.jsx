@@ -1,4 +1,3 @@
-// AuthModal.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from "../../app/AuthContext.jsx";
 import {
@@ -17,12 +16,11 @@ import {
   StatusMessage
 } from './style.js';
 
+const API_URL = 'https://karcherback-production.up.railway.app';
+
 const AuthModal = ({ isOpen, onClose }) => {
-
   const { login } = useAuth();
-
   const [isRegister, setIsRegister] = useState(false);
-  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -59,7 +57,7 @@ const AuthModal = ({ isOpen, onClose }) => {
   }, [message]);
 
   if (!isOpen) {
-      return null;
+    return null;
   }
 
   const handleToggleForm = () => {
@@ -74,21 +72,21 @@ const AuthModal = ({ isOpen, onClose }) => {
   };
 
   const validatePassword = (password) => {
-  if (password.length < 6) {
-    return 'Пароль должен содержать не менее 6 символов.';
-  }
+    if (password.length < 6) {
+      return 'Пароль должен содержать не менее 6 символов.';
+    }
 
-  const hasNumber = /[0-9]/.test(password);
-  if (!hasNumber) {
-    return 'Пароль должен содержать хотя бы одну цифру.';
-  }
+    const hasNumber = /[0-9]/.test(password);
+    if (!hasNumber) {
+      return 'Пароль должен содержать хотя бы одну цифру.';
+    }
 
-  const hasLetter = /[a-zA-Z]/.test(password);
-  if (!hasLetter) {
-    return 'Пароль должен содержать хотя бы одну букву.';
-  }
+    const hasLetter = /[a-zA-Z]/.test(password);
+    if (!hasLetter) {
+      return 'Пароль должен содержать хотя бы одну букву.';
+    }
 
-  return null;
+    return null;
   };
 
   const handleSubmit = async (e) => {
@@ -104,7 +102,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       }
 
       const passwordError = validatePassword(password);
-        if (passwordError) {
+      if (passwordError) {
         setIsSuccess(false);
         setMessage(`❌ Ошибка пароля: ${passwordError}`);
         return;
@@ -118,7 +116,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/clients', {
+        const response = await fetch(`${API_URL}/clients`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -147,9 +145,9 @@ const AuthModal = ({ isOpen, onClose }) => {
         setIsSuccess(false);
         setMessage('❌ Не удалось подключиться к серверу.');
       }
-    } else { // Логика для входа
+    } else {
       try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch(`${API_URL}/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

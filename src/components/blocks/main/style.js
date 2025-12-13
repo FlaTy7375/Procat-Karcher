@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MainImage from "../../../assets/images/main-image.png"
+import MainImage from "../../../assets/images/karcher-k5-fc.png"
 
 export const StyledMain = styled.section `
     position: relative;
@@ -43,6 +43,11 @@ export const StyledMain = styled.section `
         gap: 25px;
     }
 
+    .comment-author img {
+        border-radius: 50%;
+        border: 2px solid yellow;
+    }
+
     .main-comment h2 {
         margin-top: 9px;
         font-weight: 400;
@@ -70,8 +75,8 @@ export const StyledMain = styled.section `
         content: "";
         width: 400px;
         height: 400px;
-        top: -103px;
-        right: 15px;
+        top: -83px;
+        right: 55px;
         background-image: url(${MainImage});
         background-size: cover;
     }

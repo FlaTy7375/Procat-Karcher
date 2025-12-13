@@ -85,9 +85,9 @@ export default function Technique() {
                 </Card>
                 <Card className="technique-card">
                 <div className="card-wrapper">
-                        <h2>Karcher SC 3 EasyFix</h2>
-                        <p>Пароочиститель – аппарат для экологичной уборки, уничтожает бактерии горячим паром. Отлично подходит для полов и мебели.</p>
-                        <article>30 руб/сутки</article>
+                        <h2>Karcher SC 4 Deluxe</h2>
+                        <p>Профессиональный пароочиститель для гигиеничной очистки твердых поверхностей без применения химии. Идеально подходит для полов, плитки, кухонных поверхностей, сантехники, окон.</p>
+                        <article>50 руб/сутки</article>
                         <div className="button-wrapper">
                             <Button className="technique-button" onClick={() => {setOption(2); handleBookingClick()}}>Бронировать</Button>
                             <Button className="technique-info" onClick={() => showTechniqueAbout(false)}><InfoIcon/></Button>

@@ -40,7 +40,7 @@ export default function Nav() {
     return (
     <StyledNav ref={menuRef} className={menu}>
         <div className="logo-wrapper">
-            <a href="logo">
+            <a href="/">
                 <img src={Logo} alt="logo" width="36" height="36"></img>
                 <h2>ProKarcher</h2>
             </a>

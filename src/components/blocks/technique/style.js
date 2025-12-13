@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Technique1 from "../../../assets/images/karcher-puzzi.png"
-import Technique2 from "../../../assets/images/karcher-easy-sc3.png"
+import Technique2 from "../../../assets/images/karcher-sc4-deluxe.png"
 
 export const StyledTechnique = styled.section `
     margin-bottom: 100px;

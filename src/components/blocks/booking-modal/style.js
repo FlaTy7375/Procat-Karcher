@@ -419,18 +419,18 @@ export const StyledBooking = styled.div`
     .select-card.card2 .select-img {
         max-width: 294px;
         max-height: 294px;
-        top: -30px;
+        top: -50px;
         width: 23vw;
         height: 23vw;
     }
 
     .select-card.card3 .select-img {
-        top: -20px;
+        top: 20px;
         left: 10px;
         width: 30vw;
         height: 30vw;
-        max-width: 384px;
-        max-height: 384px;
+        max-width: 444px;
+        max-height: 340px;
         
     }
 
@@ -504,7 +504,7 @@ export const StyledBooking = styled.div`
     .info-container input:-ms-input-placeholder { color: #fff; }
 
     .booking-button {
-        margin-top: 20px;
+        margin-top: 40px;
         width: 260px;
         height: 60px;
         border: none;
@@ -541,12 +541,10 @@ export const StyledBooking = styled.div`
         }
 
         .select-card.card3 .select-img {
-            top: -20px;
+            top: 20px;
             left: 10px;
             width: 40vw;
             height: 40vw;
-            max-width: 384px;
-            max-height: 384px;
         }
 
         .info-container input {
@@ -655,7 +653,7 @@ export const StyledBooking = styled.div`
             display: block;
             font-size: 18px;
             margin: 0 auto;
-            margin-top: 20px;
+            margin-top: 40px;
         }
     }
 
@@ -700,8 +698,8 @@ export const StyledBooking = styled.div`
             top: -10px;
             left: 50%;
             transform: translate(-50%, 0%);
-            width: 60vw;
-            height: 60vw;
+            width: 80vw;
+            height: 55vw;
         }
 
         .select-trigger {

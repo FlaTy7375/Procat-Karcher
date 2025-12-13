@@ -1,10 +1,10 @@
 import Card from "../components/ui/card/card";
 import Technique1 from "../assets/images/karcher-puzzi.png";
 import Technique1_2 from "../assets/images/technique1-2.jpg";
-import Technique2 from "../assets/images/karcher-easy-sc3.png";
-import Technique2_2 from "../assets/images/technique2-2.jpg";
-import Service from "../assets/images/main-image.png"
-import Service2 from "../assets/images/service2.jpg"
+import Technique2 from "../assets/images/karcher-sc4-deluxe.png";
+import Technique2_2 from "../assets/images/karcher-sc4_2.jpg";
+import Service from "../assets/images/karcher-k5-fc.png"
+import Service2 from "../assets/images/karcher_k_5_2.jpg"
 
 export const bookingInfo = [
   {
@@ -32,15 +32,13 @@ export const bookingInfo = [
     content: (
       <>
         <Card className="select-card card2">
-        <img className="select-img" src={Technique2} alt="изображение Karcher SC 3 EasyFix" />
-        <img className="select-img2" src={Technique2_2} alt="изображение Karcher SC 3 EasyFix" />
+        <img className="select-img" src={Technique2} alt="изображение Karcher SC 4 Deluxe" />
+        <img className="select-img2" src={Technique2_2} alt="изображение Karcher SC 4 Deluxe" />
         <div className="card-wrapper">
-            <h1 className="select-title">Karcher SC 3 EasyFix</h1>
+            <h1 className="select-title">Karcher SC 4 Deluxe</h1>
             <p className="select-description">
-                Karcher SC 3 EasyFix – компактный пароочиститель для очистки твердых
-                поверхностей без химии. Нагревается за 30 секунд, оснащен резервуаром
-                1 л для непрерывной работы. Удаляет до 99,999% вирусов и 99,99%
-                бактерий. Компактный и удобный в использовании.
+                Профессиональный пароочиститель для гигиеничной очистки твердых поверхностей без применения химии.
+                Идеально подходит для полов, плитки, кухонных поверхностей, сантехники, окон.
             </p>
         </div>
         </Card>
@@ -55,19 +53,16 @@ export const bookingInfo = [
         <img className="select-img" src={Service} alt="изображение услуги" />
         <img className="select-img2" src={Service2} alt="изображение услуги" />
         <div className="card-wrapper">
-            <h1 className="select-title">Уборка и чистка авто!</h1>
+            <h1 className="select-title">Karcher K 5 Full Control</h1>
 
-            <p className="select-description">
-            Верните своему авто идеальную чистоту с техникой Karcher! Мы
-            предлагаем профессиональную химчистку салона и мойку кузова для
-            автомобилей всех размеров – от компактных легковых машин до просторных
-            бусов.
-            <br />
-            <br />
-            Наши сотрудники используют мощные моющие пылесосы и пароочистители
-            Karcher, чтобы удалить даже самые стойкие загрязнения, сохранив
-            материалы в отличном состоянии. Уточните стоимость для вашего авто и
-            наслаждайтесь чистотой без лишних хлопот!
+            <p className="select-sescription">
+              Мощная мойка высокого давления для профессиональной, быстрой и бережной очистки автомобилей.
+              Относится к аппаратам среднего класса, рассчитанным на высокие нагрузки. 
+              <br />
+              <br />
+              Полный контроль над каждым аспектом работы: от давления до нанесения химии делает её идеальным
+              инструментом для удаления стойкой грязи, следов насекомых, соли и других загрязнений с кузова,
+              колес и подвески авто без риска повреждения лакокрасочного покрытия.
             </p>
         </div>
         </Card>

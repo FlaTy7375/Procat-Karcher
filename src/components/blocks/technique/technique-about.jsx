@@ -7,7 +7,7 @@ import TgLogo from "../../../assets/svg/telegram.svg";
 import CallLogo from "../../../assets/svg/call.svg";
 import { techniqueInfo } from "../../../mocks/technique-info";
 import Technique1 from "../../../assets/images/karcher-puzzi.png";
-import Technique2 from "../../../assets/images/karcher-easy-sc3.png";
+import Technique2 from "../../../assets/images/karcher-sc4-deluxe.png";
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg";
 import { useAuth } from "../../app/AuthContext";
 
