@@ -266,7 +266,7 @@ export default function Booking({ value, setValue }) {
   const getServiceName = useCallback((serviceId) => {
     return serviceId === 1 ? "Аренда пылесоса Karcher Puzzi 8/1 C" : 
            serviceId === 2 ? "Аренда пароочистителя Karcher SC 4 Deluxe" : 
-           serviceId === 3 ? "Аренда мойки высокого давления Karcher K 5 Full Control" : 
+           serviceId === 3 ? "Аренда мойки высокого давления" : 
            "Выберите услугу";
   }, []);
 
@@ -638,7 +638,7 @@ export default function Booking({ value, setValue }) {
                   setSelect(false);
                 }}
               >
-                Аренда мойки высокого давления Karcher K 5 Full Control
+                Аренда мойки высокого давления
               </li>
             </ul>
           </div>

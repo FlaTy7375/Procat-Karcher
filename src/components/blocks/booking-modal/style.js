@@ -330,6 +330,7 @@ export const StyledBooking = styled.div`
     }
 
     .select-trigger {
+        position: relative;
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -342,6 +343,7 @@ export const StyledBooking = styled.div`
         border: none;
         border-radius: 10px;
         border: 1px solid #ccc;
+        z-index: 2;
     }
 
     .select-trigger:hover {
