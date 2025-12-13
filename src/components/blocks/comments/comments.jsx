@@ -4,7 +4,6 @@ import SectionName from "../../ui/section-name/section-name";
 import Card from "../../ui/card/card";
 import { useAuth } from "../../app/AuthContext";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
 import AlertModal from "./AlertModal";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -72,6 +71,7 @@ export default function Comments() {
   
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
 
   const showAlert = (title, message, type = "info", onConfirm = null) => {
     setAlertModal({
@@ -179,6 +179,19 @@ export default function Comments() {
       }
     };
   }, [showModal, showFullCommentModal, showDeleteModal, alertModal.isOpen]);
+
+  // Простая навигация без использования навигации Swiper
+  const handlePrev = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleNext = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
 
   const allComments = [
     ...comments.filter(comment => 
@@ -311,158 +324,143 @@ export default function Comments() {
       <SectionName className="comments-name">Ваши отзывы</SectionName>
       <CommentsWrapper>
         <CommentsContainer>
-        <div className="slider-container">
-          <button 
-            className="slider-arrow prev" 
-            ref={prevRef}
-            style={{ opacity: isFirstSlide ? 0.4 : 1, cursor: isFirstSlide ? 'default' : 'pointer' }}
-            disabled={isFirstSlide}
-          >
-            ←
-          </button>
-          
-          <Swiper
-            modules={[Navigation]}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-          onInit={(swiper) => {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
-              
-              setTimeout(() => {
+          <div className="slider-container">
+            <button 
+              className="slider-arrow prev" 
+              ref={prevRef}
+              onClick={handlePrev}
+              style={{ 
+                opacity: isFirstSlide ? 0.4 : 1, 
+                cursor: isFirstSlide ? 'default' : 'pointer' 
+              }}
+              disabled={isFirstSlide}
+              aria-label="Предыдущий слайд"
+            >
+              ←
+            </button>
+            
+            <Swiper
+              ref={swiperRef}
+              modules={[]} // Убираем Navigation модуль
+              onSlideChange={(swiper) => {
                 setIsFirstSlide(swiper.isBeginning);
                 setIsLastSlide(swiper.isEnd);
-              }, 100);
-            }}
-            onAfterInit={(swiper) => {
-              setIsFirstSlide(swiper.isBeginning);
-              setIsLastSlide(swiper.isEnd);
-            }}
-            onSlideChange={(swiper) => {
-              setIsFirstSlide(swiper.isBeginning);
-              setIsLastSlide(swiper.isEnd);
-            }}
-            onReachEnd={() => {
-              setIsLastSlide(true);
-            }}
-            onReachBeginning={() => {
-              setIsFirstSlide(true);
-            }}
-            onFromEdge={() => {
-              setIsFirstSlide(this?.isBeginning || false);
-              setIsLastSlide(this?.isEnd || false);
-            }}
-            spaceBetween={20}
-            slidesPerView={1}
-            centeredSlides={false}
-            slidesPerGroup={1}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-                slidesPerGroup: 1,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-                slidesPerGroup: 1,
-              },
-              1210: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-                slidesPerGroup: 1,
-              }
-            }}
-            className="comments-swiper"
-          >
-            {allComments.map((comment, index) => (
-              <SwiperSlide key={`comment-${comment.id}-${index}`}>
-                <div 
-                  className="comments-card-wrapper"
-                  onClick={(e) => handleCommentCardClick(comment, e)}
-                >
-                  <Card className="comments-card">
-                    <div className="comment-author">
-                      <img 
-                        src={getCommentAvatar(comment)} 
-                        alt="avatar" 
-                        width="64" 
-                        height="64"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = getAvatarFromName(comment.author_name);
-                        }}
-                      />
-                      <div className="author-info">
-                        <h2 title={comment.author_name}>{comment.author_name}</h2>
-                        <div className="rating">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <span 
-                              key={`star-${comment.id}-${star}`}
-                              style={{ 
-                                color: star <= (comment.rating || 5) ? '#FFD700' : '#DDD',
-                              }}
-                            >
-                              ★
-                            </span>
-                          ))}
+              }}
+              onInit={(swiper) => {
+                setIsFirstSlide(swiper.isBeginning);
+                setIsLastSlide(swiper.isEnd);
+              }}
+              spaceBetween={20}
+              slidesPerView={1}
+              slidesPerGroup={1}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                  slidesPerGroup: 1,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                  slidesPerGroup: 1,
+                },
+                1210: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                  slidesPerGroup: 1,
+                }
+              }}
+              className="comments-swiper"
+            >
+              {allComments.map((comment, index) => (
+                <SwiperSlide key={`comment-${comment.id}-${index}`}>
+                  <div 
+                    className="comments-card-wrapper"
+                    onClick={(e) => handleCommentCardClick(comment, e)}
+                  >
+                    <Card className="comments-card">
+                      <div className="comment-author">
+                        <img 
+                          src={getCommentAvatar(comment)} 
+                          alt="avatar" 
+                          width="64" 
+                          height="64"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = getAvatarFromName(comment.author_name);
+                          }}
+                        />
+                        <div className="author-info">
+                          <h2 title={comment.author_name}>{comment.author_name}</h2>
+                          <div className="rating">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <span 
+                                key={`star-${comment.id}-${star}`}
+                                style={{ 
+                                  color: star <= (comment.rating || 5) ? '#FFD700' : '#DDD',
+                                }}
+                              >
+                                ★
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="comment-description">
-                      {comment.comment_text.length > 120 ? (
-                        <>
-                          {comment.comment_text.substring(0, 120)}...
-                          <button 
-                            className="show-more-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleShowFullComment(comment);
-                            }}
-                          >
-                            Показать полностью
-                          </button>
-                        </>
-                      ) : (
-                        comment.comment_text
-                      )}
-                    </div>
-                    {comment.created_at && (
-                      <div className="comment-date">
-                        {comment.created_at}
+                      <div className="comment-description">
+                        {comment.comment_text.length > 120 ? (
+                          <>
+                            {comment.comment_text.substring(0, 120)}...
+                            <button 
+                              className="show-more-btn"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleShowFullComment(comment);
+                              }}
+                            >
+                              Показать полностью
+                            </button>
+                          </>
+                        ) : (
+                          comment.comment_text
+                        )}
                       </div>
-                    )}
-                    {isUserComment(comment) && (
-                      <button 
-                        className="delete-comment-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeleteClick(comment);
-                        }}
-                        title="Удалить комментарий"
-                      >
-                        Удалить
-                      </button>
-                    )}
-                  </Card>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          
-          <button 
-            className="slider-arrow next" 
-            ref={nextRef}
-            style={{ opacity: isLastSlide ? 0.4 : 1, cursor: isLastSlide ? 'default' : 'pointer' }}
-            disabled={isLastSlide}
-          >
-            →
-          </button>
-        </div>
+                      {comment.created_at && (
+                        <div className="comment-date">
+                          {comment.created_at}
+                        </div>
+                      )}
+                      {isUserComment(comment) && (
+                        <button 
+                          className="delete-comment-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteClick(comment);
+                          }}
+                          title="Удалить комментарий"
+                        >
+                          Удалить
+                        </button>
+                      )}
+                    </Card>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
+            <button 
+              className="slider-arrow next" 
+              ref={nextRef}
+              onClick={handleNext}
+              style={{ 
+                opacity: isLastSlide ? 0.4 : 1, 
+                cursor: isLastSlide ? 'default' : 'pointer' 
+              }}
+              disabled={isLastSlide}
+              aria-label="Следующий слайд"
+            >
+              →
+            </button>
+          </div>
         </CommentsContainer>
         
         <button 
