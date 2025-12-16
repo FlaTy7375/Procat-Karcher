@@ -9,7 +9,6 @@ import { techniqueInfo } from "../../../mocks/technique-info";
 import Technique1 from "../../../assets/images/karcher-puzzi.png";
 import Technique2 from "../../../assets/images/karcher-sc4-deluxe.png";
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg";
-import { useAuth } from "../../app/AuthContext";
 
 export default function TechniqueAbout({
   display,
@@ -17,10 +16,8 @@ export default function TechniqueAbout({
   BtnFirst,
   setBookingClass,
   setOption,
-  openAuthModal,
 }) {
   const technique1 = techniqueInfo[0];
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     // Функция для обработки нажатий клавиш
@@ -43,13 +40,8 @@ export default function TechniqueAbout({
   }, [display, hideModal]); // Перезапускаем эффект, когда меняются display или hideModal
 
   const handleBookingClick = () => {
-    if (isAuthenticated) {
-      hideModal();
-      setBookingClass();
-    } else {
-      hideModal();
-      openAuthModal();
-    }
+    hideModal();
+    setBookingClass();
   };
 
   return (

@@ -227,11 +227,12 @@ export default function Booking({ value, setValue }) {
   ], []);
   
   const [bookedDates, setBookedDates] = useState([]);
-
+ 
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
-    phone: ''
+    phone: '',
+    address: ''
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -443,6 +444,11 @@ export default function Booking({ value, setValue }) {
       return;
     }
     
+    if (!formData.address.trim()) {
+      showModal("Ошибка", "Пожалуйста, введите адрес", "error");
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -528,8 +534,17 @@ export default function Booking({ value, setValue }) {
           <p style={{ marginBottom: "10px" }}>
             <strong>Клиент:</strong> {formData.name} {formData.surname}
           </p>
-          <p>
+          <p style={{ marginBottom: "10px" }}>
             <strong>Телефон:</strong> {formData.phone}
+          </p>
+          <p style={{ marginBottom: "10px" }}>
+            <strong>Адрес:</strong> {formData.address}
+          </p>
+          <p style={{ marginBottom: "10px" }}>
+            Накануне вечером позвоните по номеру +375(29)278-16-20, чтобы подтвердить вашу бронь и договориться о времени передачи моющего пылесоса.
+          </p>
+          <p>
+            Пылесос забирать по адресу: г. Столин, ул. Дзержинского, д. 5. При себе иметь паспорт, подтверждающий вашу личность.
           </p>
         </div>
       );
@@ -542,7 +557,7 @@ export default function Booking({ value, setValue }) {
         children: successContent
       });
       
-      setFormData({ name: '', surname: '', phone: '' });
+      setFormData({ name: '', surname: '', phone: '', address: '' });
       setValue(null);
       
     } catch (error) {
@@ -718,6 +733,16 @@ export default function Booking({ value, setValue }) {
                 </div>
               )}
             </div>
+            <input 
+              className="address-booking" 
+              placeholder="Адрес" 
+              name="address"
+              autoComplete="street-address"
+              value={formData.address}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            />
           </div>
           
           <button 

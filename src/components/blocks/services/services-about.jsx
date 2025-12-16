@@ -52,7 +52,7 @@ const ServicesAbout = forwardRef(({ display, hideModal, setBookingClass, setOpti
         <div className="about-container">
         <div className="about-button--wrapper">
         <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-        <Button className="about-button" onClick={() => {handleBookingClick()}}>Заказать</Button>
+        <Button className="about-button" onClick={() => {handleBookingClick()}}>Бронировать</Button>
         </div>
         <div className="about-socials">
           <h2>Связаться с нами</h2>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Удалили useState
+import React, { useState, useEffect } from "react";
 import { StyledTechnique, TechniqueWrapper, CardsWrapper } from "./style"
 import TechniqueAbout from "./technique-about"
 import SectionName from "../../ui/section-name/section-name"
@@ -6,31 +6,22 @@ import Card from "../../ui/card/card"
 import Button from "../../ui/button/button"
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg"
 import { useModal } from "../../app/context-modal";
-import { useAuth } from "../../app/AuthContext";
-import AuthModal from "../account/auth-modal";
 
 export default function Technique() {
-    
-    const { isAuthenticated } = useAuth();
-    // Удалили локальное состояние isAuthModalOpen
-    // const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [btn, setBtn] = useState(false);
     const [isTechniqueAboutVisible, setIsTechniqueAboutVisible] = useState(false);
     const { 
         setBookingClass, 
-        setOption, 
-        isAuthModalOpen, // Получаем из контекста
-        setIsAuthModalOpen // Получаем из контекста
+        setOption
     } = useModal();
     
-    // Централизованная логика управления скроллом
     useEffect(() => {
-        if (isAuthModalOpen || isTechniqueAboutVisible) {
+        if (isTechniqueAboutVisible) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
-    }, [isAuthModalOpen, isTechniqueAboutVisible]); 
+    }, [isTechniqueAboutVisible]); 
 
     const showTechniqueAbout = (btnType) => {
       setBtn(btnType);
@@ -40,34 +31,20 @@ export default function Technique() {
     const hideTechniqueAbout = () => {
       setIsTechniqueAboutVisible(false);
     };
-
-    const openAuthModal = () => {
-      setIsAuthModalOpen(true);
-    };
-
-    const closeAuthModal = () => {
-      setIsAuthModalOpen(false);
-    };
-
+    
     const handleBookingClick = () => {
-      if (isAuthenticated) {
-        setBookingClass();
-      } else {
-        setIsAuthModalOpen(true);
-      }
+      setBookingClass();
     };
 
     return (
         <>
         <TechniqueAbout
-            BtnFirst={btn}
-            display={isTechniqueAboutVisible ? "modal-show" : ""}
-            hideModal={hideTechniqueAbout}
-            setBookingClass={setBookingClass}
-            setOption={setOption}
-            openAuthModal={openAuthModal}
+          BtnFirst={btn}
+          display={isTechniqueAboutVisible ? "modal-show" : ""}
+          hideModal={hideTechniqueAbout}
+          setBookingClass={setBookingClass}
+          setOption={setOption}
         />
-        <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
         <StyledTechnique id="technique">
             <TechniqueWrapper>
             <SectionName className="technique-name">Наша Техника</SectionName>
