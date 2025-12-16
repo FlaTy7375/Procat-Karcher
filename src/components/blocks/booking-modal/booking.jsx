@@ -461,7 +461,8 @@ export default function Booking({ value, setValue }) {
         body: JSON.stringify({
           first_name: formData.name.trim(),
           last_name: formData.surname.trim(),
-          phone_number: cleanPhone
+          phone_number: cleanPhone,
+          address: formData.address.trim()
         })
       });
       
@@ -487,7 +488,8 @@ export default function Booking({ value, setValue }) {
         body: JSON.stringify({
           client_id: clientId,
           service_name: getServiceName(value),
-          booking_date: bookingDateUTC.toISOString()
+          booking_date: bookingDateUTC.toISOString(),
+          address: formData.address.trim()
         })
       });
       
