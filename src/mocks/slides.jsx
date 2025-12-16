@@ -34,7 +34,7 @@ export const slides = [
         content: (
           <>
             <img src={Adv1} alt="advantage" draggable="false" />
-            <h2 className="advantages-title">Реферальная система</h2>
+            <h2 className="advantages-title">Бонусы за отзыв</h2>
             <p>
               За отзыв с фото «до/после» в Instagram — щётка на перфоратор на сутки
               бесплатно, а всем, кто оставляет отзыв, — 10% скидка на следующую аренду.
