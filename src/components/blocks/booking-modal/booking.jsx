@@ -3,7 +3,7 @@ import { StyledBooking } from "./style";
 import BookingCalendar from "./booking-calendar";
 import { bookingInfo } from "../../../mocks/booking-info";
 
-const API_URL = 'https://karcherback-production.up.railway.app';
+const API_URL = 'https://karcher-back.onrender.com';
 
 const Modal = ({ isOpen, onClose, title, message, type = "info", children }) => {
   const [hoverClose, setHoverClose] = useState(false);

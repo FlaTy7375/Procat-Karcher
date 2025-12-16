@@ -16,7 +16,7 @@ import {
   StatusMessage
 } from './style.js';
 
-const API_URL = 'https://karcherback-production.up.railway.app';
+const API_URL = 'https://karcher-back.onrender.com';
 
 const AuthModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
