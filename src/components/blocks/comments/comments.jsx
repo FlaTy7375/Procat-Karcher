@@ -3,6 +3,7 @@ import { StyledComments, CommentsWrapper, CommentsContainer } from "./style";
 import SectionName from "../../ui/section-name/section-name";
 import Card from "../../ui/card/card";
 import { useAuth } from "../../app/AuthContext";
+import { useModal } from "../../app/context-modal";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AlertModal from "./AlertModal";
 import 'swiper/css';
@@ -48,6 +49,7 @@ const getAvatarFromName = (name) => {
 
 export default function Comments() {
   const { user, isAuthenticated } = useAuth();
+  const { setIsAuthModalOpen } = useModal();
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showFullCommentModal, setShowFullCommentModal] = useState(false);
@@ -202,7 +204,8 @@ export default function Comments() {
 
   const handleAddComment = () => {
     if (!user || !isAuthenticated) {
-      showAlert("Требуется авторизация", "Для добавления комментария необходимо войти в аккаунт", "error");
+      // Если пользователь не авторизован, открываем окно регистрации/входа
+      setIsAuthModalOpen(true);
       return;
     }
     
@@ -466,7 +469,6 @@ export default function Comments() {
         <button 
           className="write-comment" 
           onClick={handleAddComment}
-          disabled={!user || !isAuthenticated}
         >
           {user && isAuthenticated ? 
             (userHasCommented ? "Вы уже оставляли комментарий" : "Оставить комментарий") : 

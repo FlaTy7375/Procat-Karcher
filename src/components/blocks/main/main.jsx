@@ -7,7 +7,6 @@ import Button from "../../ui/button/button";
 import Card from "../../ui/card/card";
 import { CardWrapper } from "./style";
 import { useModal } from "../../app/context-modal";
-import { useAuth } from "../../app/AuthContext";
 import AuthModal from "../account/auth-modal";
 
 // Функция для получения аватара с двумя буквами из имени
@@ -31,22 +30,16 @@ export default function Main() {
     isAuthModalOpen,
     setIsAuthModalOpen
   } = useModal();
-  const { isAuthenticated } = useAuth();
   
   const handleBookingClick = () => {
-    if (isAuthenticated) {
-      setOption(0); 
-      setBookingClass();
-    } else {
-      setIsAuthModalOpen(true);
-    }
+    setOption(0); 
+    setBookingClass();
   }
 
   const closeAuthModal = () => {
     setIsAuthModalOpen(false);
   };
   
-  // Данные статического комментария
   const staticComment = {
     author_name: "Алёна Пашкевич",
     comment_text: "Брала пылесос и честно не думала, что он так прекрасно справится с загрязнениями, отмыли все диваны и ковры, рекомендую!",

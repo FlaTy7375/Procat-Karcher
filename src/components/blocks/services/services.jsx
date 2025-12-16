@@ -6,7 +6,6 @@ import Button from "../../ui/button/button";
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info.svg";
 import ServicesAbout from "./services-about";
 import { useModal } from "../../app/context-modal";
-import { useAuth } from "../../app/AuthContext";
 import AuthModal from "../account/auth-modal";
 
 export default function Services() {
@@ -17,17 +16,11 @@ export default function Services() {
     setBookingClass, 
     setOption,
     isAuthModalOpen,
-    setIsAuthModalOpen
   } = useModal();
-  const { isAuthenticated } = useAuth();
 
   const handleBookingClick = () => {
-    if (isAuthenticated) {
-      setOption(3); 
-      setBookingClass();
-    } else {
-      setIsAuthModalOpen(true);
-    }
+    setOption(3); 
+    setBookingClass();
   }
 
   return (

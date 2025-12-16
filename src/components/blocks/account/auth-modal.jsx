@@ -20,7 +20,8 @@ const API_URL = 'https://karcherback-production.up.railway.app';
 
 const AuthModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
-  const [isRegister, setIsRegister] = useState(false);
+  // По умолчанию сначала показываем регистрацию
+  const [isRegister, setIsRegister] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
 import { ServicesAboutContainer } from "./style";
@@ -6,32 +6,17 @@ import InstLogo from "../../../assets/svg/inst.svg"
 import TgLogo from "../../../assets/svg/telegram.svg"
 import CallLogo from "../../../assets/svg/call.svg"
 import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg"
-import { useAuth } from "../../app/AuthContext";
-import AuthModal from "../account/auth-modal";
 
 const ServicesAbout = forwardRef(({ display, hideModal, setBookingClass, setOption}, ref) => {
 
-    const { isAuthenticated } = useAuth();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-
     const handleBookingClick = () => {
-      if (isAuthenticated) {
-        hideModal()
-        setOption(3); 
-        setBookingClass();
-      } else {
-        // Если пользователь не авторизован, показываем модальное окно регистрации/входа
-        setIsAuthModalOpen(true);
-      }
+      hideModal()
+      setOption(3); 
+      setBookingClass();
     }
-  
-    const closeAuthModal = () => {
-      setIsAuthModalOpen(false);
-    };
 
   return (
     <ServicesAboutContainer className={display} ref={ref}>
-      <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal}></AuthModal>
       <Card className="services-about">
         <button className="button-close" onClick={hideModal}><CloseButton></CloseButton></button>
         <div className="about-block">
