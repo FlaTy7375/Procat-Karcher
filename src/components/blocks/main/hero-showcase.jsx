@@ -33,27 +33,54 @@ const HOTSPOTS = [
 
 export default function HeroShowcase() {
   const manualRef = useRef(false);
+  const mediaAnchorRef = useRef(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
+  // Плавный скролл-зум и переключение узлов ТОЛЬКО на десктопе без лишних ре-рендеров на телефоне
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
 
-    const handleScroll = () => {
+    let rafId = null;
+
+    const applyDesktopScroll = () => {
+      rafId = null;
+      if (window.innerWidth < 1024) {
+        if (mediaAnchorRef.current) {
+          mediaAnchorRef.current.style.transform = "";
+        }
+        return;
+      }
+
       const y = window.scrollY || 0;
       const span = Math.max(180, Math.min(300, window.innerHeight * 0.35));
       const p = Math.max(0, Math.min(1, y / span));
-      setScrollProgress(p);
+
+      if (mediaAnchorRef.current) {
+        mediaAnchorRef.current.style.transform = `translate(-50%, -50%) scale(${(
+          1 +
+          p * 0.055
+        ).toFixed(4)})`;
+      }
 
       if (!manualRef.current) {
-        if (p < 0.35) setActiveIdx(0);
-        else if (p < 0.7) setActiveIdx(1);
-        else setActiveIdx(2);
+        const nextIdx = p < 0.35 ? 0 : p < 0.7 ? 1 : 2;
+        setActiveIdx((prev) => (prev === nextIdx ? prev : nextIdx));
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const schedule = () => {
+      if (window.innerWidth < 1024 || rafId !== null) return;
+      rafId = window.requestAnimationFrame(applyDesktopScroll);
+    };
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", applyDesktopScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", applyDesktopScroll);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const handleSelectPin = (idx) => {
@@ -69,17 +96,14 @@ export default function HeroShowcase() {
       <div className="bleed-slash-accent" aria-hidden="true" />
 
       <div className="bleed-viewport">
-        <div
-          className="bleed-media-anchor"
-          style={{
-            transform: `translate(-50%, -50%) scale(${(1 + scrollProgress * 0.055).toFixed(4)})`,
-          }}
-        >
+        <div ref={mediaAnchorRef} className="bleed-media-anchor">
           <img
             src={HeroRoomImg}
             alt="Моющий пылесос Karcher Puzzi 8/1 в светлой гостиной с мебельной насадкой на диване"
-            width="1280"
-            height="955"
+            width="1160"
+            height="865"
+            decoding="async"
+            fetchPriority="high"
             className="bleed-room-img"
           />
 
@@ -90,14 +114,8 @@ export default function HeroShowcase() {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <polyline
-              points={activeSpot.elbow}
-              className="leader-line-shadow"
-            />
-            <polyline
-              points={activeSpot.elbow}
-              className="leader-line-main"
-            />
+            <polyline points={activeSpot.elbow} className="leader-line-shadow" />
+            <polyline points={activeSpot.elbow} className="leader-line-main" />
           </svg>
 
           {/* Интерактивные точки разбора на реальных деталях аппарата */}
@@ -120,7 +138,7 @@ export default function HeroShowcase() {
           })}
         </div>
 
-        {/* Типографическая выноска на стене — привязана к видимой области кадра без обрезания справа */}
+        {/* Типографическая выноска на стене — привязана к видимой области кадра */}
         <div className="wall-callout wall-callout-desktop" aria-live="polite">
           <div className="callout-eyebrow">
             <span className="callout-num">{activeSpot.num}</span>

@@ -109,13 +109,17 @@ export default function How() {
     };
 
     const scheduleUpdate = () => {
-      if (!isVisible || rafId !== null) return;
+      if (window.innerWidth < 1024 || !isVisible || rafId !== null) return;
       rafId = window.requestAnimationFrame(updateProgress);
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         isVisible = Boolean(entries[0]?.isIntersecting);
+        if (window.innerWidth < 1024) {
+          window.removeEventListener("scroll", scheduleUpdate);
+          return;
+        }
         if (isVisible) {
           updateProgress();
           window.addEventListener("scroll", scheduleUpdate, { passive: true });

@@ -60,11 +60,11 @@ export const StyledMain = styled.section`
   @media (max-width: 1023px) {
     min-height: auto;
     display: block;
-    padding: 20px var(--container-pad) 0;
+    padding: 18px var(--container-pad) 0;
   }
 
   @media (max-width: 767px) {
-    padding: 18px 16px 0;
+    padding: 14px 14px 0;
   }
 `;
 
@@ -81,7 +81,7 @@ export const HeroContainer = styled.div`
   @media (max-width: 1023px) {
     position: relative;
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 18px;
   }
 `;
 
@@ -182,18 +182,65 @@ export const HeroLeft = styled.div`
     }
   }
 
-  @media (max-width: 540px) {
-    gap: 16px;
+  @media (max-width: 767px) {
+    gap: 12px;
+
+    .hero-tag {
+      font-size: 13px;
+    }
+
+    .hero-subtitle {
+      font-size: 14.5px;
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 8px;
+      margin-top: 0;
+    }
 
     .hero-book-btn,
     .hero-pick-btn {
       width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      white-space: nowrap;
+      gap: 6px;
+    }
+
+    .hero-facts-strip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 2px;
+      padding: 10px 0 8px;
+    }
+
+    .hero-fact {
+      padding-right: 6px;
+
+      dd {
+        font-size: 13px;
+      }
+
+      dt {
+        font-size: 11px;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  @media (max-width: 355px) {
+    .hero-actions {
+      grid-template-columns: 1fr;
     }
 
     .hero-facts-strip {
       grid-template-columns: 1fr;
-      gap: 10px;
-      padding: 12px 0;
+      gap: 7px;
+      padding: 8px 0;
     }
 
     .hero-fact {
@@ -201,7 +248,7 @@ export const HeroLeft = styled.div`
       align-items: baseline;
       justify-content: space-between;
       padding-right: 0;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       border-right: none;
       border-bottom: 1px dashed var(--line);
 
@@ -216,8 +263,8 @@ export const HeroLeft = styled.div`
 export const HeroTitle = styled.h1`
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(36px, 4.4vw, 72px);
-  line-height: 1.04;
+  font-size: clamp(27px, 4.4vw, 72px);
+  line-height: 1.05;
   letter-spacing: -0.025em;
   color: var(--graphite);
   max-width: 100%;
@@ -287,8 +334,8 @@ export const HeroRight = styled.div`
     min-width: 100%;
     min-height: 100%;
     aspect-ratio: 1280 / 955;
+    transform: translate(-50%, -50%);
     transition: transform 120ms linear;
-    will-change: transform;
   }
 
   .bleed-room-img {
@@ -525,7 +572,7 @@ export const HeroRight = styled.div`
 
     .bleed-slash-accent {
       position: relative;
-      height: 10px;
+      height: 6px;
       background: var(--sun);
       border-top: 1.5px solid var(--graphite);
       clip-path: none;
@@ -536,18 +583,27 @@ export const HeroRight = styled.div`
       inset: auto;
       clip-path: none;
       width: 100%;
-      aspect-ratio: 1280 / 955;
+      aspect-ratio: 16 / 10.2;
       border-top: 1.5px solid var(--graphite);
       border-bottom: 1.5px solid var(--graphite);
     }
 
+    /* Сдвигаем центр чуть ниже верхней шторы, чтобы на одном экране поместились и диван, и весь пылесос с пинами */
     .bleed-media-anchor {
-      position: relative;
-      top: auto;
-      left: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
       width: 100%;
-      height: 100%;
-      transform: none !important;
+      height: auto;
+      aspect-ratio: 1280 / 955;
+      transform: translate(-50%, -56%) !important;
+      will-change: auto;
+    }
+
+    .spot-pulse {
+      animation: none;
+      opacity: 0.45;
+      transform: scale(1.22);
     }
 
     .bleed-leader-svg,
@@ -557,11 +613,11 @@ export const HeroRight = styled.div`
 
     .wall-callout-mobile {
       display: block;
-      padding: 16px var(--container-pad) 10px;
+      padding: 12px var(--container-pad) 6px;
       background: var(--foam);
 
       .callout-title {
-        font-size: 15px;
+        font-size: 14px;
         margin: 0;
       }
 
@@ -571,18 +627,23 @@ export const HeroRight = styled.div`
 
       .callout-desc {
         max-width: none;
+        font-size: 12.5px;
       }
     }
   }
 
   @media (max-width: 767px) {
     .hero-bleed-wrap {
-      width: calc(100% + 32px);
-      margin-left: -16px;
+      width: calc(100% + 28px);
+      margin-left: -14px;
+    }
+
+    .bleed-viewport {
+      aspect-ratio: 16 / 10.6;
     }
 
     .wall-callout-mobile {
-      padding: 14px 16px 8px;
+      padding: 10px 14px 4px;
     }
   }
 `;

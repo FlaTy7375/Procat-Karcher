@@ -16,7 +16,12 @@ export default function MainHeaderNav({ onNavigate }) {
   const [activeId, setActiveId] = useState("main");
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return undefined;
+    if (
+      typeof IntersectionObserver === "undefined" ||
+      (typeof window !== "undefined" && window.innerWidth < 1024)
+    ) {
+      return undefined;
+    }
 
     const sectionIds = NAV_ITEMS.map((item) => item.id);
     const ratios = new Map();
