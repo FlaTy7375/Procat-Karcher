@@ -1,111 +1,114 @@
-import React from 'react';
-import { StyledMain } from "./style";
-import { Title } from "./style";
-import { StyledMainWrapper } from "./style";
-import { MainInfo } from "./style";
+import React from "react";
+import {
+  StyledMain,
+  HeroContainer,
+  HeroLeft,
+  HeroRight,
+  HeroTitle,
+} from "./style";
 import Button from "../../ui/button/button";
-import Card from "../../ui/card/card";
-import { CardWrapper } from "./style";
+import { ArrowDownIcon } from "../../ui/icons/icons";
 import { useModal } from "../../app/context-modal";
 import AuthModal from "../account/auth-modal";
+import HeroShowcase from "./hero-showcase";
+import MarqueeRibbon from "./marquee-ribbon";
 
-// Функция для получения аватара с двумя буквами из имени
-const getAvatarFromName = (name) => {
-  if (!name) return '';
-  
-  const words = name.split(' ');
-  if (words.length >= 2) {
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(words[0].charAt(0) + words[1].charAt(0))}&background=random&size=64`;
-  } else {
-    const initials = name.length >= 2 ? name.substring(0, 2) : name;
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=random&size=64`;
-  }
-};
+const HERO_FACTS = [
+  { main: "50\u00A0руб", sub: "за сутки проката" },
+  { main: "Инструктаж", sub: "покажем при выдаче" },
+  { main: "Химия с собой", sub: "подберём под пятно" },
+];
 
 export default function Main() {
-  const { 
-    setModalClass, 
-    setBookingClass, 
+  const {
+    setBookingClass,
     setOption,
     isAuthModalOpen,
-    setIsAuthModalOpen
+    setIsAuthModalOpen,
   } = useModal();
-  
-  const handleBookingClick = () => {
-    setOption(0); 
-    setBookingClass();
-  }
 
-  const closeAuthModal = () => {
-    setIsAuthModalOpen(false);
+  const handleBookingClick = () => {
+    setOption(0);
+    setBookingClass();
   };
-  
-  const staticComment = {
-    author_name: "Алёна Пашкевич",
-    comment_text: "Брала пылесос и честно не думала, что он так прекрасно справится с загрязнениями, отмыли все диваны и ковры, рекомендую!",
-    rating: 5
+
+  const handlePickScroll = (e) => {
+    const target =
+      document.getElementById("pick") || document.getElementById("technique");
+    if (target) {
+      e.preventDefault();
+      const reduced =
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+    }
   };
-  
-  const avatarUrl = getAvatarFromName(staticComment.author_name);
-  
+
   return (
-    <StyledMain id="main">
-      <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal}></AuthModal>
-      <StyledMainWrapper>
-        <div className="main-container">
-          <MainInfo>
-            <Title>Прокат Karcher</Title>
-            <p>
-              Прокат моющей техники Karcher в Столине – арендуйте мощное
-              оборудование для идеальной чистоты. Удобно, быстро и по доступной
-              цене!
-            </p>
-            <Button className="main-button" onClick={() => {handleBookingClick()}}>Бронировать</Button>
-          </MainInfo>
-          <Card className="main-comment">
-            <div className="comment-wrapper">
-              <div className="comment-author">
-                <img 
-                  src={avatarUrl} 
-                  alt="avatar" 
-                  width="64" 
-                  height="64" 
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    // Fallback на генерацию из имени в случае ошибки
-                    e.target.src = getAvatarFromName(staticComment.author_name);
-                  }}
-                />
-                <div className="author-info">
-                  <h2>{staticComment.author_name}</h2>
-                  <div className="rating">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <span 
-                        key={`star-${star}`}
-                        style={{ 
-                          color: star <= staticComment.rating ? '#FFD700' : '#DDD',
-                        }}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className="comment-text">
-                {staticComment.comment_text}
-              </p>
-            </div>
-          </Card>
+    <>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
+      <StyledMain id="main">
+        <div className="hero-bg-layer" aria-hidden="true">
+          <div className="hero-bg-beam" />
         </div>
-        <Card className="main-card">
-          <CardWrapper>
-            <p>Доп. Услуги</p>
-            <h2>Karcher K 5 Full Control</h2>
-            <Button className="card-button" onClick={setModalClass}>Подробнее</Button>
-          </CardWrapper>
-        </Card>
-      </StyledMainWrapper>
-    </StyledMain>
+
+        <HeroContainer>
+          <HeroLeft>
+            <div className="hero-kicker">
+              <span className="kicker-mark" aria-hidden="true" />
+              <span className="hero-tag">Прокат техники Karcher · Столин</span>
+            </div>
+
+            <HeroTitle>
+              <span className="title-dirty">Грязь&nbsp;—</span>
+              <br />
+              <span className="title-accent">не&nbsp;приговор.</span>
+            </HeroTitle>
+
+            <p className="hero-subtitle">
+              Возьми Karcher напрокат на сутки&nbsp;— 50&nbsp;руб. Покажем, как
+              пользоваться, и подберём химию. Покупать мойку ради одного
+              дивана не нужно.
+            </p>
+
+            <div className="hero-actions">
+              <Button className="hero-book-btn" onClick={handleBookingClick}>
+                Забронировать
+              </Button>
+
+              <Button
+                className="hero-pick-btn"
+                variant="outline"
+                href="#pick"
+                onClick={handlePickScroll}
+              >
+                <span>Что будем мыть?</span>
+                <ArrowDownIcon size={18} />
+              </Button>
+            </div>
+
+            <dl className="hero-facts-strip" aria-label="Условия проката">
+              {HERO_FACTS.map((fact) => (
+                <div key={fact.main} className="hero-fact">
+                  <dt>{fact.sub}</dt>
+                  <dd>{fact.main}</dd>
+                </div>
+              ))}
+            </dl>
+          </HeroLeft>
+
+          <HeroRight>
+            <HeroShowcase />
+          </HeroRight>
+        </HeroContainer>
+      </StyledMain>
+
+      <MarqueeRibbon />
+    </>
   );
 }

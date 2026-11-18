@@ -1,56 +1,126 @@
-import React, { useRef, useState } from "react";
-import Card from "../../ui/card/card";
+import React from "react";
 import { slides } from "../../../mocks/slides";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { ReactComponent as SliderButton } from "../../../assets/svg/slider-button.svg"
-import { Navigation, Pagination } from 'swiper/modules';
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
-export default function AdvantagesSlider ({isPhone}) {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-    const [isFirstSlide, setIsFirstSlide] = useState(true);
-    const [isLastSlide, setIsLastSlide] = useState(false);
-
+function AdvantageCard({ item, className = "" }) {
+  if (item.kind === "mascot") {
     return (
-        <>
-        <Swiper 
-        pagination={{
-            type: 'fraction',
-        }}
-        modules={[Pagination, Navigation]}
-        navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-        }}
-        onInit={(swiper) => {
-            // Связываем кнопки после инициализации Swiper
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
-        }}
-        onSlideChange={(swiper) => {
-            // Обновляем состояние на основе активного слайда
-            setIsFirstSlide(swiper.isBeginning);
-            setIsLastSlide(swiper.isEnd);
-        }}
-        >
-        {slides.map((slide) => {
-            return isPhone ?
-            <SwiperSlide key={slide.id}>
-                <Card className="advantages-card">{slide.content}</Card>
-            </SwiperSlide>
-            :
-            <Card className="advantages-card" key={slide.id}>{slide.content}</Card>
-        })}
+      <article className={`adv-card adv-mascot ${className}`}>
+        <div className="adv-mascot-stage">
+          <div className="mascot-beam" aria-hidden="true" />
 
-        </Swiper>
-            <div className="slider-nav--container">
-                <button className="slide-prev" ref={prevRef} style={{ opacity: isFirstSlide ? 0.4 : 1 }}><SliderButton></SliderButton></button>
-                <button className="slide-next" ref={nextRef} style={{ opacity: isLastSlide ? 0.4 : 1 }}><SliderButton></SliderButton></button>
+          <div className="adv-card-head">
+            <span className="adv-tag">{item.tag}</span>
+          </div>
+
+          <div className="adv-mascot-visual">
+            {item.speech && (
+              <div className="speech-bubble">
+                <span>{item.speech}</span>
+              </div>
+            )}
+            <img
+              className="mascot-img"
+              src={item.image}
+              alt={item.imageAlt}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              draggable={false}
+            />
+          </div>
+        </div>
+
+        <div className="adv-mascot-footer">
+          <div className="adv-text-col adv-text-col--light">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+          <div className="mascot-checks">
+            <span>Всё включим вместе</span>
+            <span>Объясним на пальцах</span>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  if (item.kind === "chemistry") {
+    return (
+      <article className={`adv-card adv-chemistry ${className}`}>
+        <div className="adv-chem-grid">
+          <div className="adv-chem-copy">
+            <div className="adv-card-head">
+              <span className="adv-tag">{item.tag}</span>
             </div>
-        </>
-    )
+
+            <div className="adv-text-col">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+
+            <div className="chem-fit-row" aria-label="Для каких поверхностей">
+              <span>Мебель</span>
+              <span>Ковры</span>
+              <span>Салон авто</span>
+            </div>
+          </div>
+
+          <div className="adv-chem-stage">
+            <div className="chem-stage-stripe" aria-hidden="true" />
+            <img
+              src={item.image}
+              alt={item.imageAlt}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              draggable={false}
+            />
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className={`adv-card adv-coupon ${className}`}>
+      <span className="coupon-notch coupon-notch--left" aria-hidden="true" />
+      <span className="coupon-notch coupon-notch--right" aria-hidden="true" />
+
+      <div className="adv-card-head">
+        <span className="adv-tag adv-tag--coupon">{item.tag}</span>
+        <span className="coupon-discount">{item.discount}</span>
+      </div>
+
+      <div className="adv-coupon-body">
+        <div className="coupon-badge-wrap">
+          <img
+            src={item.image}
+            alt={item.imageAlt}
+            width={item.width}
+            height={item.height}
+            loading="lazy"
+            draggable={false}
+          />
+        </div>
+
+        <div className="adv-text-col adv-text-col--coupon">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          {item.bonusLine && (
+            <div className="coupon-bonus-strip">{item.bonusLine}</div>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function AdvantagesSlider() {
+  return (
+    <div className="advantages-bento">
+      {slides.map((item) => (
+        <AdvantageCard key={item.id} item={item} />
+      ))}
+    </div>
+  );
 }

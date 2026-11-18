@@ -1,71 +1,61 @@
-import styled from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-// --- Цветовая палитра ---
-const colors = {
-  // Базовые цвета
-  darkGray: 'rgb(82, 82, 82);', // Очень темный фон
-  mediumGray: 'rgb(44, 44, 44);', // Чуть светлее для элементов
-  lightGray: '#A9A9A9', // Для вспомогательного текста
-  white: '#FFFFFF',
+const modalRise = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
-  // Желтый акцент Karcher
-  karcherYellow: '#FFD700',
-  karcherYellowLight: '#FFEB3B',
-  karcherYellowDark: '#FFC107',
-
-  // Тени
-  shadowColor: 'rgba(0, 0, 0, 0.4)',
-};
+const sheetSlideUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  inset: 0;
+  background: rgba(28, 30, 34, 0.56);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  z-index: 2500;
+  padding: 16px;
+  overflow-y: auto;
+
+  @media (max-width: 767px) {
+    padding: 0;
+    align-items: flex-end;
+  }
 `;
 
 export const ModalContent = styled.div`
-  background: ${colors.mediumGray};
-  border-radius: 12px;
-  padding: 30px;
-  width: 90%;
-  max-width: 420px;
-  box-shadow: 0 10px 30px ${colors.shadowColor};
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  max-width: 460px;
+  max-height: 92vh;
+  overflow-y: auto;
   position: relative;
-  overflow: hidden;
+  color: var(--graphite);
+  animation: ${modalRise} 260ms var(--ease-clean);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(30px);
-    z-index: -1;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -70px;
-    right: -70px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(40px);
-    z-index: -1;
+  @media (max-width: 767px) {
+    max-width: 100%;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    animation: ${sheetSlideUp} 280ms var(--ease-clean);
   }
 `;
 
@@ -73,102 +63,121 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 12px;
+  gap: 12px;
+  padding: 18px 24px;
+  background: var(--foam);
+  border-bottom: 1px solid var(--line);
 `;
 
 export const ModalTitle = styled.h2`
-  color: ${colors.karcherYellow};
+  font-family: var(--font-display);
+  color: var(--graphite);
   margin: 0;
-  font-size: 36px;
-  font-weight: 700;
-
-  @media (max-width: 767px) {
-    font-size: 24px;
-  }
+  font-size: 22px;
+  font-weight: 800;
 `;
 
 export const ModalCloseButton = styled.button`
-  background: none;
-  border: none;
-  color: ${colors.lightGray};
-  font-size: 2.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--graphite);
   cursor: pointer;
-  padding: 0;
-  line-height: 1;
+  flex-shrink: 0;
+  transition: background-color 200ms var(--ease-clean);
 
   &:hover {
-    color: ${colors.white};
+    background: var(--sun);
+    border-color: var(--sun);
   }
 `;
 
 export const ModalBody = styled.div`
-  /* Дополнительные стили для тела модального окна */
+  padding: 22px 24px 26px;
 `;
 
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 `;
 
 export const InputGroup = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const InputLabel = styled.label`
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: var(--graphite);
 `;
 
 export const InputField = styled.input`
   width: 100%;
-  padding: 14px 18px;
-  border: 1px solid ${colors.white};
-  border-radius: 8px;
-  background: ${colors.darkGray};
-  color: ${colors.white};
-  font-size: 18px;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--foam);
+  color: var(--graphite);
+  font-size: 16px;
+  transition:
+    border-color 200ms var(--ease-clean),
+    box-shadow 200ms var(--ease-clean);
 
   &::placeholder {
-    color: ${colors.white};
+    color: var(--dust);
   }
 
   &:focus {
-    border-color: ${colors.karcherYellow};
-    background-color: ${colors.mediumGray};
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.4);
+    outline: none;
+    border-color: var(--aqua);
+    box-shadow: 0 0 0 3px rgba(34, 184, 230, 0.35);
+    background: var(--paper);
   }
 
-  @media (max-width: 767px) {
-    font-size: 14px;
+  &:disabled {
+    opacity: 0.6;
   }
 `;
 
 export const AuthButton = styled.button`
-  background: linear-gradient(45deg, ${colors.karcherYellowLight} 0%, ${colors.karcherYellow} 100%);
-  color: ${colors.darkGray};
-  border: none;
-  border-radius: 8px;
-  padding: 14px 25px;
-  font-size: 20px;
-  font-weight: 700;
+  min-height: 52px;
+  margin-top: 6px;
+  padding: 12px 24px;
+  border: 2px solid var(--sun);
+  border-radius: var(--radius-pill);
+  background: var(--sun);
+  color: var(--graphite);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-  text-transform: uppercase;
+  transition:
+    background-color 220ms var(--ease-clean),
+    transform 180ms var(--ease-clean);
 
-  &:hover {
-    background: linear-gradient(45deg, ${colors.karcherYellow} 0%, ${colors.karcherYellowDark} 100%);
-    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-    transform: translateY(-2px);
+  &:hover:not(:disabled) {
+    background: var(--sun-deep);
+    border-color: var(--sun-deep);
   }
 
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2);
+  &:active:not(:disabled) {
+    transform: scale(0.97);
   }
 
-  @media (max-width: 767px) {
-    font-size: 14px;
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
   }
 `;
 
@@ -176,60 +185,50 @@ export const ToggleText = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: ${colors.lightGray};
-  font-size: 18px;
+  align-items: center;
+  gap: 8px;
+  color: var(--graphite-70);
+  font-size: 15px;
   text-align: center;
-  margin-top: 25px;
-
-  @media (max-width: 767px) {
-    p {
-        font-size: 14px;
-    }
-  }
+  margin-top: 18px;
 `;
 
-export const ToggleButton = styled.span`
-  color: ${colors.karcherYellow};
+export const ToggleButton = styled.button`
+  background: transparent;
+  border: none;
+  color: var(--graphite);
   cursor: pointer;
-  font-weight: bold;
-  margin-left: 6px;
-  text-decoration: none;
-  border-bottom: 2px solid ${colors.karcherYellow};
-  padding-bottom: 2px;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: underline;
+  text-decoration-color: var(--sun-deep);
+  text-underline-offset: 4px;
+  padding: 6px 4px;
+  min-height: 44px;
 
   &:hover {
-    color: ${colors.white};
-    border-color: ${colors.white};
-  }
-
-  @media (max-width: 767px) {
-    font-size: 14px;
+    color: var(--graphite-70);
   }
 `;
 
-const statusColors = {
-  success: '#4CAF50', // Зеленый для успеха
-  error: '#F44336', // Красный для ошибок
-};
-
-export const StatusMessage = styled.p`
-  color: ${props => props.$isSuccess ? statusColors.success : statusColors.error};
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  margin: 20px 0;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: ${props => props.$isSuccess ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)'};
-  border: 1px solid ${props => props.$isSuccess ? statusColors.success : statusColors.error};
+export const StatusMessage = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   gap: 10px;
+  color: ${(props) => (props.$isSuccess ? "#1f7442" : "var(--err)")};
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 18px 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background-color: ${(props) =>
+    props.$isSuccess ? "rgba(46, 158, 91, 0.12)" : "rgba(214, 69, 69, 0.1)"};
+  border: 1px solid
+    ${(props) => (props.$isSuccess ? "var(--ok)" : "var(--err)")};
 
-  @media (max-width: 767px) {
-    font-size: 14px;
-    padding: 10px;
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 `;

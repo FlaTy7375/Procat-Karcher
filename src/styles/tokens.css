@@ -1,0 +1,42 @@
+:root {
+  /* Палитра «От грязи к блеску» */
+  --foam: #FBF9F3;
+  --paper: #FFFFFF;
+  --sun: #FED219;
+  --sun-deep: #F2B900;
+  --sun-soft: #FFF3B0;
+
+  --graphite: #1C1E22;
+  --graphite-70: #50545C;
+  --line: #E7E2D6;
+
+  --aqua: #22B8E6;
+
+  --mud: #6A5640;
+  --mud-dark: #4A3B2B;
+  --dust: #B9AA92;
+
+  --ok: #2E9E5B;
+  --err: #D64545;
+
+  /* Типографика */
+  --font-display: 'Unbounded', 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Форма и поверхности */
+  --radius-card: 24px;
+  --radius-card-lg: 28px;
+  --radius-tag: 20px;
+  --radius-pill: 999px;
+  --shadow-card: 0 24px 40px -24px rgba(28, 30, 34, 0.28);
+  --shadow-float: 0 18px 36px -20px rgba(28, 30, 34, 0.22);
+
+  /* Движение */
+  --ease-clean: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Сетка и единые брейкпоинты (1280 / 1024 / 768 / 480) */
+  --container-max: 1280px;
+  --container-pad: clamp(16px, 3.5vw, 48px);
+  --header-height: 76px;
+}

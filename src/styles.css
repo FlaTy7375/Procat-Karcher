@@ -1,108 +1,109 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter-ExtraBold.woff2') format('woff2');
-  font-weight: 900; /* ExtraBold */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
-  font-weight: 600; /* SemiBold */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter-Medium.woff2') format('woff2');
-  font-weight: 500; /* Medium */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter-Regular.woff2') format('woff2');
-  font-weight: 400; /* Regular */
-  font-style: normal;
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #fff;
-  list-style-type: none;
-  text-decoration: none;
-  font-family: 'Inter';
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--foam);
+  color: var(--graphite);
+  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
+  position: relative;
   width: 100%;
-  max-width: 2800px;
-  margin: 0 auto;
-  padding-top: 242px;
-  background-color: #121119;
-  background-image: url('./assets/images/background.jpg');
-  background-size: 2800px;
-  background-position: center top;
-  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--foam);
+  color: var(--graphite);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(17px, 1.08vw, 18px);
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 1280px) {
-  body {
-    box-shadow:  0 0px 50px 0 rgb(255, 255, 255, 0.1);
+/* Статичная бумажная фактура поверх фона (opacity 0.045) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 220px 220px;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--aqua);
+  outline-offset: 3px;
+}
+
+::selection {
+  background-color: var(--sun);
+  color: var(--graphite);
+}
+
+/* Появление заголовков «протиркой» слева направо */
+.wipe-reveal {
+  clip-path: inset(-24px 100% -18px -8px);
+  transition: clip-path 520ms var(--ease-clean);
+  will-change: clip-path;
+}
+
+.wipe-reveal.is-revealed {
+  clip-path: inset(-24px -16px -18px -8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-}
 
-@media (max-width: 1210px) {
-  body {
-    padding-top: 152px;
-    background-size: 3450px;
+  .wipe-reveal {
+    clip-path: none !important;
   }
-}
 
-@media (max-width: 767px) {
-  body {
-    padding-top: 110px;
-    background-size: calc(2100px + 100vw);
-  }
-}
-
-@media (max-width: 687px) {
-  body {
-    padding-top: 110px;
-    background-size: calc(2100px + 95vw);
-  }
-}
-
-@media (max-width: 624px) {
-  body {
-    background-size: calc(2100px + 85vw);
-  }
-}
-
-@media (max-width: 528px) {
-  body {
-    background-size: calc(2100px + 75vw);
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    background-size: calc(2100px + 70vw);
-  }
-}
-
-@media (max-width: 439px) {
-  body {
-    background-size: calc(2100px + 60vw);
-  }
-}
-
-@media (max-width: 319px) {
-  body {
-    background: none;
-    background-color: #121119;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { TechniqueAboutContainer } from "./style";
-import Card from "../../ui/card/card";
 import Button from "../../ui/button/button";
-import InstLogo from "../../../assets/svg/inst.svg";
-import TgLogo from "../../../assets/svg/telegram.svg";
-import CallLogo from "../../../assets/svg/call.svg";
+import {
+  CloseIcon,
+  InstagramIcon,
+  PhoneIcon,
+  TelegramIcon,
+} from "../../ui/icons/icons";
 import { techniqueInfo } from "../../../mocks/technique-info";
-import Technique1 from "../../../assets/images/karcher-puzzi.png";
-import Technique2 from "../../../assets/images/karcher-sc4-deluxe.png";
-import { ReactComponent as CloseButton } from "../../../assets/svg/close-button.svg";
+import Technique1 from "../../../assets/images/karcher-puzzi.webp";
+import Technique2 from "../../../assets/images/karcher-sc4-deluxe.webp";
 
 export default function TechniqueAbout({
   display,
@@ -17,124 +18,126 @@ export default function TechniqueAbout({
   setBookingClass,
   setOption,
 }) {
-  const technique1 = techniqueInfo[0];
+  const isOpen = display === "modal-show";
+  const activeItem = BtnFirst ? techniqueInfo[0] : techniqueInfo[1];
+  const activeImage = BtnFirst ? Technique1 : Technique2;
 
   useEffect(() => {
-    // Функция для обработки нажатий клавиш
+    if (!isOpen) return undefined;
+
     const handleKeyDown = (event) => {
-      // Проверяем, является ли нажатая клавиша 'Escape'
-      if (event.key === 'Escape' || event.key === 'Esc') {
+      if (event.key === "Escape" || event.key === "Esc") {
         hideModal();
       }
     };
 
-    // Добавляем обработчик событий на документ, только если модальное окно открыто
-    if (display === 'modal-show') {
-      document.addEventListener('keydown', handleKeyDown);
-    }
-
-    // Возвращаем функцию очистки
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [display, hideModal]); // Перезапускаем эффект, когда меняются display или hideModal
+  }, [isOpen, hideModal]);
+
+  if (!isOpen) return null;
 
   const handleBookingClick = () => {
     hideModal();
+    setOption(BtnFirst ? 1 : 2);
     setBookingClass();
   };
 
   return (
-    <>
-      <TechniqueAboutContainer className={display}>
-        <Card className="technique-about">
-          <button className="button-close" onClick={hideModal}>
-            <CloseButton />
+    <TechniqueAboutContainer
+      className={display}
+      onClick={hideModal}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${activeItem.title} — характеристики`}
+    >
+      <div
+        className="technique-about"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="sheet-head">
+          <span className="about-kicker">
+            {BtnFirst ? "Моющий пылесос · 50\u00A0руб/сутки" : "Пароочиститель · 4\u00A0бар · 50\u00A0руб/сутки"}
+          </span>
+          <button
+            type="button"
+            className="button-close"
+            onClick={hideModal}
+            aria-label="Закрыть окно"
+          >
+            <CloseIcon size={20} />
           </button>
-          {BtnFirst ? (
-            <>
-              <div>
-                <div className="about-block">
-                  <h2 className="about-title">{technique1.title}</h2>
-                  <p className="about-description">{technique1.description}</p>
-                </div>
-                <Card className="image-card">
-                  <img
-                    src={Technique1}
-                    alt="Моющий пылесоc Karcher Puzzi 8/1 C"
-                    draggable="false"
-                  />
-                </Card>
-                <div className="about-block">
-                  <h2 className="about-title">Технические характеристики:</h2>
-                  {technique1.content1}
-                </div>
-                <div className="about-block">
-                  <h2 className="about-title">Преимущества:</h2>
-                  {technique1.content2}
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <div className="about-block">
-                  <h2 className="about-title">{techniqueInfo[1].title}</h2>
-                  <p className="about-description">{techniqueInfo[1].description}</p>
-                </div>
-                <Card className="image-card">
-                  <img
-                    src={Technique2}
-                    alt="Моющий пылесоc Karcher SC 3 EasyFix"
-                    draggable="false"
-                  />
-                </Card>
-                <div className="about-block">
-                  <h2 className="about-title">Технические характеристики:</h2>
-                  {techniqueInfo[1].content1}
-                </div>
-                <div className="about-block">
-                  <h2 className="about-title">Преимущества:</h2>
-                  {techniqueInfo[1].content2}
-                </div>
-              </div>
-            </>
-          )}
+        </div>
+
+        <div className="sheet-body">
+          <div className="about-top-grid">
+            <div className="about-intro">
+              <h2 className="about-title">{activeItem.title}</h2>
+              <p className="about-description">{activeItem.description}</p>
+            </div>
+
+            <div className="image-card">
+              <img
+                src={activeImage}
+                alt={activeItem.title}
+                width={BtnFirst ? 534 : 960}
+                height={BtnFirst ? 463 : 960}
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+          </div>
+
+          <div className="about-specs-grid">
+            <div className="about-block">
+              <h3>Технические характеристики</h3>
+              {activeItem.content1}
+            </div>
+            <div className="about-block">
+              <h3>Преимущества</h3>
+              {activeItem.content2}
+            </div>
+          </div>
 
           <div className="about-container">
             <div className="about-button--wrapper">
-              <small>*Если остались вопросы, свяжитесь с нами и мы все разъясним.</small>
-              <Button
-                className="about-button"
-                onClick={() => {
-                  BtnFirst ? setOption(1) : setOption(2);
-                  handleBookingClick();
-                }}
-              >
+              <small>
+                *Если остались вопросы, свяжитесь с нами — всё разъясним.
+              </small>
+              <Button className="about-button" onClick={handleBookingClick}>
                 Бронировать
               </Button>
             </div>
+
             <div className="about-socials">
-              <h2>Связаться с нами</h2>
+              <h4>Связаться с нами</h4>
               <div className="social-about--list">
                 <a
                   href="https://www.instagram.com/prokat_karcher_stolin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Instagram"
                 >
-                  <img src={InstLogo} alt="inst-logo" width="48" height="48" />
+                  <InstagramIcon size={20} />
                 </a>
-                <a href="https://t.me/Inna_Evt" target="_blank" rel="noopener noreferrer">
-                  <img src={TgLogo} alt="telegram-logo" width="48" height="48" />
+                <a
+                  href="https://t.me/Inna_Evt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Telegram"
+                >
+                  <TelegramIcon size={20} />
                 </a>
-                <a href="tel:+375292781620" target="_blank" rel="noopener noreferrer">
-                  <img src={CallLogo} alt="phone-logo" width="48" height="48" />
+                <a href="tel:+375292781620" aria-label="Позвонить">
+                  <PhoneIcon size={20} />
                 </a>
               </div>
             </div>
           </div>
-        </Card>
-      </TechniqueAboutContainer>
-    </>
+        </div>
+      </div>
+    </TechniqueAboutContainer>
   );
 }

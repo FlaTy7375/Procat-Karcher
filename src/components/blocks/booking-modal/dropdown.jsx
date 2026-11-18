@@ -19,7 +19,7 @@ export default function Dropdown({ options, value, onChange }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, []);
 
   const handleOptionClick = (optionValue) => {
     const syntheticEvent = {
@@ -31,22 +31,33 @@ export default function Dropdown({ options, value, onChange }) {
     setIsOpen(false);
   };
 
+  const handleTriggerKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setIsOpen((prev) => !prev);
+    } else if (e.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <StyledDropdown>
       <div className="dropdown-wrapper" ref={dropdownRef}>
-        <div
+        <button
+          type="button"
           className="dropdown-button"
           onClick={() => setIsOpen(!isOpen)}
-          role="button"
+          onKeyDown={handleTriggerKeyDown}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
-          tabIndex={0}
         >
-          {selectedOptionLabel || "Выберите..."}
-          <span className="dropdown-arrow">{isOpen ? "▲" : "▼"}</span>
-        </div>
+          <span>{selectedOptionLabel || "Выберите..."}</span>
+          <span className="dropdown-arrow" aria-hidden="true">
+            {isOpen ? "▲" : "▼"}
+          </span>
+        </button>
         {isOpen && (
-          <ul className="dropdown-list">
+          <ul className="dropdown-list" role="listbox">
             {options.map((option) => (
               <li
                 className={`dropdown-option ${
@@ -61,6 +72,12 @@ export default function Dropdown({ options, value, onChange }) {
                 role="option"
                 aria-selected={option.value.toString() === value?.toString()}
                 tabIndex={option.disabled ? -1 : 0}
+                onKeyDown={(e) => {
+                  if (!option.disabled && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    handleOptionClick(option.value);
+                  }
+                }}
               >
                 {option.label}
               </li>

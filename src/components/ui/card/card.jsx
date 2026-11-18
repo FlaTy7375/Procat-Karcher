@@ -1,7 +1,20 @@
+import React, { forwardRef } from "react";
 import { StyledCard } from "./style";
 
-export default function Card({children, className}) {
+const Card = forwardRef(
+  ({ children, className, tilt: _tilt, onClick, style, ...rest }, ref) => {
     return (
-        <StyledCard className={className}>{children}</StyledCard>
-    )
-}
+      <StyledCard
+        ref={ref}
+        className={className}
+        onClick={onClick}
+        style={style}
+        {...rest}
+      >
+        {children}
+      </StyledCard>
+    );
+  }
+);
+
+export default Card;

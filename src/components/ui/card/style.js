@@ -1,16 +1,20 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div `
-    display: flex;
-    flex-direction: column;
-    width: 430px;
-    height: 556px;
-    padding: 50px 60px;
-    border-radius: 77px;
-    box-sizing: border-box;
-    box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.14);
-`
+export const StyledCard = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 3vw, 36px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  color: var(--graphite);
+  transition:
+    border-color 250ms var(--ease-clean),
+    transform 250ms var(--ease-clean);
+
+  @media (max-width: 767px) {
+    padding: 20px;
+  }
+`;
