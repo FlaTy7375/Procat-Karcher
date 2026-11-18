@@ -9,21 +9,6 @@ const marqueeSlide = keyframes`
   }
 `;
 
-const pinPulse = keyframes`
-  0% {
-    transform: scale(0.92);
-    opacity: 0.72;
-  }
-  70% {
-    transform: scale(1.75);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.75);
-    opacity: 0;
-  }
-`;
-
 export const StyledMain = styled.section`
   position: relative;
   width: 100%;
@@ -391,11 +376,11 @@ export const HeroRight = styled.div`
 
   .spot-pulse {
     position: absolute;
-    inset: 3px;
+    inset: 1px;
     border-radius: 50%;
-    background: var(--sun);
-    animation: ${pinPulse} 2.2s ease-out infinite;
+    background: rgba(254, 210, 25, 0.36);
     pointer-events: none;
+    transition: background-color 180ms var(--ease-clean), transform 180ms var(--ease-clean);
   }
 
   .spot-core {
@@ -428,7 +413,8 @@ export const HeroRight = styled.div`
   }
 
   .spot-pin.is-active .spot-pulse {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.65);
+    transform: scale(1.16);
   }
 
   /* Чистая журнальная типографика прямо по спокойной стене (без карточной рамки!) */
@@ -601,9 +587,8 @@ export const HeroRight = styled.div`
     }
 
     .spot-pulse {
-      animation: none;
       opacity: 0.45;
-      transform: scale(1.22);
+      transform: scale(1.12);
     }
 
     .bleed-leader-svg,

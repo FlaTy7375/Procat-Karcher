@@ -145,7 +145,6 @@ export const StyledAdvantages = styled.section`
     width: clamp(190px, 20vw, 250px);
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 16px 24px rgba(28, 30, 34, 0.22));
     pointer-events: none;
   }
 
@@ -259,7 +258,6 @@ export const StyledAdvantages = styled.section`
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 12px 18px rgba(28, 30, 34, 0.16));
       pointer-events: none;
     }
   }

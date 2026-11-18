@@ -465,7 +465,6 @@ export const TaskWorkbench = styled.div`
       max-height: 180px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 14px 20px rgba(28, 30, 34, 0.16));
     }
   }
 

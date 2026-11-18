@@ -1,16 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-const starSheen = keyframes`
-  0%, 72%, 100% {
-    filter: brightness(1);
-    transform: scale(1);
-  }
-  84% {
-    filter: brightness(1.18);
-    transform: scale(1.12);
-  }
-`;
-
 const modalRise = keyframes`
   from {
     opacity: 0;
@@ -168,20 +157,6 @@ export const StyledComments = styled.section`
   .rating-star.is-filled {
     color: var(--sun-deep);
     display: inline-block;
-    animation: ${starSheen} 4.2s ease-in-out infinite;
-  }
-
-  .rating-star.is-filled:nth-child(2) {
-    animation-delay: 0.15s;
-  }
-  .rating-star.is-filled:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .rating-star.is-filled:nth-child(4) {
-    animation-delay: 0.45s;
-  }
-  .rating-star.is-filled:nth-child(5) {
-    animation-delay: 0.6s;
   }
 
   .rating-star.is-empty {

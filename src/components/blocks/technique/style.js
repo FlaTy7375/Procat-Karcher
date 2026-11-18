@@ -1,20 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-const tagSwing = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  28% {
-    transform: rotate(-2deg);
-  }
-  65% {
-    transform: rotate(1.8deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-`;
-
 export const StyledTechnique = styled.section`
   position: relative;
   width: 100%;
@@ -52,12 +37,11 @@ export const TagCard = styled.article`
   position: relative;
   display: flex;
   flex-direction: column;
-  transform-origin: 50% 6px;
-  filter: drop-shadow(0 24px 28px rgba(28, 30, 34, 0.12));
+  transition: transform 240ms var(--ease-clean);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      animation: ${tagSwing} 750ms var(--ease-clean);
+      transform: translateY(-4px);
     }
 
     &:hover .tag-surface {
@@ -86,18 +70,9 @@ export const TagCard = styled.article`
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius-tag);
+    box-shadow: var(--shadow-card);
     padding-top: 16px;
     transition: border-color 250ms var(--ease-clean);
-
-    /* Срезанные уголки сверху в стиле прокатной бирки */
-    clip-path: polygon(
-      20px 0,
-      calc(100% - 20px) 0,
-      100% 20px,
-      100% 100%,
-      0 100%,
-      0 20px
-    );
   }
 
   .tag-eyelet-row {
@@ -181,7 +156,6 @@ export const TagCard = styled.article`
       width: 100%;
       height: 230px;
       object-fit: contain;
-      filter: drop-shadow(0 20px 22px rgba(28, 30, 34, 0.22));
     }
   }
 
