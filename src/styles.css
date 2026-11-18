@@ -11,14 +11,17 @@ html {
   background-color: var(--foam);
   color: var(--graphite);
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  max-width: 100%;
+  min-height: 100%;
   margin: 0;
   background-color: var(--foam);
   color: var(--graphite);
@@ -26,7 +29,9 @@ body {
   font-weight: 400;
   font-size: clamp(17px, 1.08vw, 18px);
   line-height: 1.55;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

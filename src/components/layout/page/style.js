@@ -5,5 +5,10 @@ export const StyledPage = styled.main`
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  overflow-x: clip;
+  padding-top: 86px;
+  overflow-x: hidden;
+
+  @media (max-width: 767px) {
+    padding-top: 74px;
+  }
 `;

@@ -18,6 +18,8 @@ export const StyledMobileBar = styled.div`
     box-shadow: 0 -16px 32px -18px rgba(28, 30, 34, 0.24);
     transform: ${({ $visible }) =>
       $visible ? "translate3d(0, 0, 0)" : "translate3d(0, 110%, 0)"};
+    backface-visibility: hidden;
+    will-change: transform;
     pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
     transition: transform 280ms var(--ease-clean);
   }

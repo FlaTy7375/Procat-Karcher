@@ -651,9 +651,8 @@ export const HeroRight = styled.div`
 export const StyledMarquee = styled.div`
   position: relative;
   width: 100%;
-  overflow-x: clip;
-  overflow-y: visible;
-  padding: clamp(22px, 2.2vw, 34px) 0;
+  overflow: hidden;
+  padding: clamp(28px, 3vw, 44px) 0;
   background: var(--foam);
 
   .marquee-band {
@@ -670,6 +669,7 @@ export const StyledMarquee = styled.div`
     display: flex;
     width: max-content;
     animation: ${marqueeSlide} 26s linear infinite;
+    backface-visibility: hidden;
     will-change: transform;
   }
 

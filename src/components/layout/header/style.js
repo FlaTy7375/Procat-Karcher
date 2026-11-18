@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  position: sticky;
-  top: 12px;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  padding: 12px var(--container-pad) 0;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) var(--container-pad) 0;
   z-index: 1200;
   pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 
   @media (max-width: 767px) {
-    top: 8px;
-    padding: 8px 12px 0;
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 0;
   }
 `;
 

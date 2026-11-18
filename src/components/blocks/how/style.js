@@ -6,6 +6,7 @@ export const StyledHow = styled.section`
   padding: clamp(56px, 7vw, 96px) var(--container-pad);
   background: var(--foam);
   color: var(--graphite);
+  overflow-x: hidden;
   scroll-margin-top: 96px;
 
   @media (max-width: 767px) {
