@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { StyledNav, MobileMenuOverlay } from "./style";
 import Socials from "./socials";
 import MainHeaderNav, { NAV_ITEMS } from "./main-nav";
@@ -66,13 +67,21 @@ export default function Nav() {
       }
     };
 
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        closeMenu();
+      }
+    };
+
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
     };
   }, [menuOpen, closeMenu]);
 
@@ -91,8 +100,11 @@ export default function Nav() {
         typeof window !== "undefined" &&
         window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.body.style.overflow = "";
       closeMenu();
-      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      window.requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      });
     } else {
       closeMenu();
     }
@@ -158,91 +170,94 @@ export default function Nav() {
         </div>
       </StyledNav>
 
-      {menuOpen && (
-        <MobileMenuOverlay role="dialog" aria-modal="true" aria-label="Мобильное меню">
-          <div className="mobile-menu-top">
-            <a
-              href="#main"
-              className="mobile-menu-brand"
-              onClick={(e) => handleMobileLinkClick(e, "main")}
-            >
-              <img src={Logo} alt="" width="40" height="40" />
-              <span>
-                Pro<strong>Karcher</strong>
-              </span>
-            </a>
-
-            <button
-              type="button"
-              className="mobile-menu-close"
-              onClick={closeMenu}
-              aria-label="Закрыть меню"
-            >
-              <CloseIcon size={22} />
-            </button>
-          </div>
-
-          <div className="mobile-menu-main">
-            <nav className="mobile-menu-grid" aria-label="Навигация по разделам">
-              {NAV_ITEMS.map((item) => {
-                const isActive = mobileActiveId === item.id;
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className={`mobile-nav-tile ${isActive ? "is-active" : ""}`}
-                    onClick={(e) => handleMobileLinkClick(e, item.id)}
-                  >
-                    <span className="mobile-tile-title">{item.label}</span>
-                    <span className="mobile-tile-hint">
-                      {MOBILE_ITEM_HINTS[item.id] || ""}
-                    </span>
-                  </a>
-                );
-              })}
-            </nav>
-
-            <div className="mobile-menu-bottom">
-              <Button className="mobile-cta-book" onClick={handleBookClick}>
-                Бронировать · 50&nbsp;руб/сутки
-              </Button>
-
+      {menuOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <MobileMenuOverlay role="dialog" aria-modal="true" aria-label="Мобильное меню">
+            <div className="mobile-menu-top">
               <a
-                className="mobile-cta-call"
-                href="tel:+375292781620"
-                onClick={closeMenu}
+                href="#main"
+                className="mobile-menu-brand"
+                onClick={(e) => handleMobileLinkClick(e, "main")}
               >
-                <PhoneIcon size={19} />
-                <span>+375 (29) 278-16-20</span>
+                <img src={Logo} alt="" width="40" height="40" />
+                <span>
+                  Pro<strong>Karcher</strong>
+                </span>
               </a>
 
-              <div className="mobile-menu-meta">
-                <div className="mobile-city-info">
-                  <span className="city-dot" aria-hidden="true" />
-                  <span>Столин · самовывоз и инструктаж</span>
-                </div>
+              <button
+                type="button"
+                className="mobile-menu-close"
+                onClick={closeMenu}
+                aria-label="Закрыть меню"
+              >
+                <CloseIcon size={22} />
+              </button>
+            </div>
 
-                <div className="mobile-meta-right">
-                  <Socials className="mobile-socials" />
-                  {isAuthenticated && (
-                    <button
-                      type="button"
-                      className="mobile-logout-btn"
-                      onClick={() => {
-                        logout();
-                        closeMenu();
-                      }}
+            <div className="mobile-menu-main">
+              <nav className="mobile-menu-grid" aria-label="Навигация по разделам">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = mobileActiveId === item.id;
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className={`mobile-nav-tile ${isActive ? "is-active" : ""}`}
+                      onClick={(e) => handleMobileLinkClick(e, item.id)}
                     >
-                      <LogoutIcon size={18} />
-                      <span>Выйти</span>
-                    </button>
-                  )}
+                      <span className="mobile-tile-title">{item.label}</span>
+                      <span className="mobile-tile-hint">
+                        {MOBILE_ITEM_HINTS[item.id] || ""}
+                      </span>
+                    </a>
+                  );
+                })}
+              </nav>
+
+              <div className="mobile-menu-bottom">
+                <Button className="mobile-cta-book" onClick={handleBookClick}>
+                  Бронировать · 50&nbsp;руб/сутки
+                </Button>
+
+                <a
+                  className="mobile-cta-call"
+                  href="tel:+375292781620"
+                  onClick={closeMenu}
+                >
+                  <PhoneIcon size={19} />
+                  <span>+375 (29) 278-16-20</span>
+                </a>
+
+                <div className="mobile-menu-meta">
+                  <div className="mobile-city-info">
+                    <span className="city-dot" aria-hidden="true" />
+                    <span>Столин · самовывоз и инструктаж</span>
+                  </div>
+
+                  <div className="mobile-meta-right">
+                    <Socials className="mobile-socials" />
+                    {isAuthenticated && (
+                      <button
+                        type="button"
+                        className="mobile-logout-btn"
+                        onClick={() => {
+                          logout();
+                          closeMenu();
+                        }}
+                      >
+                        <LogoutIcon size={18} />
+                        <span>Выйти</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </MobileMenuOverlay>
-      )}
+          </MobileMenuOverlay>,
+          document.body
+        )}
     </>
   );
 }

@@ -316,13 +316,17 @@ export const MobileMenuOverlay = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 16px 18px calc(24px + env(safe-area-inset-bottom));
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 18px
+    calc(24px + env(safe-area-inset-bottom, 0px));
   background: var(--graphite);
   color: var(--foam);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   border-top: 4px solid var(--sun);
 
   .mobile-menu-top {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
